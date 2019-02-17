@@ -5,6 +5,7 @@ import com.example.SmartHiveAPI.HiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,9 @@ public class HiveController {
     }
     // Create a new Hive
     @PostMapping("/hives")
-    public Hive createHive(@RequestBody Hive hive) {
-        System.out.println(hive);
+    public Hive createHive(@RequestBody @Valid Hive hive) {
+        System.out.println(hive.getId());
+        System.out.println(hive.getLocation());
         return hiveRepository.save(hive);
     }
     // Get a Single Note

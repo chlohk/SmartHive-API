@@ -16,7 +16,14 @@ public class Hive {
         this.location = location;
     }
 
-    protected Hive() {
+    protected Hive() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     private String location;
