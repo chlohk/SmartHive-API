@@ -42,17 +42,18 @@ public class ColonyController {
 
     // Update a Colony
     @PutMapping("/colony/{colonyId}")
-    public Colony updateColony(@PathVariable Long colonyId,
+    public List<Colony> updateColony(@PathVariable Long colonyId,
                                @Valid @RequestBody Colony colonyDetails) {
         Colony colony = colonyRepository.findById(colonyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Colony", "id", colonyId));
         colony.setName(colonyDetails.getName());
-        return colonyRepository.save(colony);
+        colonyRepository.save(colony);
+        return colonyRepository.findAll();
     }
 
     // Delete a Colony
     @DeleteMapping("/colony/{colonyId}")
-    public ResponseEntity<?> deleteColony(@PathVariable Long colonyId) throws MethodNotAllowedException {
+    public List<Colony> deleteColony(@PathVariable Long colonyId) throws MethodNotAllowedException {
         Colony colony = colonyRepository.findById(colonyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Colony", "id", colonyId));
 
@@ -60,7 +61,7 @@ public class ColonyController {
             throw new MethodNotAllowedException(HttpMethod.DELETE, Arrays.asList(HttpMethod.values()));
         }
         colonyRepository.delete(colony);
-        return ResponseEntity.ok().build();
+        return colonyRepository.findAll();
     }
 
 }
