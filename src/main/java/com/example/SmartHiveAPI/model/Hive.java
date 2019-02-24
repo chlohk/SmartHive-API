@@ -22,5 +22,5 @@ public class Hive implements Serializable {
     private int number;
 
     @NotEmpty
-    private String name;
+    private String description;
 }
