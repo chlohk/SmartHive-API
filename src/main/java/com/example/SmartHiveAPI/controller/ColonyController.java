@@ -28,8 +28,9 @@ public class ColonyController {
 
     // Create a new Colony
     @PostMapping("/colony")
-    public Colony createColony(@RequestBody Colony colony) {
-        return colonyRepository.save(colony);
+    public List<Colony> createColony(@RequestBody Colony colony) {
+        colonyRepository.save(colony);
+        return colonyRepository.findAll();
     }
 
     // Get a Single Colony
