@@ -32,9 +32,6 @@ public class HiveController {
         colony.ifPresent(colony1 -> colony1.addHive(hive));
         return hiveRepository.save(hive);
     }
-    // Get a Single Note
-
-    // Update a Note
 
     // Delete a Hive
 
