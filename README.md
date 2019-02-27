@@ -1,0 +1,8 @@
+## Projekti paigaldamine
+1. Installi [MySQL](https://www.mysql.com/) andmebaas, loo uus andmebaas 'smarthive'
+2. Klooni [Smarthive-API repo](https://github.com/chlohk/SmartHive-API)
+3. Ava terminal kloonitud repos ja käivita `gradlew.bat bootRun`
+4. Klooni [SmartHive-UI repo](https://github.com/chlohk/SmartHive-UI)
+5. Ava terminal kloonitud repos ja käivita `npm install`
+6. Käivita `npm run`
+7. Rakendust serveeritakse URL'il localhost:4200
