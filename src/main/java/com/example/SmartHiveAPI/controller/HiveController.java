@@ -1,5 +1,6 @@
 package com.example.SmartHiveAPI.controller;
 
+import com.example.SmartHiveAPI.exception.ResourceNotFoundException;
 import com.example.SmartHiveAPI.repositories.ColonyRepository;
 import com.example.SmartHiveAPI.repositories.HiveRepository;
 import com.example.SmartHiveAPI.model.Colony;
@@ -7,6 +8,7 @@ import com.example.SmartHiveAPI.model.Hive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +34,26 @@ public class HiveController {
         colony.ifPresent(colony1 -> colony1.addHive(hive));
         return hiveRepository.save(hive);
     }
-    // Get a Single Note
 
-    // Update a Note
+    // Update a Hive
+    @PutMapping("/hive/{hiveId}")
+    public List<Colony> updateHive(@PathVariable Long hiveId,
+                                   @Valid @RequestBody Colony hiveDetails) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+        hive.setDescription(hiveDetails.getDescription());
+        hive.setNumber(hiveDetails.getNumber());
+        hiveRepository.save(hive);
+        return colonyRepository.findAll();
+    }
 
     // Delete a Hive
-
-
+    @DeleteMapping("/hive/{hiveId}")
+    public List<Colony> deleteHive(@PathVariable Long hiveId) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+        hiveRepository.delete(hive);
+        return colonyRepository.findAll();
+    }
 }
 
