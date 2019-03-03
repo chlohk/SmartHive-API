@@ -38,7 +38,7 @@ public class HiveController {
     // Update a Hive
     @PutMapping("/hive/{hiveId}")
     public List<Colony> updateHive(@PathVariable Long hiveId,
-                                   @Valid @RequestBody Colony hiveDetails) {
+                                   @Valid @RequestBody Hive hiveDetails) {
         Hive hive = hiveRepository.findById(hiveId)
                 .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
         hive.setDescription(hiveDetails.getDescription());
