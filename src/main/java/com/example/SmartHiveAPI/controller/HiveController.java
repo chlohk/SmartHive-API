@@ -29,20 +29,29 @@ public class HiveController {
     }
     // Create a new Hive
     @PostMapping("/hive/{colonyId}")
-    public Hive createHive(@PathVariable Long colonyId, @RequestBody Hive hive) {
+    public List<Colony> createHive(@PathVariable Long colonyId, @RequestBody Hive hive) {
         Optional<Colony> colony = colonyRepository.findById(colonyId);
         colony.ifPresent(colony1 -> colony1.addHive(hive));
-        return hiveRepository.save(hive);
+        hiveRepository.save(hive);
+        return colonyRepository.findAll();
     }
 
     // Update a Hive
-    @PutMapping("/hive/{hiveId}")
+    @PutMapping("/hive/{hiveId}/colony/{colonyId}")
     public List<Colony> updateHive(@PathVariable Long hiveId,
-                                   @Valid @RequestBody Hive hiveDetails) {
+                                   @PathVariable Long colonyId,
+                                   @RequestBody Hive hiveDetails) {
         Hive hive = hiveRepository.findById(hiveId)
                 .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+        Colony oldColony = hive.getColony();
+        oldColony.removeHive(hive);
         hive.setDescription(hiveDetails.getDescription());
         hive.setNumber(hiveDetails.getNumber());
+        if (colonyRepository.findById(colonyId).isPresent()) {
+            hive.setColony(colonyRepository.findById(colonyId).get());
+        }
+        Optional<Colony> colony = colonyRepository.findById(colonyId);
+        colony.ifPresent(colony1 -> colony1.addHive(hive));
         hiveRepository.save(hive);
         return colonyRepository.findAll();
     }

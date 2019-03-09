@@ -1,5 +1,6 @@
 package com.example.SmartHiveAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -20,6 +21,11 @@ public class Hive implements Serializable {
     private Long id;
 
     private int number;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "colony_id")
+    private Colony colony;
 
     @NotEmpty
     private String description;

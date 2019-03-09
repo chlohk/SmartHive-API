@@ -26,6 +26,11 @@ public class Colony implements Serializable {
     public void addHive(Hive hive) {
         hives.add(hive);
     }
+
+    public void removeHive(Hive hive) {
+        hives.remove(hive);
+    }
+
     public Boolean hasHives() {
         if (hives.isEmpty()) {
             return Boolean.FALSE;
