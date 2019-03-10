@@ -1,10 +1,9 @@
 package com.example.SmartHiveAPI.controller;
 
 import com.example.SmartHiveAPI.exception.ResourceNotFoundException;
+import com.example.SmartHiveAPI.model.*;
 import com.example.SmartHiveAPI.repositories.ColonyRepository;
 import com.example.SmartHiveAPI.repositories.HiveRepository;
-import com.example.SmartHiveAPI.model.Colony;
-import com.example.SmartHiveAPI.model.Hive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +31,16 @@ public class HiveController {
     public List<Colony> createHive(@PathVariable Long colonyId, @RequestBody Hive hive) {
         Optional<Colony> colony = colonyRepository.findById(colonyId);
         colony.ifPresent(colony1 -> colony1.addHive(hive));
+        MomAttributes momA = new MomAttributes();
+        momA.setHasControlFrame(true);
+        momA.setMomStatus(MomStatus.MISSING);
+        momA.setStatusStartingDate(new java.sql.Date(System.currentTimeMillis()));
+        momA.setMarkedStatus(MarkedStatus.UNMARKED);
+        momA.setIsBirthdaySet(false);
+        momA.setHasControlFrame(false);
+        momA.setIsCocoonChoosen(false);
+        hive.setMomAttributes(momA);
+
         hiveRepository.save(hive);
         return colonyRepository.findAll();
     }
@@ -40,7 +49,7 @@ public class HiveController {
     @PutMapping("/hive/{hiveId}/colony/{colonyId}")
     public List<Colony> updateHive(@PathVariable Long hiveId,
                                    @PathVariable Long colonyId,
-                                   @RequestBody Hive hiveDetails) {
+                                   @Valid @RequestBody Hive hiveDetails) {
         Hive hive = hiveRepository.findById(hiveId)
                 .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
         Colony oldColony = hive.getColony();

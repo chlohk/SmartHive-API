@@ -27,6 +27,9 @@ public class Hive implements Serializable {
     @JoinColumn(name = "colony_id")
     private Colony colony;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    private MomAttributes momAttributes;
+
     @NotEmpty
     private String description;
 }
