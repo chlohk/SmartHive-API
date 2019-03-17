@@ -52,6 +52,6 @@ public class MomAttributes {
     private Boolean cocoonChoosenDate;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="hive_id")
+    @JoinColumn(name="mom_attributes_id")
     private List<Log> freakLog = new ArrayList<>();
 }
