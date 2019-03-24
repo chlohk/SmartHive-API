@@ -22,6 +22,10 @@ public class Hive implements Serializable {
 
     private int number;
 
+    public void addLog(Log log) {
+        getMomAttributes().getFreakLog().add(log);
+    }
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "colony_id")
