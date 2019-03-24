@@ -38,7 +38,7 @@ public class HiveController {
         momA.setMarkedStatus(MarkedStatus.UNMARKED);
         momA.setIsBirthdaySet(false);
         momA.setHasControlFrame(false);
-        momA.setIsCocoonChoosen(false);
+        momA.setIsCocoonChosen(false);
         hive.setMomAttributes(momA);
 
         hiveRepository.save(hive);

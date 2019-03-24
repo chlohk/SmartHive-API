@@ -2,7 +2,7 @@ package com.example.SmartHiveAPI.model;
 
 public enum MomStatus {
     SEEN,
-    CAGED,
+    UN_CAGED,
     IN_CAGE,
     HATCHED,
     UNKNOWN,

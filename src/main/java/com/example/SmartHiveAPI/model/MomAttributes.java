@@ -47,7 +47,7 @@ public class MomAttributes {
 
     private Date controlFrameStartDate;
 
-    private Boolean isCocoonChoosen;
+    private Boolean isCocoonChosen;
 
     private Boolean cocoonChoosenDate;
 
