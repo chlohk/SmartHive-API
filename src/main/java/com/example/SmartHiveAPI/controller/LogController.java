@@ -29,4 +29,13 @@ public class LogController {
         logRepository.save(log);
         return log;
     }
+
+    @PutMapping("/hive/freaklog/{logId}")
+    public Log updateLog(@PathVariable Long logId, @Valid @RequestBody Log log) {
+        Log oldlog = logRepository.findById(logId).orElseThrow(() -> new ResourceNotFoundException("Hive", "id", logId));
+        oldlog.setDate(log.getDate());
+        oldlog.setText(log.getText());
+        logRepository.save(oldlog);
+        return oldlog;
+    }
 }
