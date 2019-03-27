@@ -32,13 +32,11 @@ public class HiveController {
         Optional<Colony> colony = colonyRepository.findById(colonyId);
         colony.ifPresent(colony1 -> colony1.addHive(hive));
         MomAttributes momA = new MomAttributes();
-        momA.setHasControlFrame(true);
         momA.setMomStatus(MomStatus.MISSING);
         momA.setStatusStartingDate(new java.sql.Date(System.currentTimeMillis()));
         momA.setMarkedStatus(MarkedStatus.UNMARKED);
-        momA.setIsBirthdaySet(false);
-        momA.setHasControlFrame(false);
-        momA.setIsCocoonChosen(false);
+        momA.setIsMarkedDateMonthSet(false);
+        momA.setIsBirthdayDateMonthSet(false);
         hive.setMomAttributes(momA);
 
         hiveRepository.save(hive);

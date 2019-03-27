@@ -39,17 +39,15 @@ public class MomAttributes {
 
     private String markedDescription;
 
-    private Boolean isBirthdaySet;
+    private Boolean isMarkedDateMonthSet;
 
     private Date birthday;
 
-    private Boolean hasControlFrame;
+    private Boolean isBirthdayDateMonthSet;
 
     private Date controlFrameStartDate;
 
-    private Boolean isCocoonChosen;
-
-    private Boolean cocoonChoosenDate;
+    private Date cocoonChosenDate;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="mom_attributes_id")
