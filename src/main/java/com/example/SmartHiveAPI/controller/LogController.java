@@ -38,4 +38,14 @@ public class LogController {
         logRepository.save(oldlog);
         return oldlog;
     }
+
+    @DeleteMapping("/hive/freaklog/{logId}")
+    public Log deleteLog(@PathVariable Long logId) {
+        Log deletelog = logRepository.findById(logId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", logId));
+        logRepository.delete(deletelog);
+        return deletelog;
+    }
+
+
 }

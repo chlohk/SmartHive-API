@@ -31,7 +31,5 @@ public class MomAttributesController {
         hive.setMomAttributes(momAttributes);
         hiveRepository.save(hive);
         return colonyRepository.findAll();
-
-
     }
 }
