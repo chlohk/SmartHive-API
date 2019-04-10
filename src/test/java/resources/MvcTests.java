@@ -157,7 +157,6 @@ public class MvcTests {
     @Test
     public void testColonyAddHive() throws Exception {
 
-
         Colony c = new Colony();
         Colony c2 = new Colony();
         List<Colony> colonies = new ArrayList<>();
@@ -188,8 +187,6 @@ public class MvcTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$[0].hives.[0].description").value("bla"));
-
-
     }
 
 
