@@ -33,6 +33,8 @@ public class HiveController {
         colony.ifPresent(colony1 -> colony1.addHive(hive));
         MomAttributes momA = new MomAttributes();
         momA.setMomStatus(MomStatus.MISSING);
+        momA.setMarkedDescription("");
+        momA.setIsLayingEggs(false);
         momA.setStatusStartingDate(new java.sql.Date(System.currentTimeMillis()));
         momA.setMarkedStatus(MarkedStatus.UNMARKED);
         momA.setIsMarkedDateMonthSet(false);
