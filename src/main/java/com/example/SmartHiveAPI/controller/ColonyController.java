@@ -21,6 +21,7 @@ public class ColonyController {
     ColonyRepository colonyRepository;
 
     // Get All Colonies
+//    @CrossOrigin(origins = "*")
     @GetMapping("/colony")
     public List<Colony> getAllColonies() {
         return colonyRepository.findAll();
