@@ -1,18 +1,27 @@
 package com.example.SmartHiveAPI.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Math.min;
 
 @Data
 @Valid
-@Entity
+@Entity(name = "Hive")
 @AllArgsConstructor
+@Table(name = "hive")
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Hive implements Serializable {
@@ -27,13 +36,24 @@ public class Hive implements Serializable {
     }
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "colony_id")
     private Colony colony;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="hive_id")
+    private List<SizeLog> sizeLogs = new ArrayList<>();
 
     @OneToOne(cascade=CascadeType.ALL)
     private MomAttributes momAttributes;
 
     @NotEmpty
     private String description;
+
+    @JsonIgnore
+    public List<SizeLog> getMaxThreeSizeLogs() {
+       return getSizeLogs().subList(0, min(getSizeLogs().size(), 2));
+    }
 }

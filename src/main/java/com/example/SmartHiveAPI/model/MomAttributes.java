@@ -9,9 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Valid
@@ -51,5 +51,5 @@ public class MomAttributes {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="mom_attributes_id")
-    private List<Log> freakLog = new ArrayList<>();
+    private Set<Log> freakLog = new HashSet<>();
 }
