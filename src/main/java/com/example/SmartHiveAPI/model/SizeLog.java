@@ -27,5 +27,5 @@ public class SizeLog implements Serializable {
     private int removedNumOfFrames;
     private int removedCocoons;
     private Date day;
-
+    private boolean hasMagazine;
 }

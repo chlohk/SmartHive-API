@@ -4,6 +4,7 @@ import com.example.SmartHiveAPI.exception.ResourceNotFoundException;
 import com.example.SmartHiveAPI.model.*;
 import com.example.SmartHiveAPI.repositories.ColonyRepository;
 import com.example.SmartHiveAPI.repositories.HiveRepository;
+import com.example.SmartHiveAPI.repositories.SizeLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,9 @@ public class HiveController {
 
     @Autowired
     ColonyRepository colonyRepository;
+
+    @Autowired
+    SizeLogRepository sizeLogRepository;
 
     // Get All Hives
     @GetMapping("/hive")
@@ -92,7 +96,6 @@ public class HiveController {
             newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
             newLog.setAddedNumOfFrames(0);
             newLog.setRemovedNumOfFrames(0);
-            newLog.setMagazineSize(0);
             newLog.setRemovedCocoons(0);
             sizeLogs.add(newLog);
             hive.setSizeLogs(sizeLogs);
@@ -110,7 +113,7 @@ public class HiveController {
             return sizeLogs.subList(0, min(sizeLogs.size(), 3));
         } else {
             if (sizeLogs.size() == 1) {
-                if (first.getMagazineSize() == 0 && first.getAddedNumOfFrames() == 0
+                if (!first.isHasMagazine() && first.getAddedNumOfFrames() == 0
                         && first.getRemovedCocoons() == 0
                         && first.getRemovedNumOfFrames() == 0) {
                     sizeLogs.remove(first);
@@ -124,7 +127,8 @@ public class HiveController {
                     newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
                     newLog.setAddedNumOfFrames(0);
                     newLog.setRemovedNumOfFrames(0);
-                    newLog.setMagazineSize(0);
+                    newLog.setTotalNumOfFrames(sizeLogs.get(sizeLogs.size() - 1).getTotalNumOfFrames());
+                    newLog.setMagazineSize(sizeLogs.get(sizeLogs.size() - 1).getMagazineSize());
                     newLog.setRemovedCocoons(0);
                     sizeLogs.add(0, newLog);
                     hive.setSizeLogs(sizeLogs);
@@ -132,9 +136,11 @@ public class HiveController {
                     return sizeLogs;
                 }
             } else {
-                if (first.getMagazineSize() == sizeLogs.get(1).getMagazineSize() && first.getAddedNumOfFrames() == 0
+                if (first.getMagazineSize() == sizeLogs.get(sizeLogs.size() - 2).getMagazineSize() && first.getAddedNumOfFrames() == 0
                         && first.getRemovedCocoons() == 0
-                        && first.getRemovedNumOfFrames() == 0) {
+                        && first.getRemovedNumOfFrames() == 0
+                        && first.isHasMagazine() == sizeLogs.get(sizeLogs.size() - 2).isHasMagazine()
+                        && first.getMagazineSize() == sizeLogs.get(sizeLogs.size() - 2).getMagazineSize()) {
                     sizeLogs.remove(first);
                     first.setDay(new java.sql.Date(System.currentTimeMillis()));
                     sizeLogs.add(0, first);
@@ -147,7 +153,8 @@ public class HiveController {
                     newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
                     newLog.setAddedNumOfFrames(0);
                     newLog.setRemovedNumOfFrames(0);
-                    newLog.setMagazineSize(0);
+                    newLog.setTotalNumOfFrames(sizeLogs.get(sizeLogs.size() - 1).getTotalNumOfFrames());
+                    newLog.setMagazineSize(sizeLogs.get(sizeLogs.size() - 1).getMagazineSize());
                     newLog.setRemovedCocoons(0);
                     sizeLogs.add(0, newLog);
                     hive.setSizeLogs(sizeLogs);
