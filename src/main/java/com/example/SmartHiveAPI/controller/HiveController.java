@@ -106,7 +106,8 @@ public class HiveController {
         System.out.println(fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis()))));
         System.out.println(first);
         if (fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis())))) {
-            return sizeLogs.subList(sizeLogs.size(), min(sizeLogs.size(), 3));
+            Collections.reverse(sizeLogs);
+            return sizeLogs.subList(0, min(sizeLogs.size(), 3));
         } else {
             if (sizeLogs.size() == 1) {
                 if (first.getMagazineSize() == 0 && first.getAddedNumOfFrames() == 0
