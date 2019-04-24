@@ -41,6 +41,7 @@ public class Hive implements Serializable {
     @JoinColumn(name = "colony_id")
     private Colony colony;
 
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="hive_id")
