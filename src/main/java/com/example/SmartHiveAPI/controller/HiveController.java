@@ -106,7 +106,7 @@ public class HiveController {
         System.out.println(fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis()))));
         System.out.println(first);
         if (fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis())))) {
-            return sizeLogs.subList(sizeLogs.size() - 3, min(sizeLogs.size(), 3));
+            return sizeLogs.subList(sizeLogs.size(), min(sizeLogs.size(), 3));
         } else {
             if (sizeLogs.size() == 1) {
                 if (first.getMagazineSize() == 0 && first.getAddedNumOfFrames() == 0
@@ -117,7 +117,7 @@ public class HiveController {
                     sizeLogs.add(0, first);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
-                    return sizeLogs.subList(sizeLogs.size() - 3, min(sizeLogs.size(), 3));
+                    return sizeLogs;
                 } else {
                     SizeLog newLog = new SizeLog();
                     newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
@@ -128,7 +128,7 @@ public class HiveController {
                     sizeLogs.add(0, newLog);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
-                    return sizeLogs.subList(sizeLogs.size() - 3, min(sizeLogs.size(), 3));
+                    return sizeLogs;
                 }
             } else {
                 if (first.getMagazineSize() == sizeLogs.get(1).getMagazineSize() && first.getAddedNumOfFrames() == 0
@@ -140,7 +140,7 @@ public class HiveController {
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
                     Collections.reverse(sizeLogs);
-                    return sizeLogs.subList(sizeLogs.size() - 3, min(sizeLogs.size(), 3));
+                    return sizeLogs.subList(0, min(sizeLogs.size(), 3));
                 } else {
                     SizeLog newLog = new SizeLog();
                     newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
@@ -152,7 +152,7 @@ public class HiveController {
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
                     Collections.reverse(sizeLogs);
-                    return sizeLogs.subList(sizeLogs.size() - 3, min(sizeLogs.size(), 3));
+                    return sizeLogs.subList(0, min(sizeLogs.size(), 3));
                 }
             }
         }
