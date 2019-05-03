@@ -42,8 +42,8 @@ public class Hive implements Serializable {
     private Colony colony;
 
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade=CascadeType.ALL)
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="hive_id")
     private List<SizeLog> sizeLogs = new ArrayList<>();
 

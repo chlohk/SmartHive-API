@@ -100,6 +100,9 @@ public class HiveController {
             sizeLogs.add(newLog);
             hive.setSizeLogs(sizeLogs);
             hiveRepository.save(hive);
+            hive = hiveRepository.findById(hiveId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+            sizeLogs = hive.getSizeLogs();
             return sizeLogs;
         }
 
@@ -121,6 +124,9 @@ public class HiveController {
                     sizeLogs.add(0, first);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
+                    hive = hiveRepository.findById(hiveId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+                    sizeLogs = hive.getSizeLogs();
                     return sizeLogs;
                 } else {
                     SizeLog newLog = new SizeLog();
@@ -133,6 +139,9 @@ public class HiveController {
                     sizeLogs.add(0, newLog);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
+                    hive = hiveRepository.findById(hiveId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+                    sizeLogs = hive.getSizeLogs();
                     return sizeLogs;
                 }
             } else {
@@ -146,6 +155,9 @@ public class HiveController {
                     sizeLogs.add(0, first);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
+                    hive = hiveRepository.findById(hiveId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+                    sizeLogs = hive.getSizeLogs();
                     Collections.reverse(sizeLogs);
                     return sizeLogs.subList(0, min(sizeLogs.size(), 3));
                 } else {
@@ -159,6 +171,9 @@ public class HiveController {
                     sizeLogs.add(0, newLog);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
+                    hive = hiveRepository.findById(hiveId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+                    sizeLogs = hive.getSizeLogs();
                     Collections.reverse(sizeLogs);
                     return sizeLogs.subList(0, min(sizeLogs.size(), 3));
                 }
