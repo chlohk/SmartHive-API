@@ -4,6 +4,7 @@ import com.example.SmartHiveAPI.exception.ResourceNotFoundException;
 import com.example.SmartHiveAPI.model.*;
 import com.example.SmartHiveAPI.repositories.ColonyRepository;
 import com.example.SmartHiveAPI.repositories.HiveRepository;
+import com.example.SmartHiveAPI.repositories.PlanElementRepository;
 import com.example.SmartHiveAPI.repositories.SizeLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static java.lang.Math.min;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -29,6 +28,9 @@ public class HiveController {
 
     @Autowired
     SizeLogRepository sizeLogRepository;
+
+    @Autowired
+    PlanElementRepository planElementRepository;
 
     // Get All Hives
     @GetMapping("/hive")
@@ -54,6 +56,56 @@ public class HiveController {
         hiveRepository.save(hive);
         return colonyRepository.findAll();
     }
+
+    // Create a new PlanElement
+    @PostMapping("/hive/{hiveId}/planning")
+    public List<Colony> createHive(@PathVariable Long hiveId, @RequestBody PlanElement plan) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+
+        Set<PlanElement> planElements = hive.getPlanElements();
+        planElements.add(plan);
+        hive.setPlanElements(planElements);
+        hiveRepository.save(hive);
+
+        return colonyRepository.findAll();
+    }
+
+
+    @PutMapping("/hive/{hiveId}/planning/{planId}")
+    public List<Colony> updateHive(@PathVariable Long hiveId,
+                                   @PathVariable Long planId,
+                                   @Valid @RequestBody PlanElement planDetails) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+        Optional<PlanElement> planElement = planElementRepository.findById(planId);
+        if (!planElement.isPresent()) {
+            throw new ResourceNotFoundException("Plan", "id", planId);
+        }
+
+        Set<PlanElement> planElements;
+        planElements = hive.getPlanElements();
+
+        planElements.remove(planElement.get());
+
+
+        PlanElement plan = planElement.get();
+        plan.setDeadline(planDetails.getDeadline());
+        plan.setDropDown(planDetails.isDropDown());
+        plan.setDropDownElementId(planDetails.getDropDownElementId());
+        plan.setId(planDetails.getId());
+        plan.setResolved(planDetails.isResolved());
+        plan.setResolvedDate(planDetails.getResolvedDate());
+        plan.setText(planDetails.getText());
+        plan.setWithoutDeadline(planDetails.isWithoutDeadline());
+
+        planElements.add(plan);
+        hive.setPlanElements(planElements);
+        hiveRepository.save(hive);
+        return colonyRepository.findAll();
+
+    }
+
 
     // Update a Hive
     @PutMapping("/hive/{hiveId}/colony/{colonyId}")
@@ -90,95 +142,140 @@ public class HiveController {
                 .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
         List<SizeLog> sizeLogs = hive.getSizeLogs();
 
-        // First time call
+        // First time call.
         if (sizeLogs.isEmpty()) {
-            SizeLog newLog = new SizeLog();
-            newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
-            newLog.setAddedNumOfFrames(0);
-            newLog.setRemovedNumOfFrames(0);
-            newLog.setRemovedCocoons(0);
-            sizeLogs.add(newLog);
+
+            // Initiate parameters.
+            SizeLog newSizeLog = new SizeLog();
+            newSizeLog.setTotalNumOfFrames(0);
+            newSizeLog.setMagazineSize(0);
+            newSizeLog.setAddedNumOfFrames(0);
+            newSizeLog.setHasMagazine(false);
+            newSizeLog.setRemovedCocoons(0);
+            newSizeLog.setRemovedNumOfFrames(0);
+            newSizeLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+
+            sizeLogs.add(newSizeLog);
+
             hive.setSizeLogs(sizeLogs);
             hiveRepository.save(hive);
-            hive = hiveRepository.findById(hiveId)
-                    .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
-            sizeLogs = hive.getSizeLogs();
             return sizeLogs;
         }
 
-        SizeLog first = sizeLogs.get(sizeLogs.size() - 1);
+        // Get the last log in the list (Sort by ID).
+        Long maxInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+        SizeLog lastLog = sizeLogs.stream().filter(log -> log.getId().equals(maxInt)).findFirst().get();
 
+        // Check if today's date is the same with the last log
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-        System.out.println(fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis()))));
-        System.out.println(first);
-        if (fmt.format(first.getDay()).equals(fmt.format(new java.sql.Date(System.currentTimeMillis())))) {
-            Collections.reverse(sizeLogs);
-            return sizeLogs.subList(0, min(sizeLogs.size(), 3));
-        } else {
-            if (sizeLogs.size() == 1) {
-                if (!first.isHasMagazine() && first.getAddedNumOfFrames() == 0
-                        && first.getRemovedCocoons() == 0
-                        && first.getRemovedNumOfFrames() == 0) {
-                    sizeLogs.remove(first);
-                    first.setDay(new java.sql.Date(System.currentTimeMillis()));
-                    sizeLogs.add(0, first);
-                    hive.setSizeLogs(sizeLogs);
-                    hiveRepository.save(hive);
-                    hive = hiveRepository.findById(hiveId)
-                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
-                    sizeLogs = hive.getSizeLogs();
-                    return sizeLogs;
-                } else {
-                    SizeLog newLog = new SizeLog();
-                    newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
-                    newLog.setAddedNumOfFrames(0);
-                    newLog.setRemovedNumOfFrames(0);
-                    newLog.setTotalNumOfFrames(sizeLogs.get(sizeLogs.size() - 1).getTotalNumOfFrames());
-                    newLog.setMagazineSize(sizeLogs.get(sizeLogs.size() - 1).getMagazineSize());
-                    newLog.setRemovedCocoons(0);
-                    sizeLogs.add(0, newLog);
-                    hive.setSizeLogs(sizeLogs);
-                    hiveRepository.save(hive);
-                    hive = hiveRepository.findById(hiveId)
-                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
-                    sizeLogs = hive.getSizeLogs();
-                    return sizeLogs;
-                }
+        Boolean dateIsTheSame = fmt.format(lastLog.getDay())
+                .equals(fmt.format(new java.sql.Date(System.currentTimeMillis())));
+
+        // Second time call (Already has an instance in list).
+        if (sizeLogs.size() == 1) {
+            if (dateIsTheSame) {
+                // Return existing list.
+                return sizeLogs;
             } else {
-                if (first.getMagazineSize() == sizeLogs.get(sizeLogs.size() - 2).getMagazineSize() && first.getAddedNumOfFrames() == 0
-                        && first.getRemovedCocoons() == 0
-                        && first.getRemovedNumOfFrames() == 0
-                        && first.isHasMagazine() == sizeLogs.get(sizeLogs.size() - 2).isHasMagazine()
-                        && first.getMagazineSize() == sizeLogs.get(sizeLogs.size() - 2).getMagazineSize()) {
-                    sizeLogs.remove(first);
-                    first.setDay(new java.sql.Date(System.currentTimeMillis()));
-                    sizeLogs.add(0, first);
+                // Check if last log is not edited -> Change date the of the last log.
+                if (!lastLog.isHasMagazine() && lastLog.getMagazineSize() == 0 &&
+                        lastLog.getRemovedNumOfFrames() == 0 &&
+                        lastLog.getRemovedCocoons() == 0 &&
+                        lastLog.getAddedNumOfFrames() == 0) {
+                    sizeLogs.remove(lastLog);
+                    lastLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+                    sizeLogs.add(lastLog);
                     hive.setSizeLogs(sizeLogs);
-                    hiveRepository.save(hive);
-                    hive = hiveRepository.findById(hiveId)
-                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
-                    sizeLogs = hive.getSizeLogs();
-                    Collections.reverse(sizeLogs);
-                    return sizeLogs.subList(0, min(sizeLogs.size(), 3));
                 } else {
-                    SizeLog newLog = new SizeLog();
-                    newLog.setDay(new java.sql.Date(System.currentTimeMillis()));
-                    newLog.setAddedNumOfFrames(0);
-                    newLog.setRemovedNumOfFrames(0);
-                    newLog.setTotalNumOfFrames(sizeLogs.get(sizeLogs.size() - 1).getTotalNumOfFrames());
-                    newLog.setMagazineSize(sizeLogs.get(sizeLogs.size() - 1).getMagazineSize());
-                    newLog.setRemovedCocoons(0);
-                    sizeLogs.add(0, newLog);
+
+                    // Add new log if the date is not the same.
+                    sizeLogs.remove(lastLog);
+                    lastLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+                    sizeLogs.add(lastLog);
                     hive.setSizeLogs(sizeLogs);
                     hiveRepository.save(hive);
-                    hive = hiveRepository.findById(hiveId)
-                            .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
-                    sizeLogs = hive.getSizeLogs();
-                    Collections.reverse(sizeLogs);
-                    return sizeLogs.subList(0, min(sizeLogs.size(), 3));
+
+
+                    // Get the right order and return.
+                    Long firstInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog firstLog = sizeLogs.stream().filter(log -> log.getId().equals(firstInt)).findFirst().get();
+                    sizeLogs.remove(firstLog);
+                    Long secondInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog secondLog = sizeLogs.stream().filter(log -> log.getId().equals(secondInt)).findFirst().get();
+                    sizeLogs.remove(secondLog);
+
+                    List<SizeLog> returnList = new ArrayList<>();
+                    returnList.add(firstLog);
+                    returnList.add(secondLog);
+                    return returnList;
                 }
             }
         }
+
+        // Third time call (2 logs in list).
+        if (sizeLogs.size() == 2) {
+            if (dateIsTheSame) {
+                // Get the right order and return.
+                Long firstInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                SizeLog firstLog = sizeLogs.stream().filter(log -> log.getId().equals(firstInt)).findFirst().get();
+                sizeLogs.remove(firstLog);
+                Long secondInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                SizeLog secondLog = sizeLogs.stream().filter(log -> log.getId().equals(secondInt)).findFirst().get();
+                sizeLogs.remove(secondLog);
+
+                List<SizeLog> returnList = new ArrayList<>();
+                returnList.add(firstLog);
+                returnList.add(secondLog);
+                return returnList;
+            } else {
+                // Check if last log is not edited.
+                if (!lastLog.isHasMagazine() && lastLog.getMagazineSize() == 0 &&
+                        lastLog.getRemovedNumOfFrames() == 0 &&
+                        lastLog.getRemovedCocoons() == 0 &&
+                        lastLog.getAddedNumOfFrames() == 0) {
+                    Long firstInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog firstLog = sizeLogs.stream().filter(log -> log.getId().equals(firstInt)).findFirst().get();
+                    sizeLogs.remove(firstLog);
+                    Long secondInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog secondLog = sizeLogs.stream().filter(log -> log.getId().equals(secondInt)).findFirst().get();
+                    sizeLogs.remove(secondLog);
+                    Long thirdInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog thirdLog = sizeLogs.stream().filter(log -> log.getId().equals(thirdInt)).findFirst().get();
+                    sizeLogs.remove(thirdLog);
+
+                    List<SizeLog> returnList = new ArrayList<>();
+                    returnList.add(firstLog);
+                    returnList.add(secondLog);
+                    returnList.add(thirdLog);
+                    return returnList;
+                } else {
+                    sizeLogs.remove(lastLog);
+                    lastLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+                    sizeLogs.add(lastLog);
+                    hive.setSizeLogs(sizeLogs);
+                    hiveRepository.save(hive);
+                    Long firstInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog firstLog = sizeLogs.stream().filter(log -> log.getId().equals(firstInt)).findFirst().get();
+                    sizeLogs.remove(firstLog);
+                    Long secondInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog secondLog = sizeLogs.stream().filter(log -> log.getId().equals(secondInt)).findFirst().get();
+                    sizeLogs.remove(secondLog);
+                    Long thirdInt = sizeLogs.stream().mapToLong(SizeLog::getId).max().getAsLong();
+                    SizeLog thirdLog = sizeLogs.stream().filter(log -> log.getId().equals(thirdInt)).findFirst().get();
+                    sizeLogs.remove(thirdLog);
+
+                    List<SizeLog> returnList = new ArrayList<>();
+                    returnList.add(firstLog);
+                    returnList.add(secondLog);
+                    returnList.add(thirdLog);
+                    return returnList;
+                }
+            }
+        }
+
+        // More than 2 logs in list.
+        return null;
+
     }
 
     @PutMapping("/hive/{hiveId}/sizelogs/{logId}")
@@ -201,4 +298,3 @@ public class HiveController {
         return sizeLogs;
     }
 }
-

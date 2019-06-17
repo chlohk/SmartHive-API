@@ -7,8 +7,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import java.io.Serializable;
 import java.util.Date;
+
 
 @Data
 @Valid
@@ -16,18 +16,22 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class SizeLog implements Serializable {
+public class PlanElement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    Date deadline;
+    boolean isWithoutDeadline;
+    String text;
+    int dropDownElementId;
+    boolean isDropDown;
+    Date resolvedDate;
+    boolean isResolved;
 
-    private int magazineSize;
-    private int totalNumOfFrames;
-    private int addedNumOfFrames;
-    private int removedNumOfFrames;
-    private int removedCocoons;
-    private Date day;
-    private boolean hasMagazine;
-
-
+    public int compareTo(PlanElement pe) {
+        if (getDeadline() == null || pe.getDeadline() == null) {
+            return 0;
+        }
+        return getDeadline().compareTo(pe.getDeadline());
+    }
 }

@@ -13,7 +13,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
 
@@ -41,8 +44,12 @@ public class Hive implements Serializable {
     @JoinColumn(name = "colony_id")
     private Colony colony;
 
+    @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="hive_id")
+    private Set<PlanElement> planElements = new HashSet<>();
 
-
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="hive_id")
     private List<SizeLog> sizeLogs = new ArrayList<>();
@@ -52,6 +59,14 @@ public class Hive implements Serializable {
 
     @NotEmpty
     private String description;
+
+    public Set<PlanElement> getResolvedPlanElements() {
+        return getPlanElements().stream().filter(planElement -> planElement.isResolved).collect(Collectors.toSet());
+    }
+
+    public Set<PlanElement> getUnresolvedPlanElements() {
+        return getPlanElements().stream().filter(planElement -> !planElement.isResolved).sorted().collect(Collectors.toSet());
+    }
 
     @JsonIgnore
     public List<SizeLog> getMaxThreeSizeLogs() {

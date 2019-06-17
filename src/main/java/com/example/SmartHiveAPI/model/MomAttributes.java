@@ -52,4 +52,5 @@ public class MomAttributes {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="mom_attributes_id")
     private Set<Log> freakLog = new HashSet<>();
+
 }

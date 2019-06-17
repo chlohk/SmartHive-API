@@ -3,6 +3,10 @@ plugins {
 	id 'java'
 }
 
+bootJar {
+	launchScript()
+}
+
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'

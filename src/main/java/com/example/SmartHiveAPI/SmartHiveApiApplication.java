@@ -18,6 +18,7 @@ public class SmartHiveApiApplication {
 		SpringApplication.run(SmartHiveApiApplication.class, args);
 	}
 
+
 	@Bean
 	public CorsFilter corsFilter() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
