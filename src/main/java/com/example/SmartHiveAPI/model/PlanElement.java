@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class PlanElement {
+public class PlanElement implements Comparable<PlanElement>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,10 +28,11 @@ public class PlanElement {
     Date resolvedDate;
     boolean isResolved;
 
-    public int compareTo(PlanElement pe) {
-        if (getDeadline() == null || pe.getDeadline() == null) {
+    @Override
+    public int compareTo(PlanElement o) {
+        if (o.getDeadline() == null || getDeadline() == null) {
             return 0;
         }
-        return getDeadline().compareTo(pe.getDeadline());
+        return getDeadline().compareTo(o.getDeadline());
     }
 }

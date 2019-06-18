@@ -12,10 +12,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
@@ -60,12 +57,20 @@ public class Hive implements Serializable {
     @NotEmpty
     private String description;
 
-    public Set<PlanElement> getResolvedPlanElements() {
-        return getPlanElements().stream().filter(planElement -> planElement.isResolved).collect(Collectors.toSet());
+    public List<PlanElement> getResolvedPlanElements() {
+        List<PlanElement> planElements = getPlanElements().stream().filter(planElement -> planElement.isResolved)
+                .collect(Collectors.toList());
+        Collections.sort(planElements);
+        Collections.reverse(planElements);
+        return planElements;
     }
 
-    public Set<PlanElement> getUnresolvedPlanElements() {
-        return getPlanElements().stream().filter(planElement -> !planElement.isResolved).sorted().collect(Collectors.toSet());
+    public List<PlanElement> getUnresolvedPlanElements() {
+        List<PlanElement> planElements = getPlanElements().stream().filter(planElement -> !planElement.isResolved)
+                .collect(Collectors.toList());
+        Collections.sort(planElements);
+        Collections.reverse(planElements);
+        return planElements;
     }
 
     @JsonIgnore
