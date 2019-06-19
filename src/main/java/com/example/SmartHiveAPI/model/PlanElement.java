@@ -30,8 +30,15 @@ public class PlanElement implements Comparable<PlanElement>{
 
     @Override
     public int compareTo(PlanElement o) {
-        if (o.getDeadline() == null || getDeadline() == null) {
-            return 0;
+        if (o.isResolved() && isResolved()) {
+            return getResolvedDate().compareTo(o.getResolvedDate());
+        }
+
+        if (o.getDeadline() == null) {
+            return -1;
+        }
+        if (getDeadline() == null) {
+            return 1;
         }
         return getDeadline().compareTo(o.getDeadline());
     }

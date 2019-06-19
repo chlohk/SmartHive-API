@@ -61,7 +61,6 @@ public class Hive implements Serializable {
         List<PlanElement> planElements = getPlanElements().stream().filter(planElement -> planElement.isResolved)
                 .collect(Collectors.toList());
         Collections.sort(planElements);
-        Collections.reverse(planElements);
         return planElements;
     }
 
