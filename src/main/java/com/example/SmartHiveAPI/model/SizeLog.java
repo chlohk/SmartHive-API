@@ -6,17 +6,14 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@Valid
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class SizeLog implements Serializable {
+public class SizeLog implements Comparable<SizeLog> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,5 +26,9 @@ public class SizeLog implements Serializable {
     private Date day;
     private boolean hasMagazine;
 
+    @Override
+    public int compareTo(SizeLog o) {
+        return getId().compareTo(o.getId());
+    }
 
 }

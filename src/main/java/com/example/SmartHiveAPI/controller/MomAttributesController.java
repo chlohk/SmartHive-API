@@ -6,6 +6,7 @@ import com.example.SmartHiveAPI.model.Hive;
 import com.example.SmartHiveAPI.model.MomAttributes;
 import com.example.SmartHiveAPI.repositories.ColonyRepository;
 import com.example.SmartHiveAPI.repositories.HiveRepository;
+import com.example.SmartHiveAPI.service.SizeLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,9 @@ public class MomAttributesController {
     @Autowired
     ColonyRepository colonyRepository;
 
+    @Autowired
+    SizeLogService sizeLogService;
+
     @PutMapping("/hive/{hiveId}/attributes")
     public List<Colony> updateHiveMomAttributes(@PathVariable Long hiveId,
                                                 @Valid @RequestBody MomAttributes momAttributes) {
@@ -30,6 +34,9 @@ public class MomAttributesController {
 
         hive.setMomAttributes(momAttributes);
         hiveRepository.save(hive);
+        for (Hive h : hiveRepository.findAll()) {
+            sizeLogService.updateSizeLogs(h.getId());
+        }
         return colonyRepository.findAll();
     }
 }

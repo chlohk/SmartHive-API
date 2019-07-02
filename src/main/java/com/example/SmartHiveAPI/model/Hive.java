@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
 
+
 @Data
 @Valid
 @Entity(name = "Hive")
@@ -25,6 +26,7 @@ import static java.lang.Math.min;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Hive implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -72,8 +74,10 @@ public class Hive implements Serializable {
         return planElements;
     }
 
-    @JsonIgnore
-    public List<SizeLog> getMaxThreeSizeLogs() {
-       return getSizeLogs().subList(0, min(getSizeLogs().size(), 2));
+    public List<SizeLog> getThreeSizeLogs() {
+        List<SizeLog> sizeLogs = getSizeLogs();
+        Collections.sort(sizeLogs);
+        Collections.reverse(sizeLogs);
+        return sizeLogs.subList(0, min(getSizeLogs().size(), 3));
     }
 }
