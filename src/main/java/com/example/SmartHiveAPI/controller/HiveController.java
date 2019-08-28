@@ -2,10 +2,7 @@ package com.example.SmartHiveAPI.controller;
 
 import com.example.SmartHiveAPI.exception.ResourceNotFoundException;
 import com.example.SmartHiveAPI.model.*;
-import com.example.SmartHiveAPI.repositories.ColonyRepository;
-import com.example.SmartHiveAPI.repositories.HiveRepository;
-import com.example.SmartHiveAPI.repositories.PlanElementRepository;
-import com.example.SmartHiveAPI.repositories.SizeLogRepository;
+import com.example.SmartHiveAPI.repositories.*;
 import com.example.SmartHiveAPI.service.SizeLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +30,9 @@ public class HiveController {
 
     @Autowired
     PlanElementRepository planElementRepository;
+
+    @Autowired
+    NoteRepository noteDTORepository;
 
     // Get All Hives
     @GetMapping("/hive")
@@ -117,6 +117,47 @@ public class HiveController {
             sizeLogService.updateSizeLogs(h.getId());
         }
         return colonyRepository.findAll();
+
+    }
+
+    // Create a new Note
+    @PostMapping("/hive/{hiveId}/note")
+    public void createNote(@PathVariable Long hiveId, @RequestBody NoteDTO note) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+
+        Set<NoteDTO> notes = hive.getNoteElements();
+        notes.add(note);
+        hive.setNoteElements(notes);
+        for (Hive h : hiveRepository.findAll()) {
+            sizeLogService.updateSizeLogs(h.getId());
+        }
+        hiveRepository.save(hive);
+    }
+
+
+    @PutMapping("/hive/{hiveId}/note/{noteId}")
+    public void updateNote(@PathVariable Long hiveId,
+                                   @PathVariable Long noteId,
+                                   @Valid @RequestBody NoteDTO updatedNote) {
+        Hive hive = hiveRepository.findById(hiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
+        Optional<NoteDTO> initialNote = noteDTORepository.findById(noteId);
+        if (!initialNote.isPresent()) {
+            throw new ResourceNotFoundException("Note", "id", noteId);
+        }
+
+        Set<NoteDTO> notes = hive.getNoteElements();
+
+        notes.remove(initialNote.get());
+
+        notes.add(updatedNote);
+        hive.setNoteElements(notes);
+
+        hiveRepository.save(hive);
+        for (Hive h : hiveRepository.findAll()) {
+            sizeLogService.updateSizeLogs(h.getId());
+        }
 
     }
 

@@ -61,7 +61,7 @@ public class ColonyController {
     // Update a Colony
     @PutMapping("/colony/{colonyId}")
     public List<Colony> updateColony(@PathVariable Long colonyId,
-                               @Valid @RequestBody Colony colonyDetails) {
+                                     @Valid @RequestBody Colony colonyDetails) {
         for (Hive hive : hiveRepository.findAll()) {
             sizeLogService.updateSizeLogs(hive.getId());
         }

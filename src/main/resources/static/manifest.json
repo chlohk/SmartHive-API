@@ -1,0 +1,13 @@
+{
+  "short_name": "Minumesila",
+  "name": "Minumesila",
+  "icons": [
+    {
+      "src": "assets/img/beeQueen.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    }
+  ],
+  "display": "fullscreen",
+  "orientation": "landscape"
+}

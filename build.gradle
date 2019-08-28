@@ -7,6 +7,7 @@ bootJar {
 	launchScript()
 }
 
+apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
@@ -61,4 +62,3 @@ task execute_order_66 (type: Copy) {
 	destinationDir file('build/')
 	rename 'SmartHive-API-0.0.1-SNAPSHOT.jar', "smarthive_version_1_deploy.jar"
 }
-

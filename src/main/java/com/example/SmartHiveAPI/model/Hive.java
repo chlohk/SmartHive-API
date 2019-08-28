@@ -51,6 +51,11 @@ public class Hive implements Serializable {
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="hive_id")
+    private Set<NoteDTO> noteElements = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="hive_id")
     private List<SizeLog> sizeLogs = new ArrayList<>();
 
     @OneToOne(cascade=CascadeType.ALL)
@@ -72,6 +77,44 @@ public class Hive implements Serializable {
         Collections.sort(planElements);
         Collections.reverse(planElements);
         return planElements;
+    }
+
+    public List<NoteDTO> getAllActiveNotes() {
+        return getNoteElements()
+                .stream()
+                .filter(noteDTO -> !noteDTO.isDeleted)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public int getActiveShortTermNotesCount() {
+        return (int) getNoteElements()
+                .stream()
+                .filter(noteDTO -> !noteDTO.isDeleted && !noteDTO.longTerm)
+                .count();
+    }
+
+    public List<NoteDTO> getActiveShortTermNotes() {
+        return getNoteElements()
+                .stream()
+                .filter(noteDTO -> !noteDTO.isDeleted && !noteDTO.longTerm)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public int getActiveLongTermNotesCount() {
+        return (int) getNoteElements()
+                .stream()
+                .filter(noteDTO -> !noteDTO.isDeleted && noteDTO.longTerm)
+                .count();
+    }
+
+    public List<NoteDTO> getDeletedNotes() {
+        return getNoteElements()
+                .stream()
+                .filter(noteDTO -> noteDTO.isDeleted)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<SizeLog> getThreeSizeLogs() {

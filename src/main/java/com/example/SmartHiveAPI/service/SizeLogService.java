@@ -22,69 +22,84 @@ public class SizeLogService {
                 .orElseThrow(() -> new ResourceNotFoundException("Hive", "id", hiveId));
         List<SizeLog> sizeLogs = hive.getSizeLogs();
 
-        // First time call.
         if (sizeLogs.isEmpty()) {
-
-            // Initiate parameters.
-            SizeLog newSizeLog = new SizeLog();
-            newSizeLog.setTotalNumOfFrames(0);
-            newSizeLog.setMagazineSize(0);
-            newSizeLog.setAddedNumOfFrames(0);
-            newSizeLog.setHasMagazine(false);
-            newSizeLog.setRemovedCocoons(0);
-            newSizeLog.setRemovedNumOfFrames(0);
-            newSizeLog.setDay(new java.sql.Date(System.currentTimeMillis()));
-
-            sizeLogs.add(newSizeLog);
-
-            hive.setSizeLogs(sizeLogs);
-            hiveRepository.save(hive);
+            addNewSizeLog(sizeLogs, hive);
             return;
         }
 
-        // Get the last log in the list (Sort by day).
         Collections.reverse(sizeLogs);
         SizeLog lastLog = sizeLogs.get(0);
 
-        // Check if today's date is the same with the last log
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-        Boolean dateIsTheSame = fmt.format(lastLog.getDay())
-                .equals(fmt.format(new java.sql.Date(System.currentTimeMillis())));
+        if (lastLogHasTodaysDate(lastLog)) {
+            return;
+        }
 
-        // Second time call (Already has an instance in list).
-        if (sizeLogs.size() >= 1) {
-            if (dateIsTheSame) {
-                // Return existing list.
-                return;
-            } else {
-                // Check if last log is not edited -> Change date the of the last log.
-                if (!lastLog.isHasMagazine() && lastLog.getMagazineSize() == 0 &&
-                        lastLog.getRemovedNumOfFrames() == 0 &&
-                        lastLog.getRemovedCocoons() == 0 &&
-                        lastLog.getAddedNumOfFrames() == 0) {
-                    sizeLogs.remove(lastLog);
-                    lastLog.setDay(new java.sql.Date(System.currentTimeMillis()));
-                    sizeLogs.add(lastLog);
-                    hive.setSizeLogs(sizeLogs);
-                } else {
-                    SizeLog newSizeLog = new SizeLog();
-                    newSizeLog.setTotalNumOfFrames(0);
-                    newSizeLog.setMagazineSize(0);
-                    newSizeLog.setAddedNumOfFrames(0);
-                    newSizeLog.setHasMagazine(false);
-                    newSizeLog.setRemovedCocoons(0);
-                    newSizeLog.setRemovedNumOfFrames(0);
-                    newSizeLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+        if (wasLastLogEntryUseful(sizeLogs, lastLog)) {
+            SizeLog newLog = SizeLog.builder()
+                    .hasMagazine(lastLog.isHasMagazine())
+                    .magazineSize(lastLog.getMagazineSize())
+                    .addedNumOfFrames(0)
+                    .removedNumOfFrames(0)
+                    .totalNumOfFrames(lastLog.getTotalNumOfFrames())
+                    .removedCocoons(0)
+                    .day(new java.sql.Date(System.currentTimeMillis()))
+                    .build();
 
-                    sizeLogs.add(newSizeLog);
+            sizeLogs.add(newLog);
+            hive.setSizeLogs(sizeLogs);
 
-                    hive.setSizeLogs(sizeLogs);
-
-                }
-            }
+        } else {
+            sizeLogs.remove(lastLog);
+            lastLog.setDay(new java.sql.Date(System.currentTimeMillis()));
+            sizeLogs.add(lastLog);
+            hive.setSizeLogs(sizeLogs);
         }
         hiveRepository.save(hive);
         Collections.sort(sizeLogs);
-        return;
+    }
+
+    private void addNewSizeLog(List<SizeLog> sizeLogs, Hive hive) {
+        SizeLog newSizeLog = SizeLog.builder()
+                .hasMagazine(false)
+                .magazineSize(0)
+                .addedNumOfFrames(0)
+                .removedNumOfFrames(0)
+                .totalNumOfFrames(0)
+                .removedCocoons(0)
+                .day(new java.sql.Date(System.currentTimeMillis()))
+                .build();
+
+        sizeLogs.add(newSizeLog);
+        hive.setSizeLogs(sizeLogs);
+        hiveRepository.save(hive);
+    }
+
+    private boolean lastLogHasTodaysDate(SizeLog lastLog) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        return  fmt.format(lastLog.getDay())
+                .equals(fmt.format(new java.sql.Date(System.currentTimeMillis())));
+    }
+
+    private boolean wasLastLogEntryUseful(List<SizeLog> sizeLogs, SizeLog lastLog) {
+        if(sizeLogs.size() >= 2) {
+            SizeLog nextToLastSizeLog = sizeLogs.get(1);
+            if(nextToLastSizeLog.isHasMagazine() && lastLog.isHasMagazine()) {
+                return nextToLastSizeLog.getMagazineSize() != lastLog.getMagazineSize() ||
+                        lastLog.getRemovedNumOfFrames() != 0 ||
+                        lastLog.getRemovedCocoons() != 0 ||
+                        lastLog.getAddedNumOfFrames() != 0;
+            } else if (!nextToLastSizeLog.isHasMagazine() && !lastLog.isHasMagazine()) {
+                return lastLog.getRemovedNumOfFrames() != 0 ||
+                        lastLog.getRemovedCocoons() != 0 ||
+                        lastLog.getAddedNumOfFrames() != 0;
+            } else {
+                return true;
+            }
+        }
+
+        return lastLog.isHasMagazine() ||
+                lastLog.getRemovedNumOfFrames() != 0 ||
+                lastLog.getRemovedCocoons() != 0 ||
+                lastLog.getAddedNumOfFrames() != 0;
     }
 }
