@@ -82,7 +82,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n<app-spinner *ngIf=\"spinnerEnabled\"></app-spinner>\r\n"
+module.exports = "<router-outlet></router-outlet>\r\n<app-spinner [hidden]=\"!spinnerEnabled\"></app-spinner>\r\n"
 
 /***/ }),
 
@@ -105,11 +105,14 @@ __webpack_require__.r(__webpack_exports__);
 var AppComponent = /** @class */ (function () {
     function AppComponent(spinnerService) {
         this.spinnerService = spinnerService;
-        this.spinnerEnabled = true;
+        this.subscriptions = [];
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.spinnerService.setSpinnerStatus.subscribe(function (newSpinnerStatus) { return _this.spinnerEnabled = newSpinnerStatus; });
+        this.subscriptions.push(this.spinnerService.getSpinnerStatus.subscribe(function (ss) { return _this.spinnerEnabled = ss.enabled; }));
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -156,53 +159,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _work_work_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./work/work.component */ "./src/app/work/work.component.ts");
 /* harmony import */ var _work_work_header_work_header_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./work/work-header/work-header.component */ "./src/app/work/work-header/work-header.component.ts");
 /* harmony import */ var _util_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./util/spinner/spinner.component */ "./src/app/util/spinner/spinner.component.ts");
-/* harmony import */ var _util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./util/spinner/spinner.service */ "./src/app/util/spinner/spinner.service.ts");
-/* harmony import */ var _settings_shared_settings_navigation_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./settings/shared/settings-navigation.service */ "./src/app/settings/shared/settings-navigation.service.ts");
-/* harmony import */ var _util_jw_modal_jw_modal_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./util/jw-modal/jw-modal.component */ "./src/app/util/jw-modal/jw-modal.component.ts");
-/* harmony import */ var _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./util/jw-modal/jw-modal.service */ "./src/app/util/jw-modal/jw-modal.service.ts");
-/* harmony import */ var _work_reference_freak_mom_freak_mom_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./work/reference/freak-mom/freak-mom.component */ "./src/app/work/reference/freak-mom/freak-mom.component.ts");
-/* harmony import */ var _work_reference_mother_frame_mother_frame_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./work/reference/mother-frame/mother-frame.component */ "./src/app/work/reference/mother-frame/mother-frame.component.ts");
-/* harmony import */ var _work_mother_mother_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./work/mother/mother.component */ "./src/app/work/mother/mother.component.ts");
-/* harmony import */ var _work_mother_seen_seen_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./work/mother/seen/seen.component */ "./src/app/work/mother/seen/seen.component.ts");
-/* harmony import */ var _work_mother_in_cage_in_cage_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./work/mother/in-cage/in-cage.component */ "./src/app/work/mother/in-cage/in-cage.component.ts");
-/* harmony import */ var _work_mother_hatched_hatched_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./work/mother/hatched/hatched.component */ "./src/app/work/mother/hatched/hatched.component.ts");
-/* harmony import */ var _work_mother_unknown_unknown_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./work/mother/unknown/unknown.component */ "./src/app/work/mother/unknown/unknown.component.ts");
-/* harmony import */ var _work_mother_missing_missing_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./work/mother/missing/missing.component */ "./src/app/work/mother/missing/missing.component.ts");
-/* harmony import */ var _work_mother_freak_freak_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./work/mother/freak/freak.component */ "./src/app/work/mother/freak/freak.component.ts");
-/* harmony import */ var _work_mother_un_caged_un_caged_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./work/mother/un-caged/un-caged.component */ "./src/app/work/mother/un-caged/un-caged.component.ts");
-/* harmony import */ var _work_mother_mom_data_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./work/mother/mom-data.service */ "./src/app/work/mother/mom-data.service.ts");
-/* harmony import */ var _work_mother_mom_attributes_service__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./work/mother/mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
-/* harmony import */ var time_ago_pipe__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! time-ago-pipe */ "./node_modules/time-ago-pipe/esm5/time-ago-pipe.js");
-/* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./util/util.service */ "./src/app/util/util.service.ts");
-/* harmony import */ var _work_size_size_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./work/size/size.component */ "./src/app/work/size/size.component.ts");
-/* harmony import */ var _work_size_size_edit_size_edit_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./work/size/size-edit/size-edit.component */ "./src/app/work/size/size-edit/size-edit.component.ts");
-/* harmony import */ var _work_size_size_view_size_view_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./work/size/size-view/size-view.component */ "./src/app/work/size/size-view/size-view.component.ts");
-/* harmony import */ var _work_size_size_data_service__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./work/size/size-data.service */ "./src/app/work/size/size-data.service.ts");
-/* harmony import */ var _work_size_size_service__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./work/size/size.service */ "./src/app/work/size/size.service.ts");
-/* harmony import */ var _util_long_press_directive__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./util/long-press.directive */ "./src/app/util/long-press.directive.ts");
-/* harmony import */ var _work_next_time_next_time_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./work/next-time/next-time.component */ "./src/app/work/next-time/next-time.component.ts");
-/* harmony import */ var _work_notes_notes_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./work/notes/notes.component */ "./src/app/work/notes/notes.component.ts");
-/* harmony import */ var _work_planning_planning_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./work/planning/planning.component */ "./src/app/work/planning/planning.component.ts");
-/* harmony import */ var _work_planning_plan_element_plan_element_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./work/planning/plan-element/plan-element.component */ "./src/app/work/planning/plan-element/plan-element.component.ts");
-/* harmony import */ var _work_planning_planning_mgmt_planning_mgmt_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./work/planning/planning-mgmt/planning-mgmt.component */ "./src/app/work/planning/planning-mgmt/planning-mgmt.component.ts");
-/* harmony import */ var _work_planning_planning_mgmt_planning_mgmt_edit_area_planning_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component */ "./src/app/work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component.ts");
-/* harmony import */ var _util_days_until_pipe__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./util/days-until.pipe */ "./src/app/util/days-until.pipe.ts");
-/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown.component.ts");
-/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_element_planning_dropdown_element_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component.ts");
-/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_mgmt_edit_area_planning_dropdown_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component.ts");
-/* harmony import */ var _work_notes_note_element_note_element_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./work/notes/note-element/note-element.component */ "./src/app/work/notes/note-element/note-element.component.ts");
-/* harmony import */ var _work_notes_note_mgmt_note_mgmt_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./work/notes/note-mgmt/note-mgmt.component */ "./src/app/work/notes/note-mgmt/note-mgmt.component.ts");
-/* harmony import */ var _work_notes_note_mgmt_note_mgmt_edit_area_note_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./work/notes/note-mgmt/note-mgmt-edit-area/note-mgmt-edit-area.component */ "./src/app/work/notes/note-mgmt/note-mgmt-edit-area/note-mgmt-edit-area.component.ts");
-/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
-/* harmony import */ var _work_overview_overview_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./work/overview/overview.component */ "./src/app/work/overview/overview.component.ts");
-/* harmony import */ var _work_planning_plan_element_deadline_text_pipe__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./work/planning/plan-element/deadline-text.pipe */ "./src/app/work/planning/plan-element/deadline-text.pipe.ts");
-/* harmony import */ var _work_planning_plan_element_deadline_class_pipe__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./work/planning/plan-element/deadline-class.pipe */ "./src/app/work/planning/plan-element/deadline-class.pipe.ts");
-/* harmony import */ var _work_planning_plan_element_plan_text_pipe__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./work/planning/plan-element/plan-text.pipe */ "./src/app/work/planning/plan-element/plan-text.pipe.ts");
-/* harmony import */ var _work_mother_mother_status_text_pipe__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./work/mother/mother-status-text.pipe */ "./src/app/work/mother/mother-status-text.pipe.ts");
-/* harmony import */ var _work_overview_mother_status_cell_pipe__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./work/overview/mother-status-cell.pipe */ "./src/app/work/overview/mother-status-cell.pipe.ts");
-/* harmony import */ var _work_login_login_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./work/login/login.component */ "./src/app/work/login/login.component.ts");
-/* harmony import */ var _util_loading_loading_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./util/loading/loading.component */ "./src/app/util/loading/loading.component.ts");
-
+/* harmony import */ var _settings_shared_settings_navigation_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./settings/shared/settings-navigation.service */ "./src/app/settings/shared/settings-navigation.service.ts");
+/* harmony import */ var _util_jw_modal_jw_modal_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./util/jw-modal/jw-modal.component */ "./src/app/util/jw-modal/jw-modal.component.ts");
+/* harmony import */ var _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./util/jw-modal/jw-modal.service */ "./src/app/util/jw-modal/jw-modal.service.ts");
+/* harmony import */ var _work_reference_freak_mom_freak_mom_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./work/reference/freak-mom/freak-mom.component */ "./src/app/work/reference/freak-mom/freak-mom.component.ts");
+/* harmony import */ var _work_reference_mother_frame_mother_frame_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./work/reference/mother-frame/mother-frame.component */ "./src/app/work/reference/mother-frame/mother-frame.component.ts");
+/* harmony import */ var _work_mother_mother_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./work/mother/mother.component */ "./src/app/work/mother/mother.component.ts");
+/* harmony import */ var _work_mother_seen_seen_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./work/mother/seen/seen.component */ "./src/app/work/mother/seen/seen.component.ts");
+/* harmony import */ var _work_mother_in_cage_in_cage_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./work/mother/in-cage/in-cage.component */ "./src/app/work/mother/in-cage/in-cage.component.ts");
+/* harmony import */ var _work_mother_hatched_hatched_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./work/mother/hatched/hatched.component */ "./src/app/work/mother/hatched/hatched.component.ts");
+/* harmony import */ var _work_mother_unknown_unknown_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./work/mother/unknown/unknown.component */ "./src/app/work/mother/unknown/unknown.component.ts");
+/* harmony import */ var _work_mother_missing_missing_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./work/mother/missing/missing.component */ "./src/app/work/mother/missing/missing.component.ts");
+/* harmony import */ var _work_mother_freak_freak_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./work/mother/freak/freak.component */ "./src/app/work/mother/freak/freak.component.ts");
+/* harmony import */ var _work_mother_un_caged_un_caged_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./work/mother/un-caged/un-caged.component */ "./src/app/work/mother/un-caged/un-caged.component.ts");
+/* harmony import */ var _work_mother_mom_data_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./work/mother/mom-data.service */ "./src/app/work/mother/mom-data.service.ts");
+/* harmony import */ var _work_mother_mom_attributes_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./work/mother/mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
+/* harmony import */ var time_ago_pipe__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! time-ago-pipe */ "./node_modules/time-ago-pipe/esm5/time-ago-pipe.js");
+/* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./util/util.service */ "./src/app/util/util.service.ts");
+/* harmony import */ var _work_size_size_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./work/size/size.component */ "./src/app/work/size/size.component.ts");
+/* harmony import */ var _work_size_size_edit_size_edit_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./work/size/size-edit/size-edit.component */ "./src/app/work/size/size-edit/size-edit.component.ts");
+/* harmony import */ var _work_size_size_view_size_view_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./work/size/size-view/size-view.component */ "./src/app/work/size/size-view/size-view.component.ts");
+/* harmony import */ var _work_size_size_data_service__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./work/size/size-data.service */ "./src/app/work/size/size-data.service.ts");
+/* harmony import */ var _work_size_size_service__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./work/size/size.service */ "./src/app/work/size/size.service.ts");
+/* harmony import */ var _util_long_press_directive__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./util/long-press.directive */ "./src/app/util/long-press.directive.ts");
+/* harmony import */ var _work_next_time_next_time_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./work/next-time/next-time.component */ "./src/app/work/next-time/next-time.component.ts");
+/* harmony import */ var _work_notes_notes_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./work/notes/notes.component */ "./src/app/work/notes/notes.component.ts");
+/* harmony import */ var _work_planning_planning_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./work/planning/planning.component */ "./src/app/work/planning/planning.component.ts");
+/* harmony import */ var _work_planning_plan_element_plan_element_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./work/planning/plan-element/plan-element.component */ "./src/app/work/planning/plan-element/plan-element.component.ts");
+/* harmony import */ var _work_planning_planning_mgmt_planning_mgmt_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./work/planning/planning-mgmt/planning-mgmt.component */ "./src/app/work/planning/planning-mgmt/planning-mgmt.component.ts");
+/* harmony import */ var _work_planning_planning_mgmt_planning_mgmt_edit_area_planning_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component */ "./src/app/work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component.ts");
+/* harmony import */ var _util_days_until_pipe__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./util/days-until.pipe */ "./src/app/util/days-until.pipe.ts");
+/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown.component.ts");
+/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_element_planning_dropdown_element_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component.ts");
+/* harmony import */ var _work_planning_planning_dropdown_planning_dropdown_mgmt_edit_area_planning_dropdown_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component */ "./src/app/work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component.ts");
+/* harmony import */ var _work_notes_note_element_note_element_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./work/notes/note-element/note-element.component */ "./src/app/work/notes/note-element/note-element.component.ts");
+/* harmony import */ var _work_notes_note_mgmt_note_mgmt_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./work/notes/note-mgmt/note-mgmt.component */ "./src/app/work/notes/note-mgmt/note-mgmt.component.ts");
+/* harmony import */ var _work_notes_note_mgmt_note_mgmt_edit_area_note_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./work/notes/note-mgmt/note-mgmt-edit-area/note-mgmt-edit-area.component */ "./src/app/work/notes/note-mgmt/note-mgmt-edit-area/note-mgmt-edit-area.component.ts");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var _work_overview_overview_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./work/overview/overview.component */ "./src/app/work/overview/overview.component.ts");
+/* harmony import */ var _work_planning_plan_element_deadline_text_pipe__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./work/planning/plan-element/deadline-text.pipe */ "./src/app/work/planning/plan-element/deadline-text.pipe.ts");
+/* harmony import */ var _work_planning_plan_element_deadline_class_pipe__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./work/planning/plan-element/deadline-class.pipe */ "./src/app/work/planning/plan-element/deadline-class.pipe.ts");
+/* harmony import */ var _work_planning_plan_element_plan_text_pipe__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./work/planning/plan-element/plan-text.pipe */ "./src/app/work/planning/plan-element/plan-text.pipe.ts");
+/* harmony import */ var _work_mother_mother_status_text_pipe__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./work/mother/mother-status-text.pipe */ "./src/app/work/mother/mother-status-text.pipe.ts");
+/* harmony import */ var _work_overview_mother_status_cell_pipe__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./work/overview/mother-status-cell.pipe */ "./src/app/work/overview/mother-status-cell.pipe.ts");
+/* harmony import */ var _work_login_login_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./work/login/login.component */ "./src/app/work/login/login.component.ts");
+/* harmony import */ var _util_spinner_spinner_handler_interceptor_service__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./util/spinner/spinner-handler-interceptor.service */ "./src/app/util/spinner/spinner-handler-interceptor.service.ts");
 
 
 
@@ -286,62 +287,65 @@ var AppModule = /** @class */ (function () {
                 _work_work_component__WEBPACK_IMPORTED_MODULE_17__["WorkComponent"],
                 _work_work_header_work_header_component__WEBPACK_IMPORTED_MODULE_18__["WorkHeaderComponent"],
                 _util_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_19__["SpinnerComponent"],
-                _util_jw_modal_jw_modal_component__WEBPACK_IMPORTED_MODULE_22__["JwModalComponent"],
-                _work_reference_freak_mom_freak_mom_component__WEBPACK_IMPORTED_MODULE_24__["FreakMomComponent"],
-                _work_reference_mother_frame_mother_frame_component__WEBPACK_IMPORTED_MODULE_25__["MotherFrameComponent"],
-                _work_mother_mother_component__WEBPACK_IMPORTED_MODULE_26__["MotherComponent"],
-                _work_mother_seen_seen_component__WEBPACK_IMPORTED_MODULE_27__["SeenComponent"],
-                _work_mother_in_cage_in_cage_component__WEBPACK_IMPORTED_MODULE_28__["InCageComponent"],
-                _work_mother_hatched_hatched_component__WEBPACK_IMPORTED_MODULE_29__["HatchedComponent"],
-                _work_mother_unknown_unknown_component__WEBPACK_IMPORTED_MODULE_30__["UnknownComponent"],
-                _work_mother_missing_missing_component__WEBPACK_IMPORTED_MODULE_31__["MissingComponent"],
-                _work_mother_freak_freak_component__WEBPACK_IMPORTED_MODULE_32__["FreakComponent"],
-                _work_mother_un_caged_un_caged_component__WEBPACK_IMPORTED_MODULE_33__["UnCagedComponent"],
-                time_ago_pipe__WEBPACK_IMPORTED_MODULE_36__["TimeAgoPipe"],
-                _work_size_size_component__WEBPACK_IMPORTED_MODULE_38__["SizeComponent"],
-                _work_size_size_edit_size_edit_component__WEBPACK_IMPORTED_MODULE_39__["SizeEditComponent"],
-                _work_size_size_view_size_view_component__WEBPACK_IMPORTED_MODULE_40__["SizeViewComponent"],
-                _util_long_press_directive__WEBPACK_IMPORTED_MODULE_43__["LongPress"],
-                _work_next_time_next_time_component__WEBPACK_IMPORTED_MODULE_44__["NextTimeComponent"],
-                _work_notes_notes_component__WEBPACK_IMPORTED_MODULE_45__["NotesComponent"],
-                _work_planning_planning_component__WEBPACK_IMPORTED_MODULE_46__["PlanningComponent"],
-                _work_planning_plan_element_plan_element_component__WEBPACK_IMPORTED_MODULE_47__["PlanElementComponent"],
-                _work_planning_planning_mgmt_planning_mgmt_component__WEBPACK_IMPORTED_MODULE_48__["PlanningMgmtComponent"],
-                _work_planning_planning_mgmt_planning_mgmt_edit_area_planning_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_49__["PlanningMgmtEditAreaComponent"],
-                _util_days_until_pipe__WEBPACK_IMPORTED_MODULE_50__["DaysUntilPipe"],
-                _work_planning_planning_dropdown_planning_dropdown_component__WEBPACK_IMPORTED_MODULE_51__["PlanningDropdownComponent"],
-                _work_planning_planning_dropdown_planning_dropdown_element_planning_dropdown_element_component__WEBPACK_IMPORTED_MODULE_52__["PlanningDropdownElementComponent"],
-                _work_planning_planning_dropdown_planning_dropdown_mgmt_edit_area_planning_dropdown_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_53__["PlanningDropdownMgmtEditAreaComponent"],
-                _work_notes_note_element_note_element_component__WEBPACK_IMPORTED_MODULE_54__["NoteElementComponent"],
-                _work_notes_note_mgmt_note_mgmt_component__WEBPACK_IMPORTED_MODULE_55__["NoteMgmtComponent"],
-                _work_notes_note_mgmt_note_mgmt_edit_area_note_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_56__["NoteMgmtEditAreaComponent"],
-                _work_overview_overview_component__WEBPACK_IMPORTED_MODULE_58__["OverviewComponent"],
-                _work_planning_plan_element_deadline_text_pipe__WEBPACK_IMPORTED_MODULE_59__["DeadlineTextPipe"],
-                _work_planning_plan_element_deadline_class_pipe__WEBPACK_IMPORTED_MODULE_60__["DeadlineClassPipe"],
-                _work_planning_plan_element_plan_text_pipe__WEBPACK_IMPORTED_MODULE_61__["PlanTextPipe"],
-                _work_mother_mother_status_text_pipe__WEBPACK_IMPORTED_MODULE_62__["MotherStatusTextPipe"],
-                _work_overview_mother_status_cell_pipe__WEBPACK_IMPORTED_MODULE_63__["MotherStatusCellPipe"],
-                _work_login_login_component__WEBPACK_IMPORTED_MODULE_64__["LoginComponent"],
-                _util_loading_loading_component__WEBPACK_IMPORTED_MODULE_65__["LoadingComponent"]
+                _util_jw_modal_jw_modal_component__WEBPACK_IMPORTED_MODULE_21__["JwModalComponent"],
+                _work_reference_freak_mom_freak_mom_component__WEBPACK_IMPORTED_MODULE_23__["FreakMomComponent"],
+                _work_reference_mother_frame_mother_frame_component__WEBPACK_IMPORTED_MODULE_24__["MotherFrameComponent"],
+                _work_mother_mother_component__WEBPACK_IMPORTED_MODULE_25__["MotherComponent"],
+                _work_mother_seen_seen_component__WEBPACK_IMPORTED_MODULE_26__["SeenComponent"],
+                _work_mother_in_cage_in_cage_component__WEBPACK_IMPORTED_MODULE_27__["InCageComponent"],
+                _work_mother_hatched_hatched_component__WEBPACK_IMPORTED_MODULE_28__["HatchedComponent"],
+                _work_mother_unknown_unknown_component__WEBPACK_IMPORTED_MODULE_29__["UnknownComponent"],
+                _work_mother_missing_missing_component__WEBPACK_IMPORTED_MODULE_30__["MissingComponent"],
+                _work_mother_freak_freak_component__WEBPACK_IMPORTED_MODULE_31__["FreakComponent"],
+                _work_mother_un_caged_un_caged_component__WEBPACK_IMPORTED_MODULE_32__["UnCagedComponent"],
+                time_ago_pipe__WEBPACK_IMPORTED_MODULE_35__["TimeAgoPipe"],
+                _work_size_size_component__WEBPACK_IMPORTED_MODULE_37__["SizeComponent"],
+                _work_size_size_edit_size_edit_component__WEBPACK_IMPORTED_MODULE_38__["SizeEditComponent"],
+                _work_size_size_view_size_view_component__WEBPACK_IMPORTED_MODULE_39__["SizeViewComponent"],
+                _util_long_press_directive__WEBPACK_IMPORTED_MODULE_42__["LongPress"],
+                _work_next_time_next_time_component__WEBPACK_IMPORTED_MODULE_43__["NextTimeComponent"],
+                _work_notes_notes_component__WEBPACK_IMPORTED_MODULE_44__["NotesComponent"],
+                _work_planning_planning_component__WEBPACK_IMPORTED_MODULE_45__["PlanningComponent"],
+                _work_planning_plan_element_plan_element_component__WEBPACK_IMPORTED_MODULE_46__["PlanElementComponent"],
+                _work_planning_planning_mgmt_planning_mgmt_component__WEBPACK_IMPORTED_MODULE_47__["PlanningMgmtComponent"],
+                _work_planning_planning_mgmt_planning_mgmt_edit_area_planning_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_48__["PlanningMgmtEditAreaComponent"],
+                _util_days_until_pipe__WEBPACK_IMPORTED_MODULE_49__["DaysUntilPipe"],
+                _work_planning_planning_dropdown_planning_dropdown_component__WEBPACK_IMPORTED_MODULE_50__["PlanningDropdownComponent"],
+                _work_planning_planning_dropdown_planning_dropdown_element_planning_dropdown_element_component__WEBPACK_IMPORTED_MODULE_51__["PlanningDropdownElementComponent"],
+                _work_planning_planning_dropdown_planning_dropdown_mgmt_edit_area_planning_dropdown_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_52__["PlanningDropdownMgmtEditAreaComponent"],
+                _work_notes_note_element_note_element_component__WEBPACK_IMPORTED_MODULE_53__["NoteElementComponent"],
+                _work_notes_note_mgmt_note_mgmt_component__WEBPACK_IMPORTED_MODULE_54__["NoteMgmtComponent"],
+                _work_notes_note_mgmt_note_mgmt_edit_area_note_mgmt_edit_area_component__WEBPACK_IMPORTED_MODULE_55__["NoteMgmtEditAreaComponent"],
+                _work_overview_overview_component__WEBPACK_IMPORTED_MODULE_57__["OverviewComponent"],
+                _work_planning_plan_element_deadline_text_pipe__WEBPACK_IMPORTED_MODULE_58__["DeadlineTextPipe"],
+                _work_planning_plan_element_deadline_class_pipe__WEBPACK_IMPORTED_MODULE_59__["DeadlineClassPipe"],
+                _work_planning_plan_element_plan_text_pipe__WEBPACK_IMPORTED_MODULE_60__["PlanTextPipe"],
+                _work_mother_mother_status_text_pipe__WEBPACK_IMPORTED_MODULE_61__["MotherStatusTextPipe"],
+                _work_overview_mother_status_cell_pipe__WEBPACK_IMPORTED_MODULE_62__["MotherStatusCellPipe"],
+                _work_login_login_component__WEBPACK_IMPORTED_MODULE_63__["LoginComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
-                ngx_bootstrap__WEBPACK_IMPORTED_MODULE_57__["TooltipModule"].forRoot()
+                ngx_bootstrap__WEBPACK_IMPORTED_MODULE_56__["TooltipModule"].forRoot()
             ],
             providers: [
                 _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_13__["ColoniesService"],
                 _settings_shared_settings_data_service__WEBPACK_IMPORTED_MODULE_15__["SettingsDataService"],
-                _util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_20__["SpinnerService"],
-                _settings_shared_settings_navigation_service__WEBPACK_IMPORTED_MODULE_21__["SettingsNavigationService"],
-                _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_23__["JwModalService"],
-                _work_mother_mom_data_service__WEBPACK_IMPORTED_MODULE_34__["MomDataService"],
-                _work_mother_mom_attributes_service__WEBPACK_IMPORTED_MODULE_35__["MomAttributesService"],
-                _util_util_service__WEBPACK_IMPORTED_MODULE_37__["UtilService"],
-                _work_size_size_data_service__WEBPACK_IMPORTED_MODULE_41__["SizeDataService"],
-                _work_size_size_service__WEBPACK_IMPORTED_MODULE_42__["SizeService"],
+                _settings_shared_settings_navigation_service__WEBPACK_IMPORTED_MODULE_20__["SettingsNavigationService"],
+                _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_22__["JwModalService"],
+                _work_mother_mom_data_service__WEBPACK_IMPORTED_MODULE_33__["MomDataService"],
+                _work_mother_mom_attributes_service__WEBPACK_IMPORTED_MODULE_34__["MomAttributesService"],
+                _util_util_service__WEBPACK_IMPORTED_MODULE_36__["UtilService"],
+                _work_size_size_data_service__WEBPACK_IMPORTED_MODULE_40__["SizeDataService"],
+                {
+                    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HTTP_INTERCEPTORS"],
+                    useClass: _util_spinner_spinner_handler_interceptor_service__WEBPACK_IMPORTED_MODULE_64__["SpinnerHandlerInterceptorService"],
+                    multi: true
+                },
+                _work_size_size_service__WEBPACK_IMPORTED_MODULE_41__["SizeService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
@@ -1069,8 +1073,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/cloneDeep */ "./node_modules/lodash/cloneDeep.js");
 /* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _util_loading_loading_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/loading/loading.service */ "./src/app/util/loading/loading.service.ts");
-
 
 
 
@@ -1080,11 +1082,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ColoniesService = /** @class */ (function () {
-    function ColoniesService(settingsDataService, settingsNavigationService, spinnerService, loadingService) {
+    function ColoniesService(settingsDataService, settingsNavigationService, spinnerService) {
         this.settingsDataService = settingsDataService;
         this.settingsNavigationService = settingsNavigationService;
         this.spinnerService = spinnerService;
-        this.loadingService = loadingService;
         this.colonyHiveSelectionMade = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.isInitialColoniesDataSet = false;
         this.coloniesDataRetrieved = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
@@ -1181,7 +1182,6 @@ var ColoniesService = /** @class */ (function () {
     };
     ColoniesService.prototype.retrieveColonies = function () {
         var _this = this;
-        this.loadingService.start();
         this.settingsDataService.onGetColoniesData()
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["take"])(1))
             .subscribe(function (colonies) {
@@ -1198,7 +1198,6 @@ var ColoniesService = /** @class */ (function () {
             }
             _this.coloniesDataRetrieved.next(_this.colonies);
             _this.spinnerService.setSpinnerStatus.next(false);
-            _this.loadingService.stop();
         });
     };
     ColoniesService.prototype.addNewHive = function (number, colonyIdHiveBelongsTo, description) {
@@ -1272,8 +1271,7 @@ var ColoniesService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_settings_data_service__WEBPACK_IMPORTED_MODULE_2__["SettingsDataService"],
             _settings_navigation_service__WEBPACK_IMPORTED_MODULE_4__["SettingsNavigationService"],
-            _util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_5__["SpinnerService"],
-            _util_loading_loading_service__WEBPACK_IMPORTED_MODULE_8__["LoadingService"]])
+            _util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_5__["SpinnerService"]])
     ], ColoniesService);
     return ColoniesService;
 }());
@@ -1463,6 +1461,112 @@ var DaysUntilPipe = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/util/executor/controls-protection-id.enum.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/util/executor/controls-protection-id.enum.ts ***!
+  \**************************************************************/
+/*! exports provided: ControlsProtectionIdEnum */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ControlsProtectionIdEnum", function() { return ControlsProtectionIdEnum; });
+var ControlsProtectionIdEnum;
+(function (ControlsProtectionIdEnum) {
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["PLANNING_DROPDOWN_SINGLE_ELEMENT"] = 0] = "PLANNING_DROPDOWN_SINGLE_ELEMENT";
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["PLANNING_DROPDOWN_ORDERING"] = 1] = "PLANNING_DROPDOWN_ORDERING";
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["PLANNING_ELEMENT"] = 2] = "PLANNING_ELEMENT";
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["SIZELOG"] = 3] = "SIZELOG";
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["NOTE_ELEMENT"] = 4] = "NOTE_ELEMENT";
+    ControlsProtectionIdEnum[ControlsProtectionIdEnum["MOM"] = 5] = "MOM";
+})(ControlsProtectionIdEnum || (ControlsProtectionIdEnum = {}));
+
+
+/***/ }),
+
+/***/ "./src/app/util/executor/executor.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/util/executor/executor.service.ts ***!
+  \***************************************************/
+/*! exports provided: ProtectionState, ExecutorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProtectionState", function() { return ProtectionState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExecutorService", function() { return ExecutorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _spinner_spinner_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../spinner/spinner.service */ "./src/app/util/spinner/spinner.service.ts");
+
+
+
+var ProtectionState = /** @class */ (function () {
+    function ProtectionState(isUpdating, omittedControlsId) {
+        this.disableControls = isUpdating;
+        this.omittedControlsId = omittedControlsId;
+    }
+    return ProtectionState;
+}());
+
+var ExecutorService = /** @class */ (function () {
+    function ExecutorService(spinnerService) {
+        this.spinnerService = spinnerService;
+        this.controlsProtection = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.getControlsProtection = this.controlsProtection.asObservable();
+    }
+    ExecutorService.prototype.exeWithTimer = function (executable, params, id) {
+        var _this = this;
+        if (this.timerRunning) {
+            this.shouldRunAnotherRound = true;
+            // console.log('...must run one more time');
+        }
+        else {
+            setTimeout(function () {
+                _this.timerRunning = false;
+                if (_this.shouldRunAnotherRound) {
+                    _this.shouldRunAnotherRound = false;
+                    _this.exeWithTimer(executable, params, id);
+                    // console.log('...will run for a second time');
+                }
+                else {
+                    // console.log('-> execute')
+                    _this.enableControls(id);
+                    _this.execute(executable, params);
+                }
+            }, 1200);
+            this.timerRunning = true;
+            this.disableControls(id);
+            // console.log('! started Timer');
+        }
+    };
+    ExecutorService.prototype.disableControls = function (id) {
+        this.spinnerService.enableDisablerSpinner();
+        this.controlsProtection.emit(new ProtectionState(true, id));
+    };
+    ExecutorService.prototype.enableControls = function (id) {
+        this.spinnerService.disableDisablerSpinner();
+        this.controlsProtection.emit(new ProtectionState(false, id));
+    };
+    ExecutorService.prototype.execute = function (executable, params) {
+        if (params.length === 1) {
+            executable(params[0]);
+        }
+        if (params.length === 2) {
+            executable(params[0], params[1]);
+        }
+    };
+    ExecutorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_2__["SpinnerService"]])
+    ], ExecutorService);
+    return ExecutorService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/util/jw-modal/jw-modal.component.ts":
 /*!*****************************************************!*\
   !*** ./src/app/util/jw-modal/jw-modal.component.ts ***!
@@ -1476,17 +1580,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _jw_modal_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./jw-modal.service */ "./src/app/util/jw-modal/jw-modal.service.ts");
+/* harmony import */ var _spinner_spinner_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../spinner/spinner.service */ "./src/app/util/spinner/spinner.service.ts");
+
 
 
 
 var JwModalComponent = /** @class */ (function () {
-    function JwModalComponent(modalService, el) {
+    function JwModalComponent(modalService, el, spinnerService) {
         this.modalService = modalService;
         this.el = el;
+        this.spinnerService = spinnerService;
         this.marginLess = false;
+        this.fullScreen = false;
+        this.smallModal = false;
         this.element = el.nativeElement;
     }
     JwModalComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.close();
         var modal = this;
         // ensure id attribute exists
@@ -1504,11 +1614,13 @@ var JwModalComponent = /** @class */ (function () {
         });
         // add self (this modal instance) to the modal service so it's accessible from controllers
         this.modalService.add(this);
+        this.spinnerStatusSubscription = this.spinnerService.getSpinnerStatus.subscribe(function (ss) { return _this.spinnerEnabled = ss.enabled; });
     };
     // remove self from modal service when directive is destroyed
     JwModalComponent.prototype.ngOnDestroy = function () {
         this.modalService.remove(this.id);
         this.element.remove();
+        this.spinnerStatusSubscription.unsubscribe();
     };
     // open modal
     JwModalComponent.prototype.open = function () {
@@ -1528,14 +1640,23 @@ var JwModalComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], JwModalComponent.prototype, "marginLess", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], JwModalComponent.prototype, "fullScreen", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], JwModalComponent.prototype, "smallModal", void 0);
     JwModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'jw-modal',
-            template: "\n  <div class=\"jw-modal\" [ngClass]=\"{'no-margin': marginLess}\">\n    <div class=\"jw-modal-body\" [ngClass]=\"{'no-margin': marginLess}\">\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"jw-modal-background\"></div>",
+            template: "\n    \n  <div class=\"jw-modal\">\n    <div class=\"jw-modal-body\" [ngClass]=\"{'no-margin': marginLess, 'full-screen': fullScreen}\">\n      \n      <ng-content></ng-content>\n      <app-spinner [hidden]=\"!spinnerEnabled\" [modal]=\"true\" [smallModal]=\"smallModal\"></app-spinner>\n    </div>\n  </div>\n  <div class=\"jw-modal-background\"></div>",
             styles: [__webpack_require__(/*! ./jw-modal.css */ "./src/app/util/jw-modal/jw-modal.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
+            _spinner_spinner_service__WEBPACK_IMPORTED_MODULE_3__["SpinnerService"]])
     ], JwModalComponent);
     return JwModalComponent;
 }());
@@ -1551,7 +1672,7 @@ var JwModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.jw-modal {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 1000;\r\n  overflow: auto;\r\n}\r\n.jw-modal .jw-modal-body {\r\n  padding: 20px;\r\n  background: #fff;\r\n  margin: 40px;\r\n}\r\n.jw-modal-background {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  background-color: #000;\r\n  opacity: 0.75;\r\n  z-index: 900;\r\n}\r\nbody.jw-modal-open {\r\n  overflow: hidden;\r\n}\r\n.no-margin {\r\n  margin: 0 !important;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXRpbC9qdy1tb2RhbC9qdy1tb2RhbC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLE9BQU87RUFDUCxTQUFTO0VBQ1QsVUFBVTtFQUNWLFFBQVE7RUFDUixjQUFjO0VBQ2QsZUFBZTtDQUNoQjtBQUNEO0VBQ0UsY0FBYztFQUNkLGlCQUFpQjtFQUNqQixhQUFhO0NBQ2Q7QUFDRDtFQUNFLGdCQUFnQjtFQUNoQixPQUFPO0VBQ1AsU0FBUztFQUNULFVBQVU7RUFDVixRQUFRO0VBQ1IsdUJBQXVCO0VBQ3ZCLGNBQWM7RUFDZCxhQUFhO0NBQ2Q7QUFDRDtFQUNFLGlCQUFpQjtDQUNsQjtBQUVEO0VBQ0UscUJBQXFCO0NBQ3RCIiwiZmlsZSI6InNyYy9hcHAvdXRpbC9qdy1tb2RhbC9qdy1tb2RhbC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmp3LW1vZGFsIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgdG9wOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIGJvdHRvbTogMDtcclxuICBsZWZ0OiAwO1xyXG4gIHotaW5kZXg6IDEwMDA7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuLmp3LW1vZGFsIC5qdy1tb2RhbC1ib2R5IHtcclxuICBwYWRkaW5nOiAyMHB4O1xyXG4gIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgbWFyZ2luOiA0MHB4O1xyXG59XHJcbi5qdy1tb2RhbC1iYWNrZ3JvdW5kIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgdG9wOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIGJvdHRvbTogMDtcclxuICBsZWZ0OiAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDA7XHJcbiAgb3BhY2l0eTogMC43NTtcclxuICB6LWluZGV4OiA5MDA7XHJcbn1cclxuYm9keS5qdy1tb2RhbC1vcGVuIHtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4ubm8tbWFyZ2luIHtcclxuICBtYXJnaW46IDAgIWltcG9ydGFudDtcclxufVxyXG4iXX0= */"
+module.exports = "\r\n.jw-modal {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 1000;\r\n  overflow: auto;\r\n}\r\n.jw-modal .jw-modal-body {\r\n  padding: 20px;\r\n  background: #fff;\r\n  margin: 40px;\r\n}\r\n.jw-modal-background {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  background-color: #000;\r\n  opacity: 0.75;\r\n  z-index: 900;\r\n}\r\nbody.jw-modal-open {\r\n  overflow: hidden;\r\n}\r\n.no-margin {\r\n  margin: 0 !important;\r\n}\r\n.full-screen {\r\n  margin: 0 !important;\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXRpbC9qdy1tb2RhbC9qdy1tb2RhbC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLE9BQU87RUFDUCxTQUFTO0VBQ1QsVUFBVTtFQUNWLFFBQVE7RUFDUixjQUFjO0VBQ2QsZUFBZTtDQUNoQjtBQUNEO0VBQ0UsY0FBYztFQUNkLGlCQUFpQjtFQUNqQixhQUFhO0NBQ2Q7QUFDRDtFQUNFLGdCQUFnQjtFQUNoQixPQUFPO0VBQ1AsU0FBUztFQUNULFVBQVU7RUFDVixRQUFRO0VBQ1IsdUJBQXVCO0VBQ3ZCLGNBQWM7RUFDZCxhQUFhO0NBQ2Q7QUFDRDtFQUNFLGlCQUFpQjtDQUNsQjtBQUVEO0VBQ0UscUJBQXFCO0NBQ3RCO0FBRUQ7RUFDRSxxQkFBcUI7RUFDckIsWUFBWTtFQUNaLGFBQWE7Q0FDZCIsImZpbGUiOiJzcmMvYXBwL3V0aWwvanctbW9kYWwvanctbW9kYWwuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5qdy1tb2RhbCB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMDtcclxuICByaWdodDogMDtcclxuICBib3R0b206IDA7XHJcbiAgbGVmdDogMDtcclxuICB6LWluZGV4OiAxMDAwO1xyXG4gIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcbi5qdy1tb2RhbCAuanctbW9kYWwtYm9keSB7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gIG1hcmdpbjogNDBweDtcclxufVxyXG4uanctbW9kYWwtYmFja2dyb3VuZCB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMDtcclxuICByaWdodDogMDtcclxuICBib3R0b206IDA7XHJcbiAgbGVmdDogMDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xyXG4gIG9wYWNpdHk6IDAuNzU7XHJcbiAgei1pbmRleDogOTAwO1xyXG59XHJcbmJvZHkuanctbW9kYWwtb3BlbiB7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuLm5vLW1hcmdpbiB7XHJcbiAgbWFyZ2luOiAwICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5mdWxsLXNjcmVlbiB7XHJcbiAgbWFyZ2luOiAwICFpbXBvcnRhbnQ7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -1588,101 +1709,6 @@ var JwModalService = /** @class */ (function () {
         modal.close();
     };
     return JwModalService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/util/loading/loading.component.css":
-/*!****************************************************!*\
-  !*** ./src/app/util/loading/loading.component.css ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3V0aWwvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5jc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/util/loading/loading.component.html":
-/*!*****************************************************!*\
-  !*** ./src/app/util/loading/loading.component.html ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"h-100 w-100 d-flex justify-content-center align-items-center\">\n  <app-spinner></app-spinner>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/util/loading/loading.component.ts":
-/*!***************************************************!*\
-  !*** ./src/app/util/loading/loading.component.ts ***!
-  \***************************************************/
-/*! exports provided: LoadingComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingComponent", function() { return LoadingComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var LoadingComponent = /** @class */ (function () {
-    function LoadingComponent() {
-    }
-    LoadingComponent.prototype.ngOnInit = function () {
-    };
-    LoadingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-loading',
-            template: __webpack_require__(/*! ./loading.component.html */ "./src/app/util/loading/loading.component.html"),
-            styles: [__webpack_require__(/*! ./loading.component.css */ "./src/app/util/loading/loading.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], LoadingComponent);
-    return LoadingComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/util/loading/loading.service.ts":
-/*!*************************************************!*\
-  !*** ./src/app/util/loading/loading.service.ts ***!
-  \*************************************************/
-/*! exports provided: LoadingService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingService", function() { return LoadingService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-
-var LoadingService = /** @class */ (function () {
-    function LoadingService() {
-        this.loading = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
-        this.loadingStatus$ = this.loading.asObservable();
-    }
-    LoadingService.prototype.start = function () {
-        this.loading.next(true);
-    };
-    LoadingService.prototype.stop = function () {
-        this.loading.next(false);
-    };
-    LoadingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
-            providedIn: 'root',
-        })
-    ], LoadingService);
-    return LoadingService;
 }());
 
 
@@ -1817,6 +1843,61 @@ var LongPress = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/util/spinner/spinner-handler-interceptor.service.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/util/spinner/spinner-handler-interceptor.service.ts ***!
+  \*********************************************************************/
+/*! exports provided: SpinnerHandlerInterceptorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerHandlerInterceptorService", function() { return SpinnerHandlerInterceptorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _spinner_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./spinner.service */ "./src/app/util/spinner/spinner.service.ts");
+
+
+
+
+
+var SpinnerHandlerInterceptorService = /** @class */ (function () {
+    function SpinnerHandlerInterceptorService(spinnerService) {
+        this.spinnerService = spinnerService;
+        this.totalRequests = 0;
+    }
+    SpinnerHandlerInterceptorService.prototype.intercept = function (request, next) {
+        var _this = this;
+        this.totalRequests++;
+        this.spinnerService.enableRequestSpinner();
+        return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (res) {
+            if (res instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]) {
+                _this.decreaseRequests();
+            }
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+            _this.decreaseRequests();
+            throw err;
+        }));
+    };
+    SpinnerHandlerInterceptorService.prototype.decreaseRequests = function () {
+        this.totalRequests--;
+        if (this.totalRequests === 0) {
+            this.spinnerService.disableRequestSpinner();
+        }
+    };
+    SpinnerHandlerInterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_spinner_service__WEBPACK_IMPORTED_MODULE_4__["SpinnerService"]])
+    ], SpinnerHandlerInterceptorService);
+    return SpinnerHandlerInterceptorService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/util/spinner/spinner.component.css":
 /*!****************************************************!*\
   !*** ./src/app/util/spinner/spinner.component.css ***!
@@ -1824,7 +1905,7 @@ var LongPress = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#loader {\r\n  bottom: 0;\r\n  height: 175px;\r\n  left: 0;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 175px;\r\n}\r\n\r\n#loader {\r\n  bottom: 0;\r\n  height: 175px;\r\n  left: 0;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 175px;\r\n}\r\n\r\n#loader .dot {\r\n  bottom: 0;\r\n  height: 100%;\r\n  left: 0;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 87.5px;\r\n}\r\n\r\n#loader .dot::before {\r\n  border-radius: 100%;\r\n  content: \"\";\r\n  height: 87.5px;\r\n  left: 0;\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  -webkit-transform: scale(0);\r\n          transform: scale(0);\r\n  width: 87.5px;\r\n}\r\n\r\n#loader .dot:nth-child(7n+1) {\r\n  -webkit-transform: rotate(45deg);\r\n          transform: rotate(45deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+1)::before {\r\n  -webkit-animation: 0.8s linear 0.1s normal none infinite running load;\r\n          animation: 0.8s linear 0.1s normal none infinite running load;\r\n  background: #00ff80 none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+2) {\r\n  -webkit-transform: rotate(90deg);\r\n          transform: rotate(90deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+2)::before {\r\n  -webkit-animation: 0.8s linear 0.2s normal none infinite running load;\r\n          animation: 0.8s linear 0.2s normal none infinite running load;\r\n  background: #00ffea none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+3) {\r\n  -webkit-transform: rotate(135deg);\r\n          transform: rotate(135deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+3)::before {\r\n  -webkit-animation: 0.8s linear 0.3s normal none infinite running load;\r\n          animation: 0.8s linear 0.3s normal none infinite running load;\r\n  background: #00aaff none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+4) {\r\n  -webkit-transform: rotate(180deg);\r\n          transform: rotate(180deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+4)::before {\r\n  -webkit-animation: 0.8s linear 0.4s normal none infinite running load;\r\n          animation: 0.8s linear 0.4s normal none infinite running load;\r\n  background: #0040ff none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+5) {\r\n  -webkit-transform: rotate(225deg);\r\n          transform: rotate(225deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+5)::before {\r\n  -webkit-animation: 0.8s linear 0.5s normal none infinite running load;\r\n          animation: 0.8s linear 0.5s normal none infinite running load;\r\n  background: #2a00ff none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+6) {\r\n  -webkit-transform: rotate(270deg);\r\n          transform: rotate(270deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+6)::before {\r\n  -webkit-animation: 0.8s linear 0.6s normal none infinite running load;\r\n          animation: 0.8s linear 0.6s normal none infinite running load;\r\n  background: #9500ff none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+7) {\r\n  -webkit-transform: rotate(315deg);\r\n          transform: rotate(315deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+7)::before {\r\n  -webkit-animation: 0.8s linear 0.7s normal none infinite running load;\r\n          animation: 0.8s linear 0.7s normal none infinite running load;\r\n  background: magenta none repeat scroll 0 0;\r\n}\r\n\r\n#loader .dot:nth-child(7n+8) {\r\n  -webkit-transform: rotate(360deg);\r\n          transform: rotate(360deg);\r\n}\r\n\r\n#loader .dot:nth-child(7n+8)::before {\r\n  -webkit-animation: 0.8s linear 0.8s normal none infinite running load;\r\n          animation: 0.8s linear 0.8s normal none infinite running load;\r\n  background: #ff0095 none repeat scroll 0 0;\r\n}\r\n\r\n#loader .loading {\r\n  background-position: 50% 50%;\r\n  background-repeat: no-repeat;\r\n  bottom: -40px;\r\n  height: 20px;\r\n  left: 0;\r\n  position: absolute;\r\n  right: 0;\r\n  width: 180px;\r\n}\r\n\r\n@-webkit-keyframes load {\r\n  100% {\r\n    opacity: 0;\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n  }\r\n}\r\n\r\n@keyframes load {\r\n  100% {\r\n    opacity: 0;\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n  }\r\n}\r\n\r\n@keyframes load {\r\n  100% {\r\n    opacity: 0;\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n  }\r\n}\r\n\r\n.spinner-message {\r\n  text-align: center;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXRpbC9zcGlubmVyL3NwaW5uZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFVBQVU7RUFDVixjQUFjO0VBQ2QsUUFBUTtFQUNSLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsU0FBUztFQUNULE9BQU87RUFDUCxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxVQUFVO0VBQ1YsY0FBYztFQUNkLFFBQVE7RUFDUixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFNBQVM7RUFDVCxPQUFPO0VBQ1AsYUFBYTtDQUNkOztBQUVEO0VBQ0UsVUFBVTtFQUNWLGFBQWE7RUFDYixRQUFRO0VBQ1IsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixTQUFTO0VBQ1QsT0FBTztFQUNQLGNBQWM7Q0FDZjs7QUFFRDtFQUNFLG9CQUFvQjtFQUNwQixZQUFZO0VBQ1osZUFBZTtFQUNmLFFBQVE7RUFDUixtQkFBbUI7RUFDbkIsU0FBUztFQUNULE9BQU87RUFDUCw0QkFBb0I7VUFBcEIsb0JBQW9CO0VBQ3BCLGNBQWM7Q0FDZjs7QUFFRDtFQUNFLGlDQUF5QjtVQUF6Qix5QkFBeUI7Q0FDMUI7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGlDQUF5QjtVQUF6Qix5QkFBeUI7Q0FDMUI7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLGtDQUEwQjtVQUExQiwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSxzRUFBOEQ7VUFBOUQsOERBQThEO0VBQzlELDJDQUEyQztDQUM1Qzs7QUFFRDtFQUNFLDZCQUE2QjtFQUM3Qiw2QkFBNkI7RUFDN0IsY0FBYztFQUNkLGFBQWE7RUFDYixRQUFRO0VBQ1IsbUJBQW1CO0VBQ25CLFNBQVM7RUFDVCxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRTtJQUNFLFdBQVc7SUFDWCw0QkFBb0I7WUFBcEIsb0JBQW9CO0dBQ3JCO0NBQ0Y7O0FBTEQ7RUFDRTtJQUNFLFdBQVc7SUFDWCw0QkFBb0I7WUFBcEIsb0JBQW9CO0dBQ3JCO0NBQ0Y7O0FBRUQ7RUFDRTtJQUNFLFdBQVc7SUFDWCw0QkFBb0I7WUFBcEIsb0JBQW9CO0dBQ3JCO0NBQ0Y7O0FBRUQ7RUFDRSxtQkFBbUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC91dGlsL3NwaW5uZXIvc3Bpbm5lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2xvYWRlciB7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGhlaWdodDogMTc1cHg7XHJcbiAgbGVmdDogMDtcclxuICBtYXJnaW46IGF1dG87XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHRvcDogMDtcclxuICB3aWR0aDogMTc1cHg7XHJcbn1cclxuXHJcbiNsb2FkZXIge1xyXG4gIGJvdHRvbTogMDtcclxuICBoZWlnaHQ6IDE3NXB4O1xyXG4gIGxlZnQ6IDA7XHJcbiAgbWFyZ2luOiBhdXRvO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICByaWdodDogMDtcclxuICB0b3A6IDA7XHJcbiAgd2lkdGg6IDE3NXB4O1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Qge1xyXG4gIGJvdHRvbTogMDtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgbGVmdDogMDtcclxuICBtYXJnaW46IGF1dG87XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHRvcDogMDtcclxuICB3aWR0aDogODcuNXB4O1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6OmJlZm9yZSB7XHJcbiAgYm9yZGVyLXJhZGl1czogMTAwJTtcclxuICBjb250ZW50OiBcIlwiO1xyXG4gIGhlaWdodDogODcuNXB4O1xyXG4gIGxlZnQ6IDA7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHRvcDogMDtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDApO1xyXG4gIHdpZHRoOiA4Ny41cHg7XHJcbn1cclxuXHJcbiNsb2FkZXIgLmRvdDpudGgtY2hpbGQoN24rMSkge1xyXG4gIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcclxufVxyXG5cclxuI2xvYWRlciAuZG90Om50aC1jaGlsZCg3bisxKTo6YmVmb3JlIHtcclxuICBhbmltYXRpb246IDAuOHMgbGluZWFyIDAuMXMgbm9ybWFsIG5vbmUgaW5maW5pdGUgcnVubmluZyBsb2FkO1xyXG4gIGJhY2tncm91bmQ6ICMwMGZmODAgbm9uZSByZXBlYXQgc2Nyb2xsIDAgMDtcclxufVxyXG5cclxuI2xvYWRlciAuZG90Om50aC1jaGlsZCg3bisyKSB7XHJcbiAgdHJhbnNmb3JtOiByb3RhdGUoOTBkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzIpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC4ycyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogIzAwZmZlYSBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzMpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgxMzVkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzMpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC4zcyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogIzAwYWFmZiBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzQpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzQpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC40cyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogIzAwNDBmZiBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzUpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgyMjVkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzUpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC41cyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogIzJhMDBmZiBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzYpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgyNzBkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzYpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC42cyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogIzk1MDBmZiBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzcpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgzMTVkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzcpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC43cyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogbWFnZW50YSBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzgpIHtcclxuICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xyXG59XHJcblxyXG4jbG9hZGVyIC5kb3Q6bnRoLWNoaWxkKDduKzgpOjpiZWZvcmUge1xyXG4gIGFuaW1hdGlvbjogMC44cyBsaW5lYXIgMC44cyBub3JtYWwgbm9uZSBpbmZpbml0ZSBydW5uaW5nIGxvYWQ7XHJcbiAgYmFja2dyb3VuZDogI2ZmMDA5NSBub25lIHJlcGVhdCBzY3JvbGwgMCAwO1xyXG59XHJcblxyXG4jbG9hZGVyIC5sb2FkaW5nIHtcclxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiA1MCUgNTAlO1xyXG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgYm90dG9tOiAtNDBweDtcclxuICBoZWlnaHQ6IDIwcHg7XHJcbiAgbGVmdDogMDtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgd2lkdGg6IDE4MHB4O1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGxvYWQge1xyXG4gIDEwMCUge1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7XHJcbiAgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGxvYWQge1xyXG4gIDEwMCUge1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7XHJcbiAgfVxyXG59XHJcblxyXG4uc3Bpbm5lci1tZXNzYWdlIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuIl19 */"
+module.exports = "/*.spinner-container {*/\r\n/*  position: absolute;*/\r\n/*  left: 10%;*/\r\n/*  top: 0;*/\r\n/*  width: 80%;*/\r\n/*  height: 76px;*/\r\n/*  background-image: linear-gradient(to right, gray, white, gray);*/\r\n/*}*/\r\n.spinner-container {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 76px;\r\n  background-color: white;\r\n  opacity: 0.8;\r\n}\r\n.for-fullscreen-modal-height {\r\n  height: 103px;\r\n}\r\n.for-small-modal-height {\r\n  height: 143px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXRpbC9zcGlubmVyL3NwaW5uZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSx3QkFBd0I7QUFDeEIseUJBQXlCO0FBQ3pCLGdCQUFnQjtBQUNoQixhQUFhO0FBQ2IsaUJBQWlCO0FBQ2pCLG1CQUFtQjtBQUNuQixxRUFBcUU7QUFDckUsS0FBSztBQUVMO0VBQ0UsbUJBQW1CO0VBQ25CLFFBQVE7RUFDUixPQUFPO0VBQ1AsWUFBWTtFQUNaLGFBQWE7RUFDYix3QkFBd0I7RUFDeEIsYUFBYTtDQUNkO0FBRUQ7RUFDRSxjQUFjO0NBQ2Y7QUFHRDtFQUNFLGNBQWM7Q0FDZiIsImZpbGUiOiJzcmMvYXBwL3V0aWwvc3Bpbm5lci9zcGlubmVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKi5zcGlubmVyLWNvbnRhaW5lciB7Ki9cclxuLyogIHBvc2l0aW9uOiBhYnNvbHV0ZTsqL1xyXG4vKiAgbGVmdDogMTAlOyovXHJcbi8qICB0b3A6IDA7Ki9cclxuLyogIHdpZHRoOiA4MCU7Ki9cclxuLyogIGhlaWdodDogNzZweDsqL1xyXG4vKiAgYmFja2dyb3VuZC1pbWFnZTogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCBncmF5LCB3aGl0ZSwgZ3JheSk7Ki9cclxuLyp9Ki9cclxuXHJcbi5zcGlubmVyLWNvbnRhaW5lciB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgdG9wOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogNzZweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxuICBvcGFjaXR5OiAwLjg7XHJcbn1cclxuXHJcbi5mb3ItZnVsbHNjcmVlbi1tb2RhbC1oZWlnaHQge1xyXG4gIGhlaWdodDogMTAzcHg7XHJcbn1cclxuXHJcblxyXG4uZm9yLXNtYWxsLW1vZGFsLWhlaWdodCB7XHJcbiAgaGVpZ2h0OiAxNDNweDtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -1835,7 +1916,7 @@ module.exports = "#loader {\r\n  bottom: 0;\r\n  height: 175px;\r\n  left: 0;\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div id=\"loader\">\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"dot\"></div>\n      <div class=\"loading\"></div>\n    </div>\n\n    <p class=\"spinner-message\" *ngIf=\"message && message !== ''\">\n      {{message}}\n    </p>\n  </div>\n</div>\n"
+module.exports = "<div\n  class=\"spinner-container d-flex justify-content-center align-items-center\"\n  [ngClass]=\"{'for-fullscreen-modal-height': modal && !smallModal, 'for-small-modal-height': modal && smallModal}\">\n  <div class=\"spinner-border {{withWarning ? 'text-warning' : 'text-secondary'}}\" role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -1851,25 +1932,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerComponent", function() { return SpinnerComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _spinner_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./spinner.service */ "./src/app/util/spinner/spinner.service.ts");
+
 
 
 var SpinnerComponent = /** @class */ (function () {
-    function SpinnerComponent() {
-        this.message = '';
+    function SpinnerComponent(spinnerService) {
+        this.spinnerService = spinnerService;
+        this.modal = false;
+        this.smallModal = false;
+        this.subscriptions = [];
     }
     SpinnerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.spinnerService.getSpinnerStatus.subscribe(function (ss) {
+            _this.enabled = ss.enabled;
+            _this.withWarning = ss.withWarning;
+        }));
+    };
+    SpinnerComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], SpinnerComponent.prototype, "message", void 0);
+    ], SpinnerComponent.prototype, "modal", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], SpinnerComponent.prototype, "smallModal", void 0);
     SpinnerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-spinner',
             template: __webpack_require__(/*! ./spinner.component.html */ "./src/app/util/spinner/spinner.component.html"),
             styles: [__webpack_require__(/*! ./spinner.component.css */ "./src/app/util/spinner/spinner.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_spinner_service__WEBPACK_IMPORTED_MODULE_2__["SpinnerService"]])
     ], SpinnerComponent);
     return SpinnerComponent;
 }());
@@ -1882,18 +1980,72 @@ var SpinnerComponent = /** @class */ (function () {
 /*!*************************************************!*\
   !*** ./src/app/util/spinner/spinner.service.ts ***!
   \*************************************************/
-/*! exports provided: SpinnerService */
+/*! exports provided: SpinnerStatus, SpinnerService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerStatus", function() { return SpinnerStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+var SpinnerStatus = /** @class */ (function () {
+    function SpinnerStatus(enabled, withWarning) {
+        this.enabled = enabled;
+        this.withWarning = withWarning;
+    }
+    return SpinnerStatus;
+}());
 
 var SpinnerService = /** @class */ (function () {
     function SpinnerService() {
-        this.setSpinnerStatus = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+        this.setSpinnerStatus = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.spinnerStatusEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
+        this.getSpinnerStatus = this.spinnerStatusEmitter.asObservable();
     }
+    SpinnerService.prototype.enableDisablerSpinner = function () {
+        this.disablerSpinnerRunning = true;
+        this.spinnerStatusEmitter.emit(new SpinnerStatus(true, true));
+        // console.log('spinner: started disabler');
+    };
+    SpinnerService.prototype.disableDisablerSpinner = function () {
+        this.disablerSpinnerRunning = false;
+        if (this.requestSpinnerRunning) {
+            this.spinnerStatusEmitter.emit(new SpinnerStatus(true, false));
+            // console.log('spinner: disabler -> request');
+        }
+        else {
+            this.spinnerStatusEmitter.emit(new SpinnerStatus(false, false));
+            // console.log('spinner: stopped');
+        }
+    };
+    SpinnerService.prototype.enableRequestSpinner = function () {
+        this.requestSpinnerRunning = true;
+        this.decideIfStartRequestSpinner();
+    };
+    SpinnerService.prototype.disableRequestSpinner = function () {
+        this.requestSpinnerRunning = false;
+        this.decideIfStopRequestSpinner();
+    };
+    SpinnerService.prototype.decideIfStartRequestSpinner = function () {
+        if (!this.disablerSpinnerRunning) {
+            this.spinnerStatusEmitter.emit(new SpinnerStatus(true, false));
+            // console.log('spinner: started request');
+        }
+    };
+    SpinnerService.prototype.decideIfStopRequestSpinner = function () {
+        if (!this.disablerSpinnerRunning) {
+            this.spinnerStatusEmitter.emit(new SpinnerStatus(false, false));
+            // console.log('spinner: stopped');
+        }
+    };
+    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' })
+    ], SpinnerService);
     return SpinnerService;
 }());
 
@@ -1939,7 +2091,7 @@ var UtilService = /** @class */ (function () {
         var todaysDateFormatted = new Date().setHours(0, 0, 0, 0);
         return Math.round((todaysDateFormatted - dateFormatted) / (oneDay));
     };
-    // static backEndURL = 'http://localhost:8080/';
+    //static backEndURL = 'http://localhost:8080/';
     // static planningDropdown = null;
     // static planningDropdown = this.p
     //
@@ -1995,7 +2147,7 @@ module.exports = ".big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.login-form {\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-form\">\n  <form>\n    <h2 class=\"text-center\">Mummimesila</h2>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             class=\"form-control\"\n             placeholder=\"Parool\"\n             required=\"required\"\n             [(ngModel)]=\"inputValue\"\n             [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" class=\"btn btn-primary btn-block\" (click)=\"validate()\">Sisene</button>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"login-form\">\n  <form>\n    <h2 class=\"text-center\">Minumesila</h2>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             class=\"form-control\"\n             placeholder=\"Parool\"\n             required=\"required\"\n             [(ngModel)]=\"inputValue\"\n             [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" class=\"btn btn-primary btn-block\" (click)=\"validate()\">Sisene</button>\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -2027,7 +2179,7 @@ var LoginComponent = /** @class */ (function () {
         }
     };
     LoginComponent.prototype.validate = function () {
-        if (this.inputValue === crypto_js__WEBPACK_IMPORTED_MODULE_2__["AES"].decrypt('U2FsdGVkX1+nX9f8uh8D85k7N2iQjlos4L33ATilHjc=', 'protection against fools. please do not corrupt data').toString(crypto_js__WEBPACK_IMPORTED_MODULE_2__["enc"].Utf8)) {
+        if (this.inputValue === crypto_js__WEBPACK_IMPORTED_MODULE_2__["AES"].decrypt('U2FsdGVkX18s6gkTpUY6WHFpU3uorgwMB+Y9bvuLeho=', 'protection against fools. please do not corrupt data').toString(crypto_js__WEBPACK_IMPORTED_MODULE_2__["enc"].Utf8)) {
             localStorage.setItem('allowedToPass', 'yep');
             this.allowedToPass.emit(true);
         }
@@ -2091,7 +2243,7 @@ module.exports = "img {\r\n  max-height: 80px;\r\n  max-width: 180px;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/v22rema.png\" alt=\"ii\"\r\n            style=\"max-width: 180px;\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\"\r\n        style=\"margin-top: 140px;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-freak-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on tarus väärema?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/v22rema.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"freak\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"freak\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"freak\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Oled kindel, et tarus pole enam väärema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-freak-log-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Vääremast lahtisaamise logi</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseFreakMotherLogEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div style=\"overflow-y:auto;\r\n            overflow-x:hidden;\r\n            border-color: dimgray;\r\n            border-style: solid;\r\n            height:350px\">\r\n      <div class=\"row\"\r\n           style=\"background-color: #f0f0f0; border-style: solid; border-color: white;\"\r\n           *ngFor=\"let logEntry of currentlyChosenHive.momAttributes.freakLog\">\r\n        <div class=\"col-sm-10\">\r\n          <h3>{{ logEntry.text }}</h3>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary\"\r\n            (click)=\"onOpenFreakLogEntryButton(logEntry)\">\r\n            <img\r\n              src=\"assets/img/muudaNupp.png\"\r\n              class=\"pencil\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-8\">\r\n        <textarea\r\n          class=\"form-control\"\r\n          rows=\"3\"\r\n          style=\"font-size: 2em\"\r\n          [(ngModel)]=\"textareaValue\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-4\">\r\n        <button\r\n          class=\"btn btn-light btn-outline-success\"\r\n          style=\"color: green; height: 70px; width: 300px; margin-left: 20px\"\r\n          [disabled]=\"textareaValue === ''\"\r\n          (click)=\"saveNewLogEntry()\">\r\n          <h2>Lisan kirje</h2>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-freak-log-entry-edit\">\r\n  <div class=\"card bg-light\" *ngIf=\"logEntryThatIsBeingEdited\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Logikirje muutmine</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseFreakLogEntryButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div style=\"overflow-y:auto;\r\n            overflow-x:hidden;\r\n            border-color: dimgray;\r\n            border-style: solid;\r\n            height:350px\">\r\n      <h2>Esialgne tekst:</h2>\r\n      <br>\r\n      <div class=\"row\"\r\n           style=\"background-color: #f0f0f0; border-style: solid; border-color: white;\">\r\n        <div class=\"col-sm-1\"></div>\r\n        <div class=\"col-sm-9\">\r\n          <h3>{{ textareaOnEntryEditValue }}</h3>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary\"\r\n            (click)=\"deleteLogEntry(logEntryThatIsBeingEdited)\">\r\n            <img\r\n              src=\"assets/img/trash.png\"\r\n              class=\"pencil\"\r\n            >\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-8\">\r\n        <textarea\r\n          class=\"form-control\"\r\n          rows=\"3\"\r\n          style=\"font-size: 2em\"\r\n          [(ngModel)]=\"textareaOnEntryEditValue\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-4\">\r\n        <button\r\n          class=\"btn btn-light btn-outline-success\"\r\n          style=\"color: green; height: 93px; width: 300px; margin-left: 20px\"\r\n          [disabled]=\"logEntryThatIsBeingEdited.text === textareaOnEntryEditValue\"\r\n          (click)=\"updateLogEntry(logEntryThatIsBeingEdited, textareaOnEntryEditValue)\">\r\n          <h2>Salvestan muudatused</h2>\r\n        </button>\r\n        <button\r\n          class=\"btn btn-light btn-outline-danger\"\r\n          style=\"color: red; height: 93px; width: 300px; margin-left: 20px\"\r\n          (click)=\"onCloseFreakLogEntryButton()\">\r\n          <h2>Tühistan muudatused</h2>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/v22rema.png\" alt=\"ii\"\r\n            style=\"max-width: 180px;\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\"\r\n        style=\"margin-top: 140px;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-freak-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on tarus väärema?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/v22rema.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"freak\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"freak\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"freak\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Oled kindel, et tarus pole enam väärema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-freak-log-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Vääremast lahtisaamise logi</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseFreakMotherLogEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div style=\"overflow-y:auto;\r\n            overflow-x:hidden;\r\n            border-color: dimgray;\r\n            border-style: solid;\r\n            height:350px\">\r\n      <div class=\"row\"\r\n           style=\"background-color: #f0f0f0; border-style: solid; border-color: white;\"\r\n           *ngFor=\"let logEntry of currentlyChosenHive.momAttributes.freakLog\">\r\n        <div class=\"col-sm-10\">\r\n          <h3>{{ logEntry.text }}</h3>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary\"\r\n            (click)=\"onOpenFreakLogEntryButton(logEntry)\">\r\n            <img\r\n              src=\"assets/img/muudaNupp.png\"\r\n              class=\"pencil\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-8\">\r\n        <textarea\r\n          class=\"form-control\"\r\n          rows=\"3\"\r\n          style=\"font-size: 2em\"\r\n          [(ngModel)]=\"textareaValue\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-4\">\r\n        <button\r\n          class=\"btn btn-light btn-outline-success\"\r\n          style=\"color: green; height: 70px; width: 300px; margin-left: 20px\"\r\n          [disabled]=\"textareaValue === ''\"\r\n          (click)=\"saveNewLogEntry()\">\r\n          <h2>Lisan kirje</h2>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-freak-log-entry-edit\">\r\n  <div class=\"card bg-light\" *ngIf=\"logEntryThatIsBeingEdited\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Logikirje muutmine</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseFreakLogEntryButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div style=\"overflow-y:auto;\r\n            overflow-x:hidden;\r\n            border-color: dimgray;\r\n            border-style: solid;\r\n            height:350px\">\r\n      <h2>Esialgne tekst:</h2>\r\n      <br>\r\n      <div class=\"row\"\r\n           style=\"background-color: #f0f0f0; border-style: solid; border-color: white;\">\r\n        <div class=\"col-sm-1\"></div>\r\n        <div class=\"col-sm-9\">\r\n          <h3>{{ textareaOnEntryEditValue }}</h3>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary\"\r\n            (click)=\"deleteLogEntry(logEntryThatIsBeingEdited)\">\r\n            <img\r\n              src=\"assets/img/trash.png\"\r\n              class=\"pencil\"\r\n            >\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-8\">\r\n        <textarea\r\n          class=\"form-control\"\r\n          rows=\"3\"\r\n          style=\"font-size: 2em\"\r\n          [(ngModel)]=\"textareaOnEntryEditValue\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-4\">\r\n        <button\r\n          class=\"btn btn-light btn-outline-success\"\r\n          style=\"color: green; height: 93px; width: 300px; margin-left: 20px\"\r\n          [disabled]=\"logEntryThatIsBeingEdited.text === textareaOnEntryEditValue\"\r\n          (click)=\"updateLogEntry(logEntryThatIsBeingEdited, textareaOnEntryEditValue)\">\r\n          <h2>Salvestan muudatused</h2>\r\n        </button>\r\n        <button\r\n          class=\"btn btn-light btn-outline-danger\"\r\n          style=\"color: red; height: 93px; width: 300px; margin-left: 20px\"\r\n          (click)=\"onCloseFreakLogEntryButton()\">\r\n          <h2>Tühistan muudatused</h2>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n"
 
 /***/ }),
 
@@ -2115,6 +2267,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
 /* harmony import */ var _log_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../log.model */ "./src/app/work/mother/log.model.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
+
 
 
 
@@ -2126,10 +2282,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FreakComponent = /** @class */ (function () {
-    function FreakComponent(modalService, momAttributesService, coloniesService) {
+    function FreakComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.textareaValue = '';
         this.textareaOnEntryEditValue = 'blablabla';
@@ -2159,8 +2316,7 @@ var FreakComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-freak-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     FreakComponent.prototype.setMotherStatusSectionValuesCorrect = function () {
@@ -2199,6 +2355,7 @@ var FreakComponent = /** @class */ (function () {
     };
     FreakComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     FreakComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-freak-edit');
@@ -2253,7 +2410,8 @@ var FreakComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_11__["ExecutorService"]])
     ], FreakComponent);
     return FreakComponent;
 }());
@@ -2280,7 +2438,7 @@ module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/koorunudEma.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.SEEN)\">\r\n        <img\r\n          src=\"assets/img/n2htudVertical.png\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-hatched-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema koorus?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/koorunudEma.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"hatched\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"hatched\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"hatched\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"koorunud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\"><h2>Loobun</h2></button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\"><h2>Salvestan</h2></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveLayingEggsSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div class=\"row\" style=\"margin-top: 200px\">\r\n            <button\r\n              class=\"btn btn-light btn-outline-danger\"\r\n              style=\"color: red; height: 70px; width: 200px;\"\r\n              (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n              <h2>Loobun</h2></button>\r\n            <button\r\n              class=\"btn btn-light btn-outline-success\"\r\n              style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n              (click)=\"saveMarkedSectionValues()\"\r\n              [disabled]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            markedTimeYearValue === ''\">\r\n              <h2>Salvestan</h2>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px; margin-left: 20px\"\r\n            (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 80px\"\r\n                  (click)=\"saveBirthdaySectionValues()\"\r\n                  [disabled]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            birthdayTimeYearValue === ''\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/koorunudEma.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class=\"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class=\"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.SEEN)\">\r\n        <img\r\n          src=\"assets/img/n2htudVertical.png\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-hatched-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema koorus?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/koorunudEma.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"hatched\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"hatched\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"hatched\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"koorunud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\"\r\n            (ngModelChange)=\"saveMarkedSectionValues()\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -2304,6 +2462,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -2315,10 +2477,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HatchedComponent = /** @class */ (function () {
-    function HatchedComponent(modalService, momAttributesService, coloniesService) {
+    function HatchedComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.markedStatusEnum = _marked_status_enum__WEBPACK_IMPORTED_MODULE_5__["MarkedStatusEnum"];
@@ -2387,8 +2550,7 @@ var HatchedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-hatched-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     HatchedComponent.prototype.setLayingEggsSectionValuesCorrect = function () {
@@ -2454,8 +2616,7 @@ var HatchedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.isLayingEggs = false;
             this.currentlyChosenHive.momAttributes.eggsLastSeen = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-laying-eggs-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setLayingEggsSectionValuesCorrect();
     };
     HatchedComponent.prototype.setMarkedSectionValuesCorrect = function () {
@@ -2530,8 +2691,7 @@ var HatchedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.markedDate = null;
             this.currentlyChosenHive.momAttributes.isMarkedDateMonthSet = false;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-marked-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMarkedSectionValuesCorrect();
     };
     HatchedComponent.prototype.setBirthdaySectionValuesCorrect = function () {
@@ -2539,7 +2699,7 @@ var HatchedComponent = /** @class */ (function () {
             this.radioBtnBirthdayTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE;
             var birthday = new Date(this.currentlyChosenHive.momAttributes.birthday);
             this.birthdayTimeYearValue = birthday.getFullYear().toString();
-            if (this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet) {
+            if (this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet) {
                 this.birthdayTimeMonthValue = birthday.getMonth().toString();
             }
             else {
@@ -2560,23 +2720,24 @@ var HatchedComponent = /** @class */ (function () {
         else if (this.radioBtnBirthdayTimeSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE) {
             this.currentlyChosenHive.momAttributes.birthday = new Date();
             this.currentlyChosenHive.momAttributes.birthday.setFullYear(+this.birthdayTimeYearValue);
-            if (this.birthdayTimeMonthValue === '') {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = false;
+            if (!this.birthdayTimeMonthValue) {
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = false;
             }
             else {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = true;
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = true;
                 this.currentlyChosenHive.momAttributes.birthday.setMonth(+this.birthdayTimeMonthValue);
             }
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-birthday-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setBirthdaySectionValuesCorrect();
     };
     HatchedComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     HatchedComponent.prototype.radioBtnLayingEggsSelected = function (selectedActionTime) {
         this.radioBtnLayingEggsSelection = selectedActionTime;
+        this.saveLayingEggsSectionValues();
     };
     HatchedComponent.prototype.radioBtnMarkedStatusSelected = function (markedStatusSelected) {
         this.radioBtnMarkedStatusSelection = markedStatusSelected;
@@ -2584,12 +2745,21 @@ var HatchedComponent = /** @class */ (function () {
             this.radioBtnMarkedTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].UNKNOWN;
             this.markedSectionAdditionlInfoText = '';
         }
+        this.saveMarkedSectionValues();
     };
     HatchedComponent.prototype.radioBtnMarkedTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.markedTimeYearValue) {
+            this.markedTimeYearValue = '2019';
+        }
         this.radioBtnMarkedTimeSelection = selectedActionTime;
+        this.saveMarkedSectionValues();
     };
     HatchedComponent.prototype.radioBtnBirthdayTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.birthdayTimeYearValue) {
+            this.birthdayTimeYearValue = '2019';
+        }
         this.radioBtnBirthdayTimeSelection = selectedActionTime;
+        this.saveBirthdaySectionValues();
     };
     HatchedComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-hatched-edit');
@@ -2637,7 +2807,8 @@ var HatchedComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__["ExecutorService"]])
     ], HatchedComponent);
     return HatchedComponent;
 }());
@@ -2664,7 +2835,7 @@ module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/puurigaTarru.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div class=\"marked-image-block-for-in-cage\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.UN_CAGED)\">\r\n        <img\r\n          src=\"assets/img/puuristV2ljaVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <br>\r\n\r\n      <div style=\"margin-top: 60px\">\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n          (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/muudaNupp.png\"\r\n            alt=\"ii\"\r\n            class=\"pencil\">\r\n        </button>\r\n      </div>\r\n\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-in-cage-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema sai puuriga tarru pandud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/puurigaTarru.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"in-cage\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"in-cage\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"in-cage\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"puuriga tarus\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\"><h2>Loobun</h2></button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\"><h2>Salvestan</h2></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div class=\"row\" style=\"margin-top: 200px\">\r\n            <button\r\n              class=\"btn btn-light btn-outline-danger\"\r\n              style=\"color: red; height: 70px; width: 200px;\"\r\n              (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n              <h2>Loobun</h2></button>\r\n            <button\r\n              class=\"btn btn-light btn-outline-success\"\r\n              style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n              (click)=\"saveMarkedSectionValues()\"\r\n              [disabled]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            markedTimeYearValue === ''\">\r\n              <h2>Salvestan</h2>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px; margin-left: 20px\"\r\n            (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 80px\"\r\n                  (click)=\"saveBirthdaySectionValues()\"\r\n                  [disabled]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            birthdayTimeYearValue === ''\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/puurigaTarru.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div class=\"marked-image-block-for-in-cage\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class=\"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class=\"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.UN_CAGED)\">\r\n        <img\r\n          src=\"assets/img/puuristV2ljaVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <br>\r\n\r\n      <div style=\"margin-top: 60px\">\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n          (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/muudaNupp.png\"\r\n            alt=\"ii\"\r\n            class=\"pencil\">\r\n        </button>\r\n      </div>\r\n\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-in-cage-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema sai puuriga tarru pandud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/puurigaTarru.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"in-cage\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"in-cage\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"in-cage\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"puuriga tarus\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\"\r\n            (ngModelChange)=\"saveMarkedSectionValues()\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -2688,6 +2859,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -2699,10 +2874,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var InCageComponent = /** @class */ (function () {
-    function InCageComponent(modalService, momAttributesService, coloniesService) {
+    function InCageComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.markedStatusEnum = _marked_status_enum__WEBPACK_IMPORTED_MODULE_5__["MarkedStatusEnum"];
@@ -2768,8 +2944,7 @@ var InCageComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-in-cage-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     InCageComponent.prototype.setMarkedSectionValuesCorrect = function () {
@@ -2844,8 +3019,7 @@ var InCageComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.markedDate = null;
             this.currentlyChosenHive.momAttributes.isMarkedDateMonthSet = false;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-marked-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMarkedSectionValuesCorrect();
     };
     InCageComponent.prototype.setBirthdaySectionValuesCorrect = function () {
@@ -2853,7 +3027,7 @@ var InCageComponent = /** @class */ (function () {
             this.radioBtnBirthdayTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE;
             var birthday = new Date(this.currentlyChosenHive.momAttributes.birthday);
             this.birthdayTimeYearValue = birthday.getFullYear().toString();
-            if (this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet) {
+            if (this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet) {
                 this.birthdayTimeMonthValue = birthday.getMonth().toString();
             }
             else {
@@ -2874,20 +3048,20 @@ var InCageComponent = /** @class */ (function () {
         else if (this.radioBtnBirthdayTimeSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE) {
             this.currentlyChosenHive.momAttributes.birthday = new Date();
             this.currentlyChosenHive.momAttributes.birthday.setFullYear(+this.birthdayTimeYearValue);
-            if (this.birthdayTimeMonthValue === '') {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = false;
+            if (!this.birthdayTimeMonthValue) {
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = false;
             }
             else {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = true;
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = true;
                 this.currentlyChosenHive.momAttributes.birthday.setMonth(+this.birthdayTimeMonthValue);
             }
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-birthday-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setBirthdaySectionValuesCorrect();
     };
     InCageComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     InCageComponent.prototype.radioBtnMarkedStatusSelected = function (markedStatusSelected) {
         this.radioBtnMarkedStatusSelection = markedStatusSelected;
@@ -2895,12 +3069,21 @@ var InCageComponent = /** @class */ (function () {
             this.radioBtnMarkedTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].UNKNOWN;
             this.markedSectionAdditionlInfoText = '';
         }
+        this.saveMarkedSectionValues();
     };
     InCageComponent.prototype.radioBtnMarkedTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.markedTimeYearValue) {
+            this.markedTimeYearValue = '2019';
+        }
         this.radioBtnMarkedTimeSelection = selectedActionTime;
+        this.saveMarkedSectionValues();
     };
     InCageComponent.prototype.radioBtnBirthdayTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.birthdayTimeYearValue) {
+            this.birthdayTimeYearValue = '2019';
+        }
         this.radioBtnBirthdayTimeSelection = selectedActionTime;
+        this.saveBirthdaySectionValues();
     };
     InCageComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-in-cage-edit');
@@ -2942,7 +3125,8 @@ var InCageComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__["ExecutorService"]])
     ], InCageComponent);
     return InCageComponent;
 }());
@@ -3010,7 +3194,7 @@ module.exports = "img {\r\n  max-height: 80px;\r\n  max-width: 180px;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/kadunud.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                        !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                         currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.HATCHED)\">\r\n        <img\r\n          src=\"assets/img/koorunudEmaVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveControlFrameSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenControlFrameEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success fourth-from-top-button\"\r\n        (click)=\"saveCocoonSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenCocoonEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-missing-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on ema tarust kadunud?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/kadunud.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"missing\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"missing\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"missing\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"tarust kadunud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-control-frame-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal panin praegu peres oleva kontrollraami sisse?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenControlFrameEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/controlFrameOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnControlFramePastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"controlFrameInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ controlFrameInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/controlFrameNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenControlFrameEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveControlFrameSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-cocoon-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on välja valitud praegune kontrollraami kupp?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenCocoonEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/cocoonOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnCocoonPastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"cocoonInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ cocoonInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/cocoonNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenCocoonEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveCocoonSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/kadunud.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                        !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                         currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.HATCHED)\">\r\n        <img\r\n          src=\"assets/img/koorunudEmaVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveControlFrameSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenControlFrameEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success fourth-from-top-button\"\r\n        (click)=\"saveCocoonSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenCocoonEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-missing-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on ema tarust kadunud?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/kadunud.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"missing\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"missing\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"missing\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"tarust kadunud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-control-frame-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal panin praegu peres oleva kontrollraami sisse?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenControlFrameEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/controlFrameOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnControlFramePastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"controlFrameInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ controlFrameInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/controlFrameNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-cocoon-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on välja valitud praegune kontrollraami kupp?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenCocoonEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/cocoonOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnCocoonPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"cocoonInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ cocoonInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/cocoonNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -3033,6 +3217,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -3043,10 +3231,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MissingComponent = /** @class */ (function () {
-    function MissingComponent(modalService, momAttributesService, coloniesService) {
+    function MissingComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.actionTimeEnum = _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"];
@@ -3079,8 +3268,7 @@ var MissingComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-missing-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     MissingComponent.prototype.setMotherStatusSectionValuesCorrect = function () {
@@ -3136,8 +3324,7 @@ var MissingComponent = /** @class */ (function () {
         else if (this.radioBtnControlFrameSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"].NO_ACTION) {
             this.currentlyChosenHive.momAttributes.controlFrameStartDate = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-control-frame-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setControlFrameSectionValuesCorrect();
     };
     MissingComponent.prototype.setControlFrameSectionValuesCorrect = function () {
@@ -3201,8 +3388,7 @@ var MissingComponent = /** @class */ (function () {
         else if (this.radioBtnCocoonSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"].NO_ACTION) {
             this.currentlyChosenHive.momAttributes.cocoonChosenDate = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-cocoon-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setCocoonSectionValuesCorrect();
     };
     MissingComponent.prototype.setCocoonSectionValuesCorrect = function () {
@@ -3252,9 +3438,11 @@ var MissingComponent = /** @class */ (function () {
     };
     MissingComponent.prototype.radioBtnControlFrameSelected = function (selectedActionTime) {
         this.radioBtnControlFrameSelection = selectedActionTime;
+        this.saveControlFrameSectionValues();
     };
     MissingComponent.prototype.radioBtnCocoonSelected = function (selectedActionTime) {
         this.radioBtnCocoonSelection = selectedActionTime;
+        this.saveCocoonSectionValues();
     };
     MissingComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-missing-edit');
@@ -3295,7 +3483,8 @@ var MissingComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_9__["ExecutorService"]])
     ], MissingComponent);
     return MissingComponent;
 }());
@@ -3321,6 +3510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/spinner/spinner.service */ "./src/app/util/spinner/spinner.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
 /* harmony import */ var _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./marked-status.enum */ "./src/app/work/mother/marked-status.enum.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
 
 
 
@@ -3330,9 +3521,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var MomAttributesService = /** @class */ (function () {
     function MomAttributesService(momDataService, spinnerService, coloniesService) {
+        var _this = this;
         this.momDataService = momDataService;
         this.spinnerService = spinnerService;
         this.coloniesService = coloniesService;
+        this.onUpdateMomAttributes = function (hive) {
+            _this.momDataService.onEditMomAttributes(hive)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["take"])(1))
+                .subscribe();
+        };
     }
     MomAttributesService_1 = MomAttributesService;
     MomAttributesService.prototype.onUpdateMomStatus = function (hive, newMomStatus) {
@@ -3342,21 +3539,6 @@ var MomAttributesService = /** @class */ (function () {
                     case 0:
                         this.spinnerService.setSpinnerStatus.next(true);
                         MomAttributesService_1.setAppropriateAttributesAfterStatusChangeBecauseOfNewStatus(hive, newMomStatus);
-                        return [4 /*yield*/, this.momDataService.onEditMomAttributes(hive)];
-                    case 1:
-                        _a.sent();
-                        this.spinnerService.setSpinnerStatus.next(false);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MomAttributesService.prototype.onUpdateMomAttributes = function (hive) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinnerService.setSpinnerStatus.next(true);
                         return [4 /*yield*/, this.momDataService.onEditMomAttributes(hive)];
                     case 1:
                         _a.sent();
@@ -3433,7 +3615,7 @@ var MomAttributesService = /** @class */ (function () {
                 hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                 hive.momAttributes.markedDate = null;
                 hive.momAttributes.markedDescription = '';
-                hive.momAttributes.isBirthDayDateMonthSet = false;
+                hive.momAttributes.isBirthdayDateMonthSet = false;
                 hive.momAttributes.birthday = null;
                 hive.momAttributes.hasControlFrame = false;
                 hive.momAttributes.controlFrameStartDate = null;
@@ -3456,7 +3638,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = false;
+                        hive.momAttributes.isBirthdayDateMonthSet = false;
                         hive.momAttributes.birthday = null;
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3482,7 +3664,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = false;
+                        hive.momAttributes.isBirthdayDateMonthSet = false;
                         hive.momAttributes.birthday = null;
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3506,7 +3688,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = true;
+                        hive.momAttributes.isBirthdayDateMonthSet = true;
                         hive.momAttributes.birthday = new Date();
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3543,7 +3725,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = true;
+                        hive.momAttributes.isBirthdayDateMonthSet = true;
                         hive.momAttributes.birthday = new Date();
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3569,7 +3751,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = true;
+                        hive.momAttributes.isBirthdayDateMonthSet = true;
                         hive.momAttributes.birthday = new Date();
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3600,7 +3782,7 @@ var MomAttributesService = /** @class */ (function () {
                         hive.momAttributes.markedStatus = _marked_status_enum__WEBPACK_IMPORTED_MODULE_6__["MarkedStatusEnum"].UNMARKED;
                         hive.momAttributes.markedDate = null;
                         hive.momAttributes.markedDescription = '';
-                        hive.momAttributes.isBirthDayDateMonthSet = true;
+                        hive.momAttributes.isBirthdayDateMonthSet = true;
                         hive.momAttributes.birthday = new Date();
                         hive.momAttributes.hasControlFrame = false;
                         hive.momAttributes.controlFrameStartDate = null;
@@ -3651,7 +3833,7 @@ var MomDataService = /** @class */ (function () {
     }
     MomDataService.prototype.onEditMomAttributes = function (hive) {
         var URL = _util_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"].backEndURL + 'api/hive/' + hive.id + '/attributes';
-        return this.httpClient.put(URL, hive.momAttributes).toPromise();
+        return this.httpClient.put(URL, hive.momAttributes);
     };
     MomDataService.prototype.onDeleteFreakLogEntry = function (log) {
         var URL = _util_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"].backEndURL + 'api/hive/freaklog/' + log.id;
@@ -3857,7 +4039,7 @@ var MotherComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.card-body {\r\n  padding: 10px;\r\n}\r\n\r\nh3.time-text {\r\n  margin-top: -10px;\r\n  margin-bottom: 0;\r\n  max-width: 214px;\r\n}\r\n\r\nbutton.change-mother-status-button {\r\n  width: 180px;\r\n  height: 80px;\r\n  margin: 0;\r\n}\r\n\r\ndiv.pictures-column {\r\n  padding-right: 0;\r\n  padding-left: 0;\r\n}\r\n\r\np.marked-date-description {\r\n  font-size: 31px;\r\n  margin-top: -10px;\r\n}\r\n\r\nbutton.closing {\r\n  display: inline-block;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n  margin: 0;\r\n  margin-right: 10px;\r\n}\r\n\r\ndiv.option {\r\n  margin-top: 50px;\r\n}\r\n\r\ndiv.option2 {\r\n  margin-top: 20px;\r\n}\r\n\r\ndiv.twoButtons {\r\n  margin-top: 200px;\r\n}\r\n\r\ninput.bigRadio {\r\n  width: 35px;\r\n  height: 35px\r\n}\r\n\r\n.up-bar {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\ninput.num {\r\n  width: 70px;\r\n  height: 35px\r\n}\r\n\r\ninput.description {\r\n  width: 180px;\r\n  height: 35px\r\n}\r\n\r\nimg.pencil {\r\n  height: 40px;\r\n}\r\n\r\nbutton {\r\n  height: 60px;\r\n  width: 60px;\r\n  margin-top: 20px;\r\n  margin-left: 9px;\r\n}\r\n\r\n.custom-select {\r\n  display: inline;\r\n  width: 150px;\r\n  font-size: 28px;\r\n  margin-left: 18px;\r\n}\r\n\r\n.option-row {\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  align-items: center;\r\n  height: 60px;\r\n}\r\n\r\nbutton.first-from-top-button {\r\n  height: 115px;\r\n  width: 60px;\r\n  margin: 0;\r\n  margin-left: 9px\r\n}\r\n\r\nbutton.second-from-top-button {\r\n  margin-top: 30px;\r\n}\r\n\r\nbutton.third-from-top-button {\r\n  margin-top: 65px;\r\n}\r\n\r\nbutton.fourth-from-top-button {\r\n  margin-top: 75px;\r\n}\r\n\r\nbutton.fifth-from-top-button {\r\n  margin-top: 100px;\r\n}\r\n\r\ndiv.marked-image-block {\r\n  margin-top: 37px;\r\n  height: 156px;\r\n}\r\n\r\ndiv.second-image-block {\r\n  margin-top: 30px;\r\n  height: 110px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9tb3RoZXIvc2Vlbi9zZWVuLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGFBQWE7RUFDYixhQUFhO0VBQ2IsVUFBVTtDQUNYOztBQUVEO0VBQ0UsaUJBQWlCO0VBQ2pCLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7Q0FDbkI7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUI7RUFDbkIsNEJBQW9CO0VBQXBCLHlCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIseUJBQXlCO0VBQ3pCLFVBQVU7RUFDVixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSxpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxrQkFBa0I7Q0FDbkI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osWUFBWTtDQUNiOztBQUVEO0VBQ0UsY0FBYztFQUNkLCtCQUErQjtFQUMvQixvQkFBb0I7Q0FDckI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osWUFBWTtDQUNiOztBQUVEO0VBQ0UsYUFBYTtFQUNiLFlBQVk7Q0FDYjs7QUFFRDtFQUNFLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGNBQWM7RUFDZCw0QkFBNEI7RUFDNUIsb0JBQW9CO0VBQ3BCLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLGNBQWM7RUFDZCxZQUFZO0VBQ1osVUFBVTtFQUNWLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxpQkFBaUI7RUFDakIsY0FBYztDQUNmIiwiZmlsZSI6InNyYy9hcHAvd29yay9tb3RoZXIvc2Vlbi9zZWVuLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbWcge1xyXG4gIGhlaWdodDogODBweDtcclxufVxyXG5cclxuaW1nLngge1xyXG4gIGhlaWdodDogNDBweDtcclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgcGFkZGluZzogMTBweDtcclxufVxyXG5cclxuaDMudGltZS10ZXh0IHtcclxuICBtYXJnaW4tdG9wOiAtMTBweDtcclxuICBtYXJnaW4tYm90dG9tOiAwO1xyXG4gIG1heC13aWR0aDogMjE0cHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5jaGFuZ2UtbW90aGVyLXN0YXR1cy1idXR0b24ge1xyXG4gIHdpZHRoOiAxODBweDtcclxuICBoZWlnaHQ6IDgwcHg7XHJcbiAgbWFyZ2luOiAwO1xyXG59XHJcblxyXG5kaXYucGljdHVyZXMtY29sdW1uIHtcclxuICBwYWRkaW5nLXJpZ2h0OiAwO1xyXG4gIHBhZGRpbmctbGVmdDogMDtcclxufVxyXG5cclxucC5tYXJrZWQtZGF0ZS1kZXNjcmlwdGlvbiB7XHJcbiAgZm9udC1zaXplOiAzMXB4O1xyXG4gIG1hcmdpbi10b3A6IC0xMHB4O1xyXG59XHJcblxyXG5idXR0b24uY2xvc2luZyB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIHdpZHRoOiBmaXQtY29udGVudDtcclxuICBoZWlnaHQ6IGZpdC1jb250ZW50O1xyXG4gIHBhZGRpbmc6IDJweCAycHggMnB4IDJweDtcclxuICBtYXJnaW46IDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xyXG59XHJcblxyXG5kaXYub3B0aW9uIHtcclxuICBtYXJnaW4tdG9wOiA1MHB4O1xyXG59XHJcblxyXG5kaXYub3B0aW9uMiB7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxufVxyXG5cclxuZGl2LnR3b0J1dHRvbnMge1xyXG4gIG1hcmdpbi10b3A6IDIwMHB4O1xyXG59XHJcblxyXG5pbnB1dC5iaWdSYWRpbyB7XHJcbiAgd2lkdGg6IDM1cHg7XHJcbiAgaGVpZ2h0OiAzNXB4XHJcbn1cclxuXHJcbi51cC1iYXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbmlucHV0Lm51bSB7XHJcbiAgd2lkdGg6IDcwcHg7XHJcbiAgaGVpZ2h0OiAzNXB4XHJcbn1cclxuXHJcbmlucHV0LmRlc2NyaXB0aW9uIHtcclxuICB3aWR0aDogMTgwcHg7XHJcbiAgaGVpZ2h0OiAzNXB4XHJcbn1cclxuXHJcbmltZy5wZW5jaWwge1xyXG4gIGhlaWdodDogNDBweDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgd2lkdGg6IDYwcHg7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxuICBtYXJnaW4tbGVmdDogOXB4O1xyXG59XHJcblxyXG4uY3VzdG9tLXNlbGVjdCB7XHJcbiAgZGlzcGxheTogaW5saW5lO1xyXG4gIHdpZHRoOiAxNTBweDtcclxuICBmb250LXNpemU6IDI4cHg7XHJcbiAgbWFyZ2luLWxlZnQ6IDE4cHg7XHJcbn1cclxuXHJcbi5vcHRpb24tcm93IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGhlaWdodDogNjBweDtcclxufVxyXG5cclxuYnV0dG9uLmZpcnN0LWZyb20tdG9wLWJ1dHRvbiB7XHJcbiAgaGVpZ2h0OiAxMTVweDtcclxuICB3aWR0aDogNjBweDtcclxuICBtYXJnaW46IDA7XHJcbiAgbWFyZ2luLWxlZnQ6IDlweFxyXG59XHJcblxyXG5idXR0b24uc2Vjb25kLWZyb20tdG9wLWJ1dHRvbiB7XHJcbiAgbWFyZ2luLXRvcDogMzBweDtcclxufVxyXG5cclxuYnV0dG9uLnRoaXJkLWZyb20tdG9wLWJ1dHRvbiB7XHJcbiAgbWFyZ2luLXRvcDogNjVweDtcclxufVxyXG5cclxuYnV0dG9uLmZvdXJ0aC1mcm9tLXRvcC1idXR0b24ge1xyXG4gIG1hcmdpbi10b3A6IDc1cHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5maWZ0aC1mcm9tLXRvcC1idXR0b24ge1xyXG4gIG1hcmdpbi10b3A6IDEwMHB4O1xyXG59XHJcblxyXG5kaXYubWFya2VkLWltYWdlLWJsb2NrIHtcclxuICBtYXJnaW4tdG9wOiAzN3B4O1xyXG4gIGhlaWdodDogMTU2cHg7XHJcbn1cclxuXHJcbmRpdi5zZWNvbmQtaW1hZ2UtYmxvY2sge1xyXG4gIG1hcmdpbi10b3A6IDMwcHg7XHJcbiAgaGVpZ2h0OiAxMTBweDtcclxufVxyXG4iXX0= */"
+module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.card-body {\r\n  padding: 10px;\r\n}\r\n\r\nh3.time-text {\r\n  margin-top: -10px;\r\n  margin-bottom: 0;\r\n  max-width: 214px;\r\n}\r\n\r\nbutton.change-mother-status-button {\r\n  width: 180px;\r\n  height: 80px;\r\n  margin: 0;\r\n}\r\n\r\ndiv.pictures-column {\r\n  padding-right: 0;\r\n  padding-left: 0;\r\n}\r\n\r\np.marked-date-description {\r\n  font-size: 31px;\r\n  margin-top: -10px;\r\n}\r\n\r\nbutton.closing {\r\n  display: inline-block;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n  margin: 0;\r\n  margin-right: 10px;\r\n}\r\n\r\ndiv.option {\r\n  margin-top: 50px;\r\n}\r\n\r\ndiv.option2 {\r\n  margin-top: 20px;\r\n}\r\n\r\ninput.bigRadio {\r\n  width: 35px;\r\n  height: 35px\r\n}\r\n\r\n.up-bar {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\ninput.num {\r\n  width: 70px;\r\n  height: 35px\r\n}\r\n\r\ninput.description {\r\n  width: 180px;\r\n  height: 35px\r\n}\r\n\r\nimg.pencil {\r\n  height: 40px;\r\n}\r\n\r\nbutton {\r\n  height: 60px;\r\n  width: 60px;\r\n  margin-top: 20px;\r\n  margin-left: 9px;\r\n}\r\n\r\n.custom-select {\r\n  display: inline;\r\n  width: 150px;\r\n  font-size: 28px;\r\n  margin-left: 18px;\r\n}\r\n\r\n.option-row {\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  align-items: center;\r\n  height: 60px;\r\n}\r\n\r\nbutton.first-from-top-button {\r\n  height: 115px;\r\n  width: 60px;\r\n  margin: 0;\r\n  margin-left: 9px\r\n}\r\n\r\nbutton.second-from-top-button {\r\n  margin-top: 30px;\r\n}\r\n\r\nbutton.third-from-top-button {\r\n  margin-top: 65px;\r\n}\r\n\r\nbutton.fourth-from-top-button {\r\n  margin-top: 75px;\r\n}\r\n\r\nbutton.fifth-from-top-button {\r\n  margin-top: 100px;\r\n}\r\n\r\ndiv.marked-image-block {\r\n  margin-top: 37px;\r\n  height: 156px;\r\n}\r\n\r\ndiv.second-image-block {\r\n  margin-top: 30px;\r\n  height: 110px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9tb3RoZXIvc2Vlbi9zZWVuLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGFBQWE7RUFDYixhQUFhO0VBQ2IsVUFBVTtDQUNYOztBQUVEO0VBQ0UsaUJBQWlCO0VBQ2pCLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7Q0FDbkI7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUI7RUFDbkIsNEJBQW9CO0VBQXBCLHlCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIseUJBQXlCO0VBQ3pCLFVBQVU7RUFDVixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSxpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osWUFBWTtDQUNiOztBQUVEO0VBQ0UsY0FBYztFQUNkLCtCQUErQjtFQUMvQixvQkFBb0I7Q0FDckI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osWUFBWTtDQUNiOztBQUVEO0VBQ0UsYUFBYTtFQUNiLFlBQVk7Q0FDYjs7QUFFRDtFQUNFLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGNBQWM7RUFDZCw0QkFBNEI7RUFDNUIsb0JBQW9CO0VBQ3BCLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLGNBQWM7RUFDZCxZQUFZO0VBQ1osVUFBVTtFQUNWLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxpQkFBaUI7RUFDakIsY0FBYztDQUNmIiwiZmlsZSI6InNyYy9hcHAvd29yay9tb3RoZXIvc2Vlbi9zZWVuLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbWcge1xyXG4gIGhlaWdodDogODBweDtcclxufVxyXG5cclxuaW1nLngge1xyXG4gIGhlaWdodDogNDBweDtcclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgcGFkZGluZzogMTBweDtcclxufVxyXG5cclxuaDMudGltZS10ZXh0IHtcclxuICBtYXJnaW4tdG9wOiAtMTBweDtcclxuICBtYXJnaW4tYm90dG9tOiAwO1xyXG4gIG1heC13aWR0aDogMjE0cHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5jaGFuZ2UtbW90aGVyLXN0YXR1cy1idXR0b24ge1xyXG4gIHdpZHRoOiAxODBweDtcclxuICBoZWlnaHQ6IDgwcHg7XHJcbiAgbWFyZ2luOiAwO1xyXG59XHJcblxyXG5kaXYucGljdHVyZXMtY29sdW1uIHtcclxuICBwYWRkaW5nLXJpZ2h0OiAwO1xyXG4gIHBhZGRpbmctbGVmdDogMDtcclxufVxyXG5cclxucC5tYXJrZWQtZGF0ZS1kZXNjcmlwdGlvbiB7XHJcbiAgZm9udC1zaXplOiAzMXB4O1xyXG4gIG1hcmdpbi10b3A6IC0xMHB4O1xyXG59XHJcblxyXG5idXR0b24uY2xvc2luZyB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIHdpZHRoOiBmaXQtY29udGVudDtcclxuICBoZWlnaHQ6IGZpdC1jb250ZW50O1xyXG4gIHBhZGRpbmc6IDJweCAycHggMnB4IDJweDtcclxuICBtYXJnaW46IDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xyXG59XHJcblxyXG5kaXYub3B0aW9uIHtcclxuICBtYXJnaW4tdG9wOiA1MHB4O1xyXG59XHJcblxyXG5kaXYub3B0aW9uMiB7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxufVxyXG5cclxuaW5wdXQuYmlnUmFkaW8ge1xyXG4gIHdpZHRoOiAzNXB4O1xyXG4gIGhlaWdodDogMzVweFxyXG59XHJcblxyXG4udXAtYmFyIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG5pbnB1dC5udW0ge1xyXG4gIHdpZHRoOiA3MHB4O1xyXG4gIGhlaWdodDogMzVweFxyXG59XHJcblxyXG5pbnB1dC5kZXNjcmlwdGlvbiB7XHJcbiAgd2lkdGg6IDE4MHB4O1xyXG4gIGhlaWdodDogMzVweFxyXG59XHJcblxyXG5pbWcucGVuY2lsIHtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbn1cclxuXHJcbmJ1dHRvbiB7XHJcbiAgaGVpZ2h0OiA2MHB4O1xyXG4gIHdpZHRoOiA2MHB4O1xyXG4gIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgbWFyZ2luLWxlZnQ6IDlweDtcclxufVxyXG5cclxuLmN1c3RvbS1zZWxlY3Qge1xyXG4gIGRpc3BsYXk6IGlubGluZTtcclxuICB3aWR0aDogMTUwcHg7XHJcbiAgZm9udC1zaXplOiAyOHB4O1xyXG4gIG1hcmdpbi1sZWZ0OiAxOHB4O1xyXG59XHJcblxyXG4ub3B0aW9uLXJvdyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5maXJzdC1mcm9tLXRvcC1idXR0b24ge1xyXG4gIGhlaWdodDogMTE1cHg7XHJcbiAgd2lkdGg6IDYwcHg7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIG1hcmdpbi1sZWZ0OiA5cHhcclxufVxyXG5cclxuYnV0dG9uLnNlY29uZC1mcm9tLXRvcC1idXR0b24ge1xyXG4gIG1hcmdpbi10b3A6IDMwcHg7XHJcbn1cclxuXHJcbmJ1dHRvbi50aGlyZC1mcm9tLXRvcC1idXR0b24ge1xyXG4gIG1hcmdpbi10b3A6IDY1cHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5mb3VydGgtZnJvbS10b3AtYnV0dG9uIHtcclxuICBtYXJnaW4tdG9wOiA3NXB4O1xyXG59XHJcblxyXG5idXR0b24uZmlmdGgtZnJvbS10b3AtYnV0dG9uIHtcclxuICBtYXJnaW4tdG9wOiAxMDBweDtcclxufVxyXG5cclxuZGl2Lm1hcmtlZC1pbWFnZS1ibG9jayB7XHJcbiAgbWFyZ2luLXRvcDogMzdweDtcclxuICBoZWlnaHQ6IDE1NnB4O1xyXG59XHJcblxyXG5kaXYuc2Vjb25kLWltYWdlLWJsb2NrIHtcclxuICBtYXJnaW4tdG9wOiAzMHB4O1xyXG4gIGhlaWdodDogMTEwcHg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -3868,7 +4050,7 @@ module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/n2htud.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.UNKNOWN)\">\r\n        <img\r\n          src=\"assets/img/teadmataVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"momStatusSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success second-from-top-button\"\r\n        (click)=\"saveMotherStatusSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"momStatusSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-seen-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal seda ema viimati nägid?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/n2htud.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"seen\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"seen\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"seen\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"nähtud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\"><h2>Loobun</h2></button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\"><h2>Salvestan</h2></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveLayingEggsSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div class=\"row\" style=\"margin-top: 200px\">\r\n            <button\r\n              class=\"btn btn-light btn-outline-danger\"\r\n              style=\"color: red; height: 70px; width: 200px;\"\r\n              (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n              <h2>Loobun</h2></button>\r\n            <button\r\n              class=\"btn btn-light btn-outline-success\"\r\n              style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n              (click)=\"saveMarkedSectionValues()\"\r\n              [disabled]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            markedTimeYearValue === ''\">\r\n              <h2>Salvestan</h2>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px; margin-left: 20px\"\r\n            (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 80px\"\r\n                  (click)=\"saveBirthdaySectionValues()\"\r\n                  [disabled]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            birthdayTimeYearValue === ''\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/n2htud.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.UNKNOWN)\">\r\n        <img\r\n          src=\"assets/img/teadmataVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"momStatusSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success second-from-top-button\"\r\n        (click)=\"saveMotherStatusSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"momStatusSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-seen-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal seda ema viimati nägid?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/n2htud.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"seen\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"seen\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"seen\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"nähtud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\"\r\n            (ngModelChange)=\"saveMarkedSectionValues()\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -3892,6 +4074,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -3903,10 +4089,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var SeenComponent = /** @class */ (function () {
-    function SeenComponent(modalService, momAttributesService, coloniesService) {
+    function SeenComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.markedStatusEnum = _marked_status_enum__WEBPACK_IMPORTED_MODULE_5__["MarkedStatusEnum"];
@@ -3975,8 +4162,7 @@ var SeenComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-seen-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     SeenComponent.prototype.setLayingEggsSectionValuesCorrect = function () {
@@ -4042,8 +4228,7 @@ var SeenComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.isLayingEggs = false;
             this.currentlyChosenHive.momAttributes.eggsLastSeen = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-laying-eggs-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setLayingEggsSectionValuesCorrect();
     };
     SeenComponent.prototype.setMarkedSectionValuesCorrect = function () {
@@ -4118,8 +4303,7 @@ var SeenComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.markedDate = null;
             this.currentlyChosenHive.momAttributes.isMarkedDateMonthSet = false;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-marked-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMarkedSectionValuesCorrect();
     };
     SeenComponent.prototype.setBirthdaySectionValuesCorrect = function () {
@@ -4127,7 +4311,7 @@ var SeenComponent = /** @class */ (function () {
             this.radioBtnBirthdayTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE;
             var birthday = new Date(this.currentlyChosenHive.momAttributes.birthday);
             this.birthdayTimeYearValue = birthday.getFullYear().toString();
-            if (this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet) {
+            if (this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet) {
                 this.birthdayTimeMonthValue = birthday.getMonth().toString();
             }
             else {
@@ -4148,23 +4332,24 @@ var SeenComponent = /** @class */ (function () {
         else if (this.radioBtnBirthdayTimeSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE) {
             this.currentlyChosenHive.momAttributes.birthday = new Date();
             this.currentlyChosenHive.momAttributes.birthday.setFullYear(+this.birthdayTimeYearValue);
-            if (this.birthdayTimeMonthValue === '') {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = false;
+            if (!this.birthdayTimeMonthValue) {
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = false;
             }
             else {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = true;
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = true;
                 this.currentlyChosenHive.momAttributes.birthday.setMonth(+this.birthdayTimeMonthValue);
             }
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-birthday-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setBirthdaySectionValuesCorrect();
     };
     SeenComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     SeenComponent.prototype.radioBtnLayingEggsSelected = function (selectedActionTime) {
         this.radioBtnLayingEggsSelection = selectedActionTime;
+        this.saveLayingEggsSectionValues();
     };
     SeenComponent.prototype.radioBtnMarkedStatusSelected = function (markedStatusSelected) {
         this.radioBtnMarkedStatusSelection = markedStatusSelected;
@@ -4172,12 +4357,21 @@ var SeenComponent = /** @class */ (function () {
             this.radioBtnMarkedTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].UNKNOWN;
             this.markedSectionAdditionlInfoText = '';
         }
+        this.saveMarkedSectionValues();
     };
     SeenComponent.prototype.radioBtnMarkedTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.markedTimeYearValue) {
+            this.markedTimeYearValue = '2019';
+        }
         this.radioBtnMarkedTimeSelection = selectedActionTime;
+        this.saveMarkedSectionValues();
     };
     SeenComponent.prototype.radioBtnBirthdayTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.birthdayTimeYearValue) {
+            this.birthdayTimeYearValue = '2019';
+        }
         this.radioBtnBirthdayTimeSelection = selectedActionTime;
+        this.saveBirthdaySectionValues();
     };
     SeenComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-seen-edit');
@@ -4225,7 +4419,8 @@ var SeenComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__["ExecutorService"]])
     ], SeenComponent);
     return SeenComponent;
 }());
@@ -4252,7 +4447,7 @@ module.exports = "img {\r\n  height: 80px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/puuristV2lja.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthDayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.SEEN)\">\r\n        <img\r\n          src=\"assets/img/n2htudVertical.png\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-un-caged-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema sai puurist tarru lastud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/puuristV2lja.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"un-caged\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"un-caged\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"un-caged\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"puurist vabastatud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\"><h2>Loobun</h2></button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\"><h2>Salvestan</h2></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveLayingEggsSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div class=\"row\" style=\"margin-top: 200px\">\r\n            <button\r\n              class=\"btn btn-light btn-outline-danger\"\r\n              style=\"color: red; height: 70px; width: 200px;\"\r\n              (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n              <h2>Loobun</h2></button>\r\n            <button\r\n              class=\"btn btn-light btn-outline-success\"\r\n              style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n              (click)=\"saveMarkedSectionValues()\"\r\n              [disabled]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            markedTimeYearValue === ''\">\r\n              <h2>Salvestan</h2>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px; margin-left: 20px\"\r\n            (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 80px\"\r\n                  (click)=\"saveBirthdaySectionValues()\"\r\n                  [disabled]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE &&\r\n                            birthdayTimeYearValue === ''\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/puuristV2lja.png\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isLayingEggs\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/munebOK.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ layingEggsSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div class=\"marked-image-block\">\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.UNMARKED\">\r\n              <img src=\"assets/img/unmarked.png\" alt=\"märgistamata\">\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.ATTENTION\">\r\n              <img src=\"assets/img/attention.png\" alt=\"märkega probleeme\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n            <div *ngIf=\"currentlyChosenHive.momAttributes.markedStatus === markedStatusEnum.MARKED\">\r\n              <img\r\n                src=\"assets/img/marked.png\" alt=\"märgistatud\">\r\n              <h3\r\n                *ngIf=\"currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'MMMM yyyy'}}\r\n              </h3>\r\n              <h3\r\n                *ngIf=\"!currentlyChosenHive.momAttributes.isMarkedDateMonthSet\"\r\n                class=\"time-text\">{{ currentlyChosenHive.momAttributes.markedDate | date:'yyyy'}}\r\n              </h3>\r\n              <p class = \"marked-date-description\">\r\n                {{ currentlyChosenHive.momAttributes.markedDescription }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n          <img src=\"assets/img/synnip2evOk.png\" alt=\"ii\">\r\n          <h3\r\n            *ngIf=\"currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'MMMM yyyy'}}\r\n          </h3>\r\n          <h3\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.isBirthdayDateMonthSet\"\r\n            class=\"time-text\" style=\"margin-bottom: -15px !important;\">\r\n            {{ currentlyChosenHive.momAttributes.birthday | date:'yyyy'}}\r\n          </h3>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.SEEN)\">\r\n        <img\r\n          src=\"assets/img/n2htudVertical.png\"\r\n          alt=\"ii\"\r\n          style=\"height: 100px\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText != 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveLayingEggsSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"layingEggsSectionTimeText === 'täna'\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenSeenMotherLayingEggsEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherMarkedEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fifth-from-top-button\"\r\n        (click)=\"onOpenWhenMotherBirthdayEditButton()\"\r\n        style=\"margin-bottom: 0 !important;\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-un-caged-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal see ema sai puurist tarru lastud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/puuristV2lja.png\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"un-caged\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"un-caged\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"un-caged\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"puurist vabastatud\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-laying-eggs-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal nägid viimati, et see ema munes?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenSeenMotherLayingEggsEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/munebOK.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"laying_eggs\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnLayingEggsPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnLayingEggsSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"layingEggsInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ layingEggsInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/munebNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"laying_eggs\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnLayingEggsSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnLayingEggsSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole näinud, et muneks\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-marked-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Kui korralikult on ema märgistatud ja millal?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherMarkedEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"col\">\r\n      <div class=\"row\">\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/marked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.MARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.MARKED)\">\r\n                Korralik märgistus\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/attention.png\" alt=\"\">\r\n          <div class=\"radio option2\" style=\"font-size: 33px\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.ATTENTION\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.ATTENTION)\">\r\n                Märgistusega on probleeme. <br>\r\n\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <img src=\"assets/img/unmarked.png\" alt=\"\">\r\n          <div class=\"radio option2\">\r\n            <label>\r\n              <h2>\r\n                <input\r\n                  type=\"radio\"\r\n                  name=\"marked_quality\"\r\n                  class=\"bigRadio\"\r\n                  [checked]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  (change)=\"radioBtnMarkedStatusSelected(markedStatusEnum.UNMARKED)\">\r\n                Ei ole märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 10px\">\r\n      <div class=\"row\" style=\"font-size: 33px\">\r\n        <div class=\"col-1\"></div>\r\n        <div class=\"col-11\">\r\n          Märksõna:\r\n          <input\r\n            type=\"text\"\r\n            size=\"10\"\r\n            class=\"description\"\r\n            [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n            [(ngModel)]=\"markedSectionAdditionlInfoText\"\r\n            (ngModelChange)=\"saveMarkedSectionValues()\">\r\n        </div>\r\n      </div>\r\n      <hr style=\"margin-top: 10px; margin-bottom: 0\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6\">\r\n          <div class=\"radio option\" style=\"margin-top: 25px\">\r\n            <label>\r\n              <h2>\r\n                <input type=\"radio\" name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.UNKNOWN\">\r\n                &nbsp;Teadmata millal märgistatud\r\n              </h2>\r\n            </label>\r\n          </div>\r\n          <div style=\"margin-top: 37px\">\r\n            <div>\r\n              <label class=\"option-row\">\r\n                <input type=\"radio\"\r\n                       name=\"when_marked\"\r\n                       class=\"bigRadio\"\r\n                       [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                       (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                       [checked]=\"radioBtnMarkedTimeSelection === actionTimeEnum.PAST_DATE\">\r\n                <h2>&nbsp;Märgistatud:</h2>\r\n                <select\r\n                  name=\"month_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeMonthValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\">Kuu</option>\r\n                  <option value=\"0\">Jaanuar</option>\r\n                  <option value=\"1\">Veebruar</option>\r\n                  <option value=\"2\">Märts</option>\r\n                  <option value=\"3\">Aprill</option>\r\n                  <option value=\"4\">Mai</option>\r\n                  <option value=\"5\">Juuni</option>\r\n                  <option value=\"6\">Juuli</option>\r\n                  <option value=\"7\">August</option>\r\n                  <option value=\"8\">September</option>\r\n                  <option value=\"9\">Oktoober</option>\r\n                  <option value=\"10\">November</option>\r\n                  <option value=\"11\">Detsember</option>\r\n                </select>\r\n                <select\r\n                  name=\"year_marked\"\r\n                  class=\"custom-select\"\r\n                  size=\"1\"\r\n                  [disabled]=\"radioBtnMarkedStatusSelection === markedStatusEnum.UNMARKED\"\r\n                  [(ngModel)]=\"markedTimeYearValue\"\r\n                  (change)=\"radioBtnMarkedTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n                  <option value=\"\" disabled hidden>Aasta</option>\r\n                  <option value=\"2017\">2017</option>\r\n                  <option value=\"2018\">2018</option>\r\n                  <option value=\"2019\">2019</option>\r\n                  <option value=\"2020\">2020</option>\r\n                  <option value=\"2021\">2021</option>\r\n                </select>\r\n              </label>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-birthday-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal on see ema koorunud?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenMotherBirthdayEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/synnip2evOk.png\" alt=\"\">\r\n        <br>\r\n        <br>\r\n        <br>\r\n        <div class=\"radio option\" style=\"margin-top: 25px\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"birthday\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.UNKNOWN)\"\r\n                     [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.UNKNOWN\">\r\n              &nbsp;Teadmata millal koorunud\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div>\r\n          <label class=\"option-row\">\r\n            <input type=\"radio\"\r\n                   name=\"birthday\"\r\n                   class=\"bigRadio\"\r\n                   (change)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\"\r\n                   [checked]=\"radioBtnBirthdayTimeSelection === actionTimeEnum.PAST_DATE\">\r\n            <select\r\n              name=\"month_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              style=\"width: 200px\"\r\n              [(ngModel)]=\"birthdayTimeMonthValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\">Kuu</option>\r\n              <option value=\"0\">Jaanuar</option>\r\n              <option value=\"1\">Veebruar</option>\r\n              <option value=\"2\">Märts</option>\r\n              <option value=\"3\">Aprill</option>\r\n              <option value=\"4\">Mai</option>\r\n              <option value=\"5\">Juuni</option>\r\n              <option value=\"6\">Juuli</option>\r\n              <option value=\"7\">August</option>\r\n              <option value=\"8\">September</option>\r\n              <option value=\"9\">Oktoober</option>\r\n              <option value=\"10\">November</option>\r\n              <option value=\"11\">Detsember</option>\r\n            </select>\r\n            <select\r\n              name=\"year_marked\"\r\n              class=\"custom-select\"\r\n              size=\"1\"\r\n              [(ngModel)]=\"birthdayTimeYearValue\"\r\n              (ngModelChange)=\"radioBtnBirthdayTimeSelected(actionTimeEnum.PAST_DATE)\">\r\n              <option value=\"\" disabled hidden>Aasta</option>\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2018\">2018</option>\r\n              <option value=\"2019\">2019</option>\r\n              <option value=\"2020\">2020</option>\r\n              <option value=\"2021\">2021</option>\r\n            </select>\r\n          </label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <div class=\"row\">\r\n          <h2>Selles tarus ei ole veel koorunud ema?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -4276,6 +4471,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -4287,10 +4486,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UnCagedComponent = /** @class */ (function () {
-    function UnCagedComponent(modalService, momAttributesService, coloniesService) {
+    function UnCagedComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.markedStatusEnum = _marked_status_enum__WEBPACK_IMPORTED_MODULE_5__["MarkedStatusEnum"];
@@ -4359,8 +4559,7 @@ var UnCagedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-un-caged-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     UnCagedComponent.prototype.setLayingEggsSectionValuesCorrect = function () {
@@ -4426,8 +4625,7 @@ var UnCagedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.isLayingEggs = false;
             this.currentlyChosenHive.momAttributes.eggsLastSeen = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-laying-eggs-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setLayingEggsSectionValuesCorrect();
     };
     UnCagedComponent.prototype.setMarkedSectionValuesCorrect = function () {
@@ -4502,8 +4700,7 @@ var UnCagedComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.markedDate = null;
             this.currentlyChosenHive.momAttributes.isMarkedDateMonthSet = false;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-marked-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setMarkedSectionValuesCorrect();
     };
     UnCagedComponent.prototype.setBirthdaySectionValuesCorrect = function () {
@@ -4511,7 +4708,7 @@ var UnCagedComponent = /** @class */ (function () {
             this.radioBtnBirthdayTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE;
             var birthday = new Date(this.currentlyChosenHive.momAttributes.birthday);
             this.birthdayTimeYearValue = birthday.getFullYear().toString();
-            if (this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet) {
+            if (this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet) {
                 this.birthdayTimeMonthValue = birthday.getMonth().toString();
             }
             else {
@@ -4532,23 +4729,24 @@ var UnCagedComponent = /** @class */ (function () {
         else if (this.radioBtnBirthdayTimeSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE) {
             this.currentlyChosenHive.momAttributes.birthday = new Date();
             this.currentlyChosenHive.momAttributes.birthday.setFullYear(+this.birthdayTimeYearValue);
-            if (this.birthdayTimeMonthValue === '') {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = false;
+            if (!this.birthdayTimeMonthValue) {
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = false;
             }
             else {
-                this.currentlyChosenHive.momAttributes.isBirthDayDateMonthSet = true;
+                this.currentlyChosenHive.momAttributes.isBirthdayDateMonthSet = true;
                 this.currentlyChosenHive.momAttributes.birthday.setMonth(+this.birthdayTimeMonthValue);
             }
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-birthday-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_11__["ControlsProtectionIdEnum"].MOM);
         this.setBirthdaySectionValuesCorrect();
     };
     UnCagedComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     UnCagedComponent.prototype.radioBtnLayingEggsSelected = function (selectedActionTime) {
         this.radioBtnLayingEggsSelection = selectedActionTime;
+        this.saveLayingEggsSectionValues();
     };
     UnCagedComponent.prototype.radioBtnMarkedStatusSelected = function (markedStatusSelected) {
         this.radioBtnMarkedStatusSelection = markedStatusSelected;
@@ -4556,12 +4754,21 @@ var UnCagedComponent = /** @class */ (function () {
             this.radioBtnMarkedTimeSelection = _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].UNKNOWN;
             this.markedSectionAdditionlInfoText = '';
         }
+        this.saveMarkedSectionValues();
     };
     UnCagedComponent.prototype.radioBtnMarkedTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.markedTimeYearValue) {
+            this.markedTimeYearValue = '2019';
+        }
         this.radioBtnMarkedTimeSelection = selectedActionTime;
+        this.saveMarkedSectionValues();
     };
     UnCagedComponent.prototype.radioBtnBirthdayTimeSelected = function (selectedActionTime) {
+        if (selectedActionTime === _action_time_enum__WEBPACK_IMPORTED_MODULE_6__["ActionTimeEnum"].PAST_DATE && !this.birthdayTimeYearValue) {
+            this.birthdayTimeYearValue = '2019';
+        }
         this.radioBtnBirthdayTimeSelection = selectedActionTime;
+        this.saveBirthdaySectionValues();
     };
     UnCagedComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-un-caged-edit');
@@ -4609,7 +4816,8 @@ var UnCagedComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_8__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_9__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_10__["ExecutorService"]])
     ], UnCagedComponent);
     return UnCagedComponent;
 }());
@@ -4636,7 +4844,7 @@ module.exports = "img {\r\n  max-height: 80px;\r\n  max-width: 180px;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/teadmata.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                        !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                         currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.MISSING)\">\r\n        <img\r\n          src=\"assets/img/kadunudVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"max-height: 100px; max-width: 55px;\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveControlFrameSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenControlFrameEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success fourth-from-top-button\"\r\n        (click)=\"saveCocoonSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenCocoonEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-unknown-edit\" style=\"max-width: 50rem; height: 45rem\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on teadmata, kas ema on tarus olemas?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/teadmata.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"unknown\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"unknown\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"unknown\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"teadmata kas on olemas\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button class=\"btn btn-light btn-outline-danger\"\r\n                  style=\"color: red; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"onCloseMomStatusSectionEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveMotherStatusSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-control-frame-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal panin praegu peres oleva kontrollraami sisse?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenControlFrameEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/controlFrameOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnControlFramePastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"controlFrameInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ controlFrameInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/controlFrameNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenControlFrameEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveControlFrameSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-cocoon-edit\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on välja valitud praegune kontrollraami kupp?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenCocoonEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/cocoonOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnCocoonPastDateInputValue\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"cocoonInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ cocoonInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/cocoonNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.NO_ACTION)\">\r\n              Kupp valimata\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"row twoButtons\">\r\n          <button\r\n            class=\"btn btn-light btn-outline-danger\"\r\n            style=\"color: red; height: 70px; width: 200px;\"\r\n            (click)=\"onCloseWhenCocoonEditButton()\">\r\n            <h2>Loobun</h2>\r\n          </button>\r\n          <button class=\"btn btn-light btn-outline-success\"\r\n                  style=\"color: green; height: 70px; width: 200px; margin-left: 100px\"\r\n                  (click)=\"saveCocoonSectionValues()\">\r\n            <h2>Salvestan</h2>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-8.5 pictures-column\">\r\n      <div\r\n        class=\"card bg-light\"\r\n        style=\"max-width: 16rem; height: 719px; margin-left:auto;margin-right:auto;text-align:center\">\r\n        <div class=\"card-header\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary change-mother-status-button\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick(null)\">\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"card-body\" style=\"background-color: white\">\r\n\r\n\r\n          <img\r\n            src=\"assets/img/teadmata.jpg\" alt=\"ii\">\r\n          <h3 class=\"time-text\">{{ momStatusSectionTimeText }}</h3>\r\n\r\n\r\n          <div\r\n            *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/controlFrameOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ controlFrameSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                        !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonNot.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n          <div\r\n            *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                         currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n            class=\"second-image-block\">\r\n            <img\r\n              src=\"assets/img/cocoonOk.png\" alt=\"ii\"\r\n              style=\"margin-top: 7px\">\r\n            <h3 class=\"time-text\">{{ cocoonSectionTimeText }}</h3>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-3.5\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary first-from-top-button\"\r\n        (click)=\"onChangeMotherStatusButtonClick(momStatusEnum.MISSING)\">\r\n        <img\r\n          src=\"assets/img/kadunudVertical.jpg\"\r\n          alt=\"ii\"\r\n          style=\"max-height: 100px; max-width: 55px;\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary second-from-top-button\"\r\n        (click)=\"onOpenMomStatusSectionEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"!currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success third-from-top-button\"\r\n        (click)=\"saveControlFrameSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary third-from-top-button\"\r\n        (click)=\"onOpenWhenControlFrameEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <br>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                !currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-success fourth-from-top-button\"\r\n        (click)=\"saveCocoonSectionValues(true)\">\r\n        <img\r\n          src=\"assets/img/check.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n      <button\r\n        *ngIf=\"currentlyChosenHive.momAttributes.controlFrameStartDate &&\r\n                currentlyChosenHive.momAttributes.cocoonChosenDate\"\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary fourth-from-top-button\"\r\n        (click)=\"onOpenWhenCocoonEditButton()\">\r\n        <img\r\n          src=\"assets/img/muudaNupp.png\"\r\n          alt=\"ii\"\r\n          class=\"pencil\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<jw-modal id=\"mother-unknown-edit\" style=\"max-width: 50rem; height: 45rem\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on teadmata, kas ema on tarus olemas?</h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseMomStatusSectionEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-4\">\r\n        <img src=\"assets/img/teadmata.jpg\" alt=\"\">\r\n        <br>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"unknown\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnMomStatusSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"unknown\"\r\n                     class=\"bigRadio\"\r\n                     [checked]=\"radioBtnMomStatusSelection === actionTimeEnum.PAST_DATE\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnStatusPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnMomStatusSelected(actionTimeEnum.PAST_DATE)\"> päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"momStatusInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input type=\"radio\" name=\"unknown\"\r\n                     class=\"bigRadio\"\r\n                     (change)=\"radioBtnMomStatusSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ momStatusInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <div class=\"row\">\r\n          <h2>Ema staatus ei ole \"teadmata kas on olemas\"?</h2>\r\n        </div>\r\n        <div class=\"row option\">\r\n          <h2>Vali teine ema staatus:&nbsp;&nbsp;&nbsp;</h2>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-light btn-outline-primary\"\r\n            style=\"width: 200px; height: 80px; margin: 0px\">\r\n            <img\r\n              src=\"assets/img/muuda.png\"\r\n              alt=\"ii\"\r\n              style=\"height: 65px\"\r\n              (click)=\"onChangeMotherStatusButtonClick()\">\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-control-frame-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Millal panin praegu peres oleva kontrollraami sisse?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenControlFrameEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/controlFrameOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnControlFramePastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnControlFrameSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"controlFrameInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ controlFrameInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/controlFrameNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"control_frame\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnControlFrameSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnControlFrameSelected(actionTimeEnum.NO_ACTION)\">\r\n              Ei ole kontrollraami\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n\r\n\r\n<jw-modal id=\"mother-cocoon-edit\" [smallModal]=\"true\">\r\n  <div class=\"card bg-light\">\r\n    <div class=\"card-header\">\r\n      <div class=\"row up-bar\">\r\n        <h1>Mis ajast on välja valitud praegune kontrollraami kupp?\r\n        </h1>\r\n        <button\r\n          class=\"btn btn-danger closing\"\r\n          (click)=\"onCloseWhenCocoonEditButton()\">\r\n          <img\r\n            src=\"assets/img/sulge.jpeg\"\r\n            class=\"x\">\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\">\r\n      <div class=\"col-1\"></div>\r\n      <div class=\"col-5\">\r\n        <img src=\"assets/img/cocoonOk.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.TODAY\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.TODAY)\">\r\n              Täna\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.PAST_DATE\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              &nbsp;&nbsp;&nbsp;\r\n              <input\r\n                type=\"number\"\r\n                size=\"3\"\r\n                class=\"num\"\r\n                [(ngModel)]=\"radioBtnCocoonPastDateInputValue\"\r\n                (ngModelChange)=\"radioBtnCocoonSelected(actionTimeEnum.PAST_DATE)\">\r\n              päeva tagasi\r\n            </h2>\r\n          </label>\r\n        </div>\r\n        <div\r\n          *ngIf=\"cocoonInitialValueText\"\r\n          class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.INITIAL_DATE)\">\r\n              &nbsp;\r\n              <img src=\"assets/img/tagasi.png\" alt=\"\" style=\"height: 45px\">\r\n              ({{ cocoonInitialValueText }})\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <img src=\"assets/img/cocoonNot.png\" alt=\"\">\r\n        <div class=\"radio option\">\r\n          <label>\r\n            <h2>\r\n              <input\r\n                type=\"radio\"\r\n                name=\"cocoon\"\r\n                class=\"bigRadio\"\r\n                [checked]=\"radioBtnCocoonSelection === actionTimeEnum.NO_ACTION\"\r\n                (change)=\"radioBtnCocoonSelected(actionTimeEnum.NO_ACTION)\">\r\n              Kupp valimata\r\n            </h2>\r\n          </label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</jw-modal>\r\n"
 
 /***/ }),
 
@@ -4659,6 +4867,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mom-attributes.service */ "./src/app/work/mother/mom-attributes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -4669,10 +4881,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UnknownComponent = /** @class */ (function () {
-    function UnknownComponent(modalService, momAttributesService, coloniesService) {
+    function UnknownComponent(modalService, momAttributesService, coloniesService, executorService) {
         this.modalService = modalService;
         this.momAttributesService = momAttributesService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.onChangeMomStatus = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.momStatusEnum = _mom_status_enum__WEBPACK_IMPORTED_MODULE_3__["MomStatusEnum"];
         this.actionTimeEnum = _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"];
@@ -4705,8 +4918,7 @@ var UnknownComponent = /** @class */ (function () {
             this.currentlyChosenHive.momAttributes.statusStartingDate =
                 this.currentlyChosenHiveInitialData.momAttributes.statusStartingDate;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-unknown-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setMotherStatusSectionValuesCorrect();
     };
     UnknownComponent.prototype.setMotherStatusSectionValuesCorrect = function () {
@@ -4762,8 +4974,7 @@ var UnknownComponent = /** @class */ (function () {
         else if (this.radioBtnControlFrameSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"].NO_ACTION) {
             this.currentlyChosenHive.momAttributes.controlFrameStartDate = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-control-frame-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setControlFrameSectionValuesCorrect();
     };
     UnknownComponent.prototype.setControlFrameSectionValuesCorrect = function () {
@@ -4827,8 +5038,7 @@ var UnknownComponent = /** @class */ (function () {
         else if (this.radioBtnCocoonSelection === _action_time_enum__WEBPACK_IMPORTED_MODULE_5__["ActionTimeEnum"].NO_ACTION) {
             this.currentlyChosenHive.momAttributes.cocoonChosenDate = null;
         }
-        this.momAttributesService.onUpdateMomAttributes(this.currentlyChosenHive);
-        this.modalService.close('mother-cocoon-edit');
+        this.executorService.exeWithTimer(this.momAttributesService.onUpdateMomAttributes, [this.currentlyChosenHive], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_10__["ControlsProtectionIdEnum"].MOM);
         this.setCocoonSectionValuesCorrect();
     };
     UnknownComponent.prototype.setCocoonSectionValuesCorrect = function () {
@@ -4875,12 +5085,15 @@ var UnknownComponent = /** @class */ (function () {
     };
     UnknownComponent.prototype.radioBtnMomStatusSelected = function (selectedActionTime) {
         this.radioBtnMomStatusSelection = selectedActionTime;
+        this.saveMotherStatusSectionValues();
     };
     UnknownComponent.prototype.radioBtnControlFrameSelected = function (selectedActionTime) {
         this.radioBtnControlFrameSelection = selectedActionTime;
+        this.saveControlFrameSectionValues();
     };
     UnknownComponent.prototype.radioBtnCocoonSelected = function (selectedActionTime) {
         this.radioBtnCocoonSelection = selectedActionTime;
+        this.saveCocoonSectionValues();
     };
     UnknownComponent.prototype.onChangeMotherStatusButtonClick = function (newMotherStatus) {
         this.modalService.close('mother-unknown-edit');
@@ -4921,7 +5134,8 @@ var UnknownComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
             _mom_attributes_service__WEBPACK_IMPORTED_MODULE_7__["MomAttributesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_8__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_9__["ExecutorService"]])
     ], UnknownComponent);
     return UnknownComponent;
 }());
@@ -4993,7 +5207,7 @@ var NextTimeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\nimg {\r\n  height: 50px;\r\n}\r\n\r\n.bordered {\r\n  box-shadow: 0 0 10px red;\r\n  min-height: 72px;\r\n  min-width: 60px;\r\n  border: 2px solid red;\r\n  border-radius: 5px;\r\n}\r\n\r\n.warning {\r\n  border-left: 5px solid yellow;\r\n}\r\n\r\n.active-background {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\n.inactive-background {\r\n  background-color: #fff;\r\n}\r\n\r\n.time-height {\r\n  line-height: 30px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLWVsZW1lbnQvbm90ZS1lbGVtZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSx5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLGdCQUFnQjtFQUNoQixzQkFBc0I7RUFDdEIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsOEJBQThCO0NBQy9COztBQUVEO0VBQ0UsMEJBQTBCO0NBQzNCOztBQUVEO0VBQ0UsdUJBQXVCO0NBQ3hCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLWVsZW1lbnQvbm90ZS1lbGVtZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGxhbm5pbmctZWxlbWVudCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogM3B4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwuMTI1KTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgZGlzcGxheTogdGFibGU7XHJcbiAgbWluLWhlaWdodDogODZweDtcclxufVxyXG5cclxuaW1nIHtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuXHJcbi5ib3JkZXJlZCB7XHJcbiAgYm94LXNoYWRvdzogMCAwIDEwcHggcmVkO1xyXG4gIG1pbi1oZWlnaHQ6IDcycHg7XHJcbiAgbWluLXdpZHRoOiA2MHB4O1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkIHJlZDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuXHJcbi53YXJuaW5nIHtcclxuICBib3JkZXItbGVmdDogNXB4IHNvbGlkIHllbGxvdztcclxufVxyXG5cclxuLmFjdGl2ZS1iYWNrZ3JvdW5kIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG59XHJcblxyXG4uaW5hY3RpdmUtYmFja2dyb3VuZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxufVxyXG5cclxuLnRpbWUtaGVpZ2h0IHtcclxuICBsaW5lLWhlaWdodDogMzBweDtcclxufVxyXG4iXX0= */"
+module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\nimg {\r\n  height: 50px;\r\n}\r\n\r\n.bordered {\r\n  box-shadow: 0 0 10px red;\r\n  min-height: 72px;\r\n  min-width: 60px;\r\n  border: 2px solid red;\r\n  border-radius: 5px;\r\n}\r\n\r\n.warning {\r\n  border-left: 5px solid yellow;\r\n}\r\n\r\n.active-background {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\n.inactive-background {\r\n  background-color: #fff;\r\n}\r\n\r\n.time-height {\r\n  line-height: 30px;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.5;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLWVsZW1lbnQvbm90ZS1lbGVtZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSx5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLGdCQUFnQjtFQUNoQixzQkFBc0I7RUFDdEIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsOEJBQThCO0NBQy9COztBQUVEO0VBQ0UsMEJBQTBCO0NBQzNCOztBQUVEO0VBQ0UsdUJBQXVCO0NBQ3hCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsYUFBYTtDQUNkIiwiZmlsZSI6InNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLWVsZW1lbnQvbm90ZS1lbGVtZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGxhbm5pbmctZWxlbWVudCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogM3B4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwuMTI1KTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgZGlzcGxheTogdGFibGU7XHJcbiAgbWluLWhlaWdodDogODZweDtcclxufVxyXG5cclxuaW1nIHtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuXHJcbi5ib3JkZXJlZCB7XHJcbiAgYm94LXNoYWRvdzogMCAwIDEwcHggcmVkO1xyXG4gIG1pbi1oZWlnaHQ6IDcycHg7XHJcbiAgbWluLXdpZHRoOiA2MHB4O1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkIHJlZDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuXHJcbi53YXJuaW5nIHtcclxuICBib3JkZXItbGVmdDogNXB4IHNvbGlkIHllbGxvdztcclxufVxyXG5cclxuLmFjdGl2ZS1iYWNrZ3JvdW5kIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG59XHJcblxyXG4uaW5hY3RpdmUtYmFja2dyb3VuZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxufVxyXG5cclxuLnRpbWUtaGVpZ2h0IHtcclxuICBsaW5lLWhlaWdodDogMzBweDtcclxufVxyXG5cclxuLmRpc2FibGVkLWxvb2sge1xyXG4gIG9wYWNpdHk6IDAuNTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -5004,7 +5218,7 @@ module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"!note.deleted && !this.active\">\n  <div\n    (click)=\"onElementClick()\"\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4\"\n    [ngClass]=\"{'warning': note.hasWarning}\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | timeAgo }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | timeAgo }}\n          </div>\n        </div>\n      </div>\n      <div\n        class=\"d-flex flex-row-reverse align-items-center\">\n        <img\n          *ngIf=\"note.hasWarning\"\n          src=\"assets/img/warning.png\"\n        >\n        <img\n          *ngIf=\"note.longTerm\"\n          src=\"assets/img/telescope.jpg\"\n        >\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n\n<ng-container *ngIf=\"!note.deleted && this.active\">\n  <div\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4 active-background\"\n    [ngClass]=\"{'warning': note.hasWarning}\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | timeAgo }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | timeAgo }}\n          </div>\n        </div>\n      </div>\n      <div\n        *ngIf=\"note.longTerm\"\n        class=\"d-flex flex-row-reverse justify-content-center align-items-center bordered inactive-background\"\n        (click)=\"onDeleteElement()\"\n        [tooltip]=\"notAllowedToDelete\"\n        [container]=\"'body'\">\n        <img src=\"assets/img/trash.png\">\n      </div>\n      <div\n        *ngIf=\"!note.longTerm\"\n        class=\"d-flex flex-row-reverse justify-content-center align-items-center bordered inactive-background\"\n        (click)=\"onDeleteElement()\">\n        <img src=\"assets/img/trash.png\">\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n\n<ng-template #notAllowedToDelete>\n  <span [innerHTML]=\"'Pikaajalist märget kustutada ei saa. <br><br>Märke kustutamiseks eemalda esmalt tähistus pikaajaline'\"></span>\n</ng-template>\n\n<ng-container *ngIf=\"note.deleted\">\n  <div\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4\"\n    [ngClass]=\"{'warning': note.hasWarning, 'active-background': active}\"\n    (click)=\"onElementClick()\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | date:'dd.MM.yy' }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | date:'dd.MM.yy' }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Kustutatud: {{ note.dateDeleted.toString() | date:'dd.MM.yy' }}\n          </div>\n        </div>\n      </div>\n      <div\n        class=\"flex-row-reverse d-flex justify-content-center align-items-center\">\n        <img\n          *ngIf=\"note.hasWarning\"\n          src=\"assets/img/warning.png\">\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n"
+module.exports = "<ng-container *ngIf=\"!note.deleted && !this.active\">\n  <div\n    (click)=\"disableControls ? $event.stopPropagation() : onElementClick()\"\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4\"\n    [ngClass]=\"{'warning': note.hasWarning, 'disabled-look': disableControls}\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | timeAgo }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | timeAgo }}\n          </div>\n        </div>\n      </div>\n      <div\n        class=\"d-flex flex-row-reverse align-items-center\">\n        <img\n          *ngIf=\"note.hasWarning\"\n          src=\"assets/img/warning.png\"\n        >\n        <img\n          *ngIf=\"note.longTerm\"\n          src=\"assets/img/telescope.jpg\"\n        >\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n\n<ng-container *ngIf=\"!note.deleted && this.active\">\n  <div\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4 active-background\"\n    [ngClass]=\"{'warning': note.hasWarning, 'disabled-look': disableControls}\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | timeAgo }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | timeAgo }}\n          </div>\n        </div>\n      </div>\n      <div\n        *ngIf=\"note.longTerm\"\n        class=\"d-flex flex-row-reverse justify-content-center align-items-center bordered inactive-background\"\n        (click)=\"disableControls ? $event.stopPropagation() : onDeleteElement()\"\n        [tooltip]=\"notAllowedToDelete\"\n        [container]=\"'body'\">\n        <img src=\"assets/img/trash.png\">\n      </div>\n      <div\n        *ngIf=\"!note.longTerm\"\n        class=\"d-flex flex-row-reverse justify-content-center align-items-center bordered inactive-background\"\n        (click)=\"disableControls ? $event.stopPropagation() : onDeleteElement()\">\n        <img src=\"assets/img/trash.png\">\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n\n<ng-template #notAllowedToDelete>\n  <span [innerHTML]=\"'Pikaajalist märget kustutada ei saa. <br><br>Märke kustutamiseks eemalda esmalt tähistus pikaajaline'\"></span>\n</ng-template>\n\n<ng-container *ngIf=\"note.deleted\">\n  <div\n    class=\"container planning-element pb-1 pt-1 pl-4 pr-4\"\n    [ngClass]=\"{'warning': note.hasWarning, 'active-background': active}\"\n    (click)=\"disableControls ? $event.stopPropagation() : onElementClick()\">\n    <div class=\"row d-flex justify-content-between\">\n      <div>\n        <div class=\"container\">\n          <div class=\"row time-height\">\n            Lisatud: {{ note.dateAdded.toString() | date:'dd.MM.yy' }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Muudetud: {{ note.lastModified.toString() | date:'dd.MM.yy' }}\n          </div>\n          <div class=\"row time-height\"\n               *ngIf=\"note.lastModified\">\n            Kustutatud: {{ note.dateDeleted.toString() | date:'dd.MM.yy' }}\n          </div>\n        </div>\n      </div>\n      <div\n        class=\"flex-row-reverse d-flex justify-content-center align-items-center\">\n        <img\n          *ngIf=\"note.hasWarning\"\n          src=\"assets/img/warning.png\">\n      </div>\n    </div>\n    <hr class=\"mt-2 mb-2\">\n    <div class=\"row\"><strong>{{ note.text }}</strong></div>\n  </div>\n</ng-container>\n"
 
 /***/ }),
 
@@ -5024,6 +5238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../settings/shared/hive.model */ "./src/app/settings/shared/hive.model.ts");
 /* harmony import */ var _notes_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notes.service */ "./src/app/work/notes/notes.service.ts");
 /* harmony import */ var _notes_component_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../notes-component.enum */ "./src/app/work/notes/notes-component.enum.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
@@ -5031,17 +5247,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NoteElementComponent = /** @class */ (function () {
-    function NoteElementComponent(notesService) {
+    function NoteElementComponent(notesService, excutorService) {
         this.notesService = notesService;
-        this.notesComponentEnum = _notes_component_enum__WEBPACK_IMPORTED_MODULE_5__["NotesComponentEnum"];
+        this.excutorService = excutorService;
+        this.subscriptions = [];
     }
     NoteElementComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.newElementSelectedSubscription =
-            this.notesService.newNoteElementSelected.asObservable()
-                .subscribe(function () {
-                _this.active = false;
-            });
+        this.subscriptions.push(this.notesService.newNoteElementSelected.asObservable()
+            .subscribe(function () {
+            _this.active = false;
+        }));
+        this.subscriptions.push(this.excutorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
         if (this.memorizedActiveElementId === this.note.id &&
             this.notesComponentType === _notes_component_enum__WEBPACK_IMPORTED_MODULE_5__["NotesComponentEnum"].NOTE_MANAGEMENT_ACTIVE) {
             this.active = true;
@@ -5071,7 +5288,7 @@ var NoteElementComponent = /** @class */ (function () {
         this.notesService.updateNote(this.note, this.currentlySelectedHive.id);
     };
     NoteElementComponent.prototype.ngOnDestroy = function () {
-        this.newElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -5095,7 +5312,8 @@ var NoteElementComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./note-element.component.html */ "./src/app/work/notes/note-element/note-element.component.html"),
             styles: [__webpack_require__(/*! ./note-element.component.css */ "./src/app/work/notes/note-element/note-element.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_notes_service__WEBPACK_IMPORTED_MODULE_4__["NotesService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_notes_service__WEBPACK_IMPORTED_MODULE_4__["NotesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__["ExecutorService"]])
     ], NoteElementComponent);
     return NoteElementComponent;
 }());
@@ -5142,7 +5360,7 @@ module.exports = ".modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.with
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"activeNoteElement\">\n  <ng-container *ngIf=\"isActiveResolveStateUnresolved; else inActive\">\n    <div class=\"row pb-4\">\n      <ng-container *ngIf=\"!activeNoteElement.id; else changePlanningHeader\">\n        <h2>Uus märge</h2>\n      </ng-container>\n    </div>\n    <div class=\"row card ml-n3\">\n      <div class=\"row ml-0 edit-area-height\">\n        <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n              <textarea\n                class=\"modal-inside-text planning-element-text-area h-100\"\n                [(ngModel)]=\"activeNoteElement.text\"\n                (ngModelChange)=\"onInputChange()\"></textarea>\n        </div>\n        <div class=\"col d-flex flex-column justify-content-around\">\n          <div class=\"row modal-inside-text mb-1 mt-4 ml-4\">\n            <input\n              class=\"my-checkbox\"\n              type=\"checkbox\"\n              id=\"isLongTerm\"\n              [(ngModel)]=\"activeNoteElement.longTerm\"\n              (change)=\"onInputChange()\"\n              [tooltip]=\"'Pikaajalist tähistust omavat märget ei saa kustutada ja seda ei kuvata avalehel'\">\n            <label class=\"form-check-label ml-2\" for=\"isLongTerm\">\n              Pikaajaline\n            </label>\n          </div>\n          <div class=\"row modal-inside-text mb-4 mt-2 ml-4\">\n            <input\n              class=\"my-checkbox\"\n              type=\"checkbox\"\n              id=\"hasWarning\"\n              [(ngModel)]=\"activeNoteElement.hasWarning\"\n              (change)=\"onInputChange()\">\n            <label class=\"form-check-label ml-2\" for=\"hasWarning\">\n              Märgi tähelepanuga\n            </label>\n          </div>\n          <div class=\"row justify-content-center\">\n            <ng-container *ngIf=\"!activeNoteElement.id; else changePlanningFinishEditing\">\n              <button\n                class=\"btn btn-success modal-inside-text\"\n                (click)=\"onAddNewNote()\">\n                Lisan märkme\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</ng-container>\n\n<ng-template #inActive>\n  <div class=\"d-flex h-100 justify-content-center align-items-end pb-5\">\n    <button\n      class=\"btn btn-success modal-inside-text mb-5\"\n      *ngIf=\"activeNoteElement.id != null\"\n      (click)=\"onActivateElement()\">\n      Taastan \"Aktiivseks\"\n    </button>\n  </div>\n</ng-template>\n\n<ng-template #changePlanningHeader>\n  <h2>Muudan märget</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"notesService.newNoteElementSelected.next(null)\"\n    [disabled]=\"timerRunning\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n"
+module.exports = "<ng-container *ngIf=\"activeNoteElement\">\n  <ng-container *ngIf=\"isActiveResolveStateUnresolved; else inActive\">\n    <div class=\"row pb-4\">\n      <ng-container *ngIf=\"!activeNoteElement.id; else changePlanningHeader\">\n        <h2>Uus märge</h2>\n      </ng-container>\n    </div>\n    <div class=\"row card ml-n3\">\n      <div class=\"row ml-0 edit-area-height\">\n        <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n              <textarea\n                class=\"modal-inside-text planning-element-text-area h-100\"\n                [(ngModel)]=\"activeNoteElement.text\"\n                (ngModelChange)=\"onInputChange()\"\n                [disabled]=\"disableEditControls\"></textarea>\n        </div>\n        <div class=\"col d-flex flex-column justify-content-around\">\n          <div class=\"row modal-inside-text mb-1 mt-4 ml-4\">\n            <input\n              class=\"my-checkbox\"\n              type=\"checkbox\"\n              id=\"isLongTerm\"\n              [(ngModel)]=\"activeNoteElement.longTerm\"\n              (change)=\"onInputChange()\"\n              [tooltip]=\"'Pikaajalist tähistust omavat märget ei saa kustutada ja seda ei kuvata avalehel'\"\n              [disabled]=\"disableEditControls\">\n            <label class=\"form-check-label ml-2\" for=\"isLongTerm\">\n              Pikaajaline\n            </label>\n          </div>\n          <div class=\"row modal-inside-text mb-4 mt-2 ml-4\">\n            <input\n              class=\"my-checkbox\"\n              type=\"checkbox\"\n              id=\"hasWarning\"\n              [(ngModel)]=\"activeNoteElement.hasWarning\"\n              (change)=\"onInputChange()\"\n              [disabled]=\"disableEditControls\">\n            <label class=\"form-check-label ml-2\" for=\"hasWarning\">\n              Märgi tähelepanuga\n            </label>\n          </div>\n          <div class=\"row justify-content-center\">\n            <ng-container *ngIf=\"!activeNoteElement.id; else changePlanningFinishEditing\">\n              <button\n                class=\"btn btn-success modal-inside-text\"\n                (click)=\"onAddNewNote()\"\n                [disabled]=\"disableEditControls\">\n                Lisan märkme\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</ng-container>\n\n<ng-template #inActive>\n  <div class=\"d-flex h-100 justify-content-center align-items-end pb-5\">\n    <button\n      class=\"btn btn-success modal-inside-text mb-5\"\n      *ngIf=\"activeNoteElement.id != null\"\n      (click)=\"onActivateElement()\"\n      [disabled]=\"disableEditControls\">\n      Taastan \"Aktiivseks\"\n    </button>\n  </div>\n</ng-template>\n\n<ng-template #changePlanningHeader>\n  <h2>Muudan märget</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"notesService.newNoteElementSelected.next(null)\"\n    [disabled]=\"disableAllControls\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n"
 
 /***/ }),
 
@@ -5163,6 +5381,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notes_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../notes.service */ "./src/app/work/notes/notes.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -5171,26 +5393,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NoteMgmtEditAreaComponent = /** @class */ (function () {
-    function NoteMgmtEditAreaComponent(notesService, coloniesService) {
+    function NoteMgmtEditAreaComponent(notesService, coloniesService, executorService) {
         this.notesService = notesService;
         this.coloniesService = coloniesService;
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.timerRunning = false;
-        this.shouldRunAnotherRound = false;
+        this.executorService = executorService;
+        this.subscriptions = [];
     }
     NoteMgmtEditAreaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initNewNote();
         this.activeNoteElement = this.newNote;
-        this.newNoteElementSelectedSubscription =
-            this.notesService.newNoteElementSelected.asObservable()
-                .subscribe(function (ne) {
-                if (!ne)
-                    _this.activeNoteElement = _this.newNote;
-                else {
-                    _this.activeNoteElement = ne;
-                }
-            });
+        this.subscriptions.push(this.notesService.newNoteElementSelected.asObservable()
+            .subscribe(function (ne) {
+            if (!ne)
+                _this.activeNoteElement = _this.newNote;
+            else {
+                _this.activeNoteElement = ne;
+            }
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            if (!ps.disableControls) {
+                _this.disableEditControls = false;
+                _this.disableAllControls = false;
+                return;
+            }
+            _this.disableAllControls = true;
+            _this.disableEditControls = ps.omittedControlsId != _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__["ControlsProtectionIdEnum"].NOTE_ELEMENT;
+        }));
     };
     NoteMgmtEditAreaComponent.prototype.initNewNote = function () {
         this.newNote = new _note_element_note_model__WEBPACK_IMPORTED_MODULE_3__["Note"]();
@@ -5215,36 +5444,15 @@ var NoteMgmtEditAreaComponent = /** @class */ (function () {
             }, 0);
         });
     };
-    NoteMgmtEditAreaComponent.prototype.startCountdownToUpdatePlanningElementAtBackend = function () {
-        var _this = this;
-        if (this.timerRunning) {
-            this.shouldRunAnotherRound = true;
-            // console.log('...must run one more time');
-        }
-        else {
-            setTimeout(function () {
-                _this.timerRunning = false;
-                if (_this.shouldRunAnotherRound) {
-                    _this.shouldRunAnotherRound = false;
-                    _this.startCountdownToUpdatePlanningElementAtBackend();
-                    // console.log('...will run for a second time');
-                }
-                else {
-                    // console.log('-> send request')
-                    _this.activeNoteElement.lastModified = new Date();
-                    _this.notesService.updateNote(_this.activeNoteElement, _this.currentlyChosenHive.id);
-                    _this.isCountingDownToUpdateData.emit(false);
-                }
-            }, 1200);
-            this.timerRunning = true;
-            this.isCountingDownToUpdateData.emit(true);
-            // console.log('! started Timer');
-        }
-    };
     NoteMgmtEditAreaComponent.prototype.onInputChange = function () {
         if (this.activeNoteElement.id) {
-            this.startCountdownToUpdatePlanningElementAtBackend();
+            this.activeNoteElement.lastModified = new Date();
+            this.callUpdate();
         }
+    };
+    NoteMgmtEditAreaComponent.prototype.callUpdate = function () {
+        this.activeNoteElement.lastModified = new Date();
+        this.executorService.exeWithTimer(this.notesService.updateNote, [this.activeNoteElement, this.currentlyChosenHive.id], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__["ControlsProtectionIdEnum"].NOTE_ELEMENT);
     };
     NoteMgmtEditAreaComponent.prototype.onActivateElement = function () {
         this.activeNoteElement.deleted = false;
@@ -5252,15 +5460,11 @@ var NoteMgmtEditAreaComponent = /** @class */ (function () {
         this.newNote.orderNumber = this.currentlyChosenHive.allActiveNotes
             ? this.currentlyChosenHive.allActiveNotes.length + 1
             : 0;
-        this.startCountdownToUpdatePlanningElementAtBackend();
+        this.callUpdate();
     };
     NoteMgmtEditAreaComponent.prototype.ngOnDestroy = function () {
-        this.newNoteElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], NoteMgmtEditAreaComponent.prototype, "isCountingDownToUpdateData", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
@@ -5276,7 +5480,8 @@ var NoteMgmtEditAreaComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./note-mgmt-edit-area.component.css */ "./src/app/work/notes/note-mgmt/note-mgmt-edit-area/note-mgmt-edit-area.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_notes_service__WEBPACK_IMPORTED_MODULE_4__["NotesService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__["ExecutorService"]])
     ], NoteMgmtEditAreaComponent);
     return NoteMgmtEditAreaComponent;
 }());
@@ -5292,7 +5497,7 @@ var NoteMgmtEditAreaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".padding-for-notes{\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.notes-header {\r\n  font-weight: 500;\r\n  margin-right: 60px;\r\n}\r\n\r\nbutton.closing {\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.belongs-to-badge {\r\n  height: 40px;\r\n  margin-top: 8px;\r\n  font-size: 1.5rem;\r\n  margin-left: 400px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.spinner-area {\r\n  height: 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLW1nbXQvbm90ZS1tZ210LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxvQkFBb0I7Q0FDckI7O0FBRUQ7RUFDRSxnQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxpQkFBaUI7RUFDakIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUI7RUFDbkIsNEJBQW9CO0VBQXBCLHlCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIseUJBQXlCO0NBQzFCOztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsYUFBYTtDQUNkIiwiZmlsZSI6InNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLW1nbXQvbm90ZS1tZ210LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGFkZGluZy1mb3Itbm90ZXN7XHJcbiAgcGFkZGluZy1sZWZ0OiAyLjVweDtcclxufVxyXG5cclxuLmJpZy10ZXh0IHtcclxuICBmb250LXNpemU6IDJyZW07XHJcbn1cclxuXHJcbi5ub3Rlcy1oZWFkZXIge1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiA2MHB4O1xyXG59XHJcblxyXG5idXR0b24uY2xvc2luZyB7XHJcbiAgd2lkdGg6IGZpdC1jb250ZW50O1xyXG4gIGhlaWdodDogZml0LWNvbnRlbnQ7XHJcbiAgcGFkZGluZzogMnB4IDJweCAycHggMnB4O1xyXG59XHJcblxyXG5pbWcueCB7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG59XHJcblxyXG4uYmVsb25ncy10by1iYWRnZSB7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIG1hcmdpbi10b3A6IDhweDtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxuICBtYXJnaW4tbGVmdDogNDAwcHg7XHJcbn1cclxuXHJcbi5tb2RhbC1pbnNpZGUtdGV4dCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuXHJcbi5zcGlubmVyLWFyZWEge1xyXG4gIGhlaWdodDogNTBweDtcclxufVxyXG4iXX0= */"
+module.exports = ".padding-for-notes{\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.notes-header {\r\n  font-weight: 500;\r\n  margin-right: 60px;\r\n}\r\n\r\nbutton.closing {\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.belongs-to-badge {\r\n  height: 40px;\r\n  margin-top: 8px;\r\n  font-size: 1.5rem;\r\n  margin-left: 400px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.spinner-area {\r\n  height: 50px;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.5;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLW1nbXQvbm90ZS1tZ210LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxvQkFBb0I7Q0FDckI7O0FBRUQ7RUFDRSxnQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxpQkFBaUI7RUFDakIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUI7RUFDbkIsNEJBQW9CO0VBQXBCLHlCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIseUJBQXlCO0NBQzFCOztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsYUFBYTtDQUNkIiwiZmlsZSI6InNyYy9hcHAvd29yay9ub3Rlcy9ub3RlLW1nbXQvbm90ZS1tZ210LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGFkZGluZy1mb3Itbm90ZXN7XHJcbiAgcGFkZGluZy1sZWZ0OiAyLjVweDtcclxufVxyXG5cclxuLmJpZy10ZXh0IHtcclxuICBmb250LXNpemU6IDJyZW07XHJcbn1cclxuXHJcbi5ub3Rlcy1oZWFkZXIge1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiA2MHB4O1xyXG59XHJcblxyXG5idXR0b24uY2xvc2luZyB7XHJcbiAgd2lkdGg6IGZpdC1jb250ZW50O1xyXG4gIGhlaWdodDogZml0LWNvbnRlbnQ7XHJcbiAgcGFkZGluZzogMnB4IDJweCAycHggMnB4O1xyXG59XHJcblxyXG5pbWcueCB7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG59XHJcblxyXG4uYmVsb25ncy10by1iYWRnZSB7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIG1hcmdpbi10b3A6IDhweDtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxuICBtYXJnaW4tbGVmdDogNDAwcHg7XHJcbn1cclxuXHJcbi5tb2RhbC1pbnNpZGUtdGV4dCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuXHJcbi5zcGlubmVyLWFyZWEge1xyXG4gIGhlaWdodDogNTBweDtcclxufVxyXG5cclxuLmRpc2FibGVkLWxvb2sge1xyXG4gIG9wYWNpdHk6IDAuNTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -5303,7 +5508,7 @@ module.exports = ".padding-for-notes{\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.big
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<jw-modal id=\"{{mgmtComponentId}}\">\n  <div class=\"card bg-light\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text notes-header\">Märkmed</span>\n      <span class=\"navbar-text badge badge-dark belongs-to-badge\">\n        {{ currentlyChosenColony.name + ' / ' + currentlyChosenHive.number}}\n      </span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentId);\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"container m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\" *ngIf=\"!timerRunning\">\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': isActiveResolveStateUnresolved}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(true)\"\n                  [disabled]=\"timerRunning\">\n                Aktiivsed\n              </label>\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': !isActiveResolveStateUnresolved}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"!isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(false)\"\n                  [disabled]=\"timerRunning\">\n                Kustutatud\n              </label>\n            </div>\n            <div class=\"spinner-area\">\n              <app-spinner *ngIf=\"timerRunning\"></app-spinner>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row padding-for-notes\">\n            <app-notes\n              [currentlySelectedHive]=\"currentlyChosenHive\"\n              [notesComponentType]=\"isActiveResolveStateUnresolved ?\n                notesComponentEnum.NOTE_MANAGEMENT_ACTIVE :\n                notesComponentEnum.NOTE_MANAGEMENT_INACTIVE\"></app-notes>\n          </div>\n        </div>\n        <div class=\"col-7 pl-5 d-flex flex-column-reverse mb-5\">\n          <app-note-mgmt-edit-area\n            [currentlyChosenHive]=\"currentlyChosenHive\"\n            (isCountingDownToUpdateData)=\"onCountDownChange($event)\"\n            [isActiveResolveStateUnresolved]=\"isActiveResolveStateUnresolved\">\n          </app-note-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</jw-modal>\n"
+module.exports = "<jw-modal id=\"{{mgmtComponentId}}\" [fullScreen]=\"true\">\n  <div class=\"card bg-light h-100\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text notes-header\">Märkmed</span>\n      <span class=\"navbar-text badge badge-dark belongs-to-badge\">\n        {{ currentlyChosenColony.name + ' / ' + currentlyChosenHive.number}}\n      </span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentId);\"\n        [disabled]=\"disableControls\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"card-body m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\">\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': isActiveResolveStateUnresolved, 'disabled-look': disableControls}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(true)\"\n                  [disabled]=\"disableControls\">\n                Aktiivsed\n              </label>\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': !isActiveResolveStateUnresolved, 'disabled-look': disableControls}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"!isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(false)\"\n                  [disabled]=\"disableControls\">\n                Kustutatud\n              </label>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row padding-for-notes\">\n            <app-notes\n              [currentlySelectedHive]=\"currentlyChosenHive\"\n              [notesComponentType]=\"isActiveResolveStateUnresolved ?\n                notesComponentEnum.NOTE_MANAGEMENT_ACTIVE :\n                notesComponentEnum.NOTE_MANAGEMENT_INACTIVE\"></app-notes>\n          </div>\n        </div>\n        <div class=\"col-7 pl-5 d-flex flex-column-reverse mb-5\">\n          <app-note-mgmt-edit-area\n            [currentlyChosenHive]=\"currentlyChosenHive\"\n            (isCountingDownToUpdateData)=\"onCountDownChange($event)\"\n            [isActiveResolveStateUnresolved]=\"isActiveResolveStateUnresolved\">\n          </app-note-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</jw-modal>\n"
 
 /***/ }),
 
@@ -5324,6 +5529,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../util/jw-modal/jw-modal.service */ "./src/app/util/jw-modal/jw-modal.service.ts");
 /* harmony import */ var _notes_component_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../notes-component.enum */ "./src/app/work/notes/notes-component.enum.ts");
 /* harmony import */ var _notes_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../notes.service */ "./src/app/work/notes/notes.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
@@ -5332,25 +5539,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NoteMgmtComponent = /** @class */ (function () {
-    function NoteMgmtComponent(modalService, notesService) {
+    function NoteMgmtComponent(modalService, notesService, executorService) {
         this.modalService = modalService;
         this.notesService = notesService;
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.executorService = executorService;
         this.isActiveResolveStateUnresolved = true;
         this.notesComponentEnum = _notes_component_enum__WEBPACK_IMPORTED_MODULE_5__["NotesComponentEnum"];
+        this.subscriptions = [];
     }
+    NoteMgmtComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
+    };
     NoteMgmtComponent.prototype.radioBtnActiveResolveStateChange = function (isActiveResolveStateUnresolved) {
         this.notesService.newNoteElementSelected.next(null);
         this.isActiveResolveStateUnresolved = isActiveResolveStateUnresolved;
     };
-    NoteMgmtComponent.prototype.onCountDownChange = function (countDownState) {
-        this.timerRunning = countDownState;
-        this.isCountingDownToUpdateData.emit(countDownState);
+    NoteMgmtComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], NoteMgmtComponent.prototype, "isCountingDownToUpdateData", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_2__["Hive"])
@@ -5370,7 +5577,8 @@ var NoteMgmtComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./note-mgmt.component.css */ "./src/app/work/notes/note-mgmt/note-mgmt.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_4__["JwModalService"],
-            _notes_service__WEBPACK_IMPORTED_MODULE_6__["NotesService"]])
+            _notes_service__WEBPACK_IMPORTED_MODULE_6__["NotesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__["ExecutorService"]])
     ], NoteMgmtComponent);
     return NoteMgmtComponent;
 }());
@@ -5456,7 +5664,7 @@ module.exports = ".notes-section-height-for-work-dashboard {\r\n  height: 330px;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"currentlySelectedHive\">\n  <div class=\"card bg-light vertical-paddings\" [ngClass]=\"getHeight()\">\n    <div\n      class=\"card-body scrolling-area\"\n      id=\"notesScrollArea\"\n      [ngClass]=\"{'no-notes-to-show-for-create-wide-enough':\n      notesComponentType != notesComponentEnum.WORK_DASHBOARD}\">\n      <ng-container *ngIf=\"notesComponentType === notesComponentEnum.WORK_DASHBOARD\">\n        <button\n          *ngIf=\"currentlySelectedHive.activeShortTermNotesCount >= MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED\"\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-top\"\n          (click)=\"onOpenNotes()\">\n          Haldan märkmeid\n          <span class=\"badge badge-dark button-badge\">\n            <span>{{currentlySelectedHive.activeShortTermNotesCount}}</span>\n            <span>{{ currentlySelectedHive.activeLongTermNotesCount ? '/' + currentlySelectedHive.activeLongTermNotesCount : ''}}</span>\n          </span>\n        </button>\n      </ng-container>\n\n\n      <app-note-element\n        *ngFor=\"let note of getRelevantNotesList()\"\n        [note]=\"note\"\n        [memorizedActiveElementId]=\"memorizedActiveNoteElementId\"\n        [notesComponentType]=\"notesComponentType\"\n        [currentlySelectedHive]=\"currentlySelectedHive\">\n      </app-note-element>\n\n      <ng-container *ngIf=\"notesComponentType === notesComponentEnum.WORK_DASHBOARD\">\n        <button\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-bottom\"\n          (click)=\"onOpenNotes()\"\n          [ngClass]=\"{'no-notes-to-show-for-level-button': currentlySelectedHive.activeShortTermNotesCount === 0}\">\n          Haldan märkmeid\n          <span class=\"badge badge-dark button-badge\">\n            <span>{{currentlySelectedHive.activeShortTermNotesCount}}</span>\n            <span>{{ currentlySelectedHive.activeLongTermNotesCount ? '/' + currentlySelectedHive.activeLongTermNotesCount : ''}}</span>\n          </span>\n        </button>\n      </ng-container>\n\n    </div>\n  </div>\n</ng-container>\n"
+module.exports = "<ng-container *ngIf=\"currentlySelectedHive\">\n  <div class=\"card bg-light vertical-paddings\" [ngClass]=\"getHeight()\">\n    <div\n      class=\"card-body scrolling-area\"\n      id=\"notesScrollArea\"\n      [ngClass]=\"{'no-notes-to-show-for-create-wide-enough':\n      notesComponentType != notesComponentEnum.WORK_DASHBOARD}\">\n      <ng-container *ngIf=\"notesComponentType === notesComponentEnum.WORK_DASHBOARD\">\n        <button\n          *ngIf=\"currentlySelectedHive.activeShortTermNotesCount >= MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED\"\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-top\"\n          (click)=\"onOpenNotes()\"\n          [disabled]=\"disableControls\">\n          Haldan märkmeid\n          <span class=\"badge badge-dark button-badge\">\n            <span>{{currentlySelectedHive.activeShortTermNotesCount}}</span>\n            <span>{{ currentlySelectedHive.activeLongTermNotesCount ? '/' + currentlySelectedHive.activeLongTermNotesCount : ''}}</span>\n          </span>\n        </button>\n      </ng-container>\n\n\n      <app-note-element\n        *ngFor=\"let note of getRelevantNotesList()\"\n        [note]=\"note\"\n        [memorizedActiveElementId]=\"memorizedActiveNoteElementId\"\n        [notesComponentType]=\"notesComponentType\"\n        [currentlySelectedHive]=\"currentlySelectedHive\">\n      </app-note-element>\n\n      <ng-container *ngIf=\"notesComponentType === notesComponentEnum.WORK_DASHBOARD\">\n        <button\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-bottom\"\n          (click)=\"onOpenNotes()\"\n          [ngClass]=\"{'no-notes-to-show-for-level-button': currentlySelectedHive.activeShortTermNotesCount === 0}\"\n          [disabled]=\"disableControls\">\n          Haldan märkmeid\n          <span class=\"badge badge-dark button-badge\">\n            <span>{{currentlySelectedHive.activeShortTermNotesCount}}</span>\n            <span>{{ currentlySelectedHive.activeLongTermNotesCount ? '/' + currentlySelectedHive.activeLongTermNotesCount : ''}}</span>\n          </span>\n        </button>\n      </ng-container>\n\n    </div>\n  </div>\n</ng-container>\n"
 
 /***/ }),
 
@@ -5476,6 +5684,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notes_component_enum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./notes-component.enum */ "./src/app/work/notes/notes-component.enum.ts");
 /* harmony import */ var _notes_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notes.service */ "./src/app/work/notes/notes.service.ts");
 /* harmony import */ var _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/jw-modal/jw-modal.service */ "./src/app/util/jw-modal/jw-modal.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
@@ -5483,23 +5693,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NotesComponent = /** @class */ (function () {
-    function NotesComponent(notesService, modalService) {
+    function NotesComponent(notesService, modalService, executorService) {
         this.notesService = notesService;
         this.modalService = modalService;
+        this.executorService = executorService;
         this.notesComponentEnum = _notes_component_enum__WEBPACK_IMPORTED_MODULE_3__["NotesComponentEnum"];
         this.MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED = 3;
+        this.subscriptions = [];
     }
     NotesComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.document = document;
-        this.newNoteElementSelectedSubscription =
-            this.notesService.newNoteElementSelected.asObservable().subscribe(function (ne) {
-                if (!ne)
-                    _this.memorizedActiveNoteElementId = undefined;
-                else {
-                    _this.memorizedActiveNoteElementId = ne.id;
-                }
-            });
+        this.subscriptions.push(this.notesService.newNoteElementSelected.asObservable().subscribe(function (ne) {
+            if (!ne)
+                _this.memorizedActiveNoteElementId = undefined;
+            else {
+                _this.memorizedActiveNoteElementId = ne.id;
+            }
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
     };
     NotesComponent.prototype.ngOnChanges = function () {
         // this.currentlySelectedHive.unresolvedPlanElements = this.unresolvedPlanElements;
@@ -5530,7 +5742,7 @@ var NotesComponent = /** @class */ (function () {
         }
     };
     NotesComponent.prototype.ngOnDestroy = function () {
-        this.newNoteElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -5547,7 +5759,8 @@ var NotesComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./notes.component.css */ "./src/app/work/notes/notes.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_notes_service__WEBPACK_IMPORTED_MODULE_4__["NotesService"],
-            _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_5__["JwModalService"]])
+            _util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_5__["JwModalService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__["ExecutorService"]])
     ], NotesComponent);
     return NotesComponent;
 }());
@@ -5582,24 +5795,23 @@ __webpack_require__.r(__webpack_exports__);
 
 var NotesService = /** @class */ (function () {
     function NotesService(spinnerService, coloniesService, notesDataService) {
+        var _this = this;
         this.spinnerService = spinnerService;
         this.coloniesService = coloniesService;
         this.notesDataService = notesDataService;
         this.newNoteElementSelected = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.updateNote = function (note, hiveId) {
+            _this.notesDataService.updateNote(note, hiveId)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
+                .subscribe(function () {
+                _this.coloniesService.retrieveColonies();
+            });
+        };
     }
     NotesService.prototype.addNewNote = function (newNote, hiveId) {
         var _this = this;
         this.spinnerService.setSpinnerStatus.next(true);
         this.notesDataService.addNewNote(newNote, hiveId)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
-            .subscribe(function () {
-            _this.coloniesService.retrieveColonies();
-        });
-    };
-    NotesService.prototype.updateNote = function (note, hiveId) {
-        var _this = this;
-        this.spinnerService.setSpinnerStatus.next(true);
-        this.notesDataService.updateNote(note, hiveId)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
             .subscribe(function () {
             _this.coloniesService.retrieveColonies();
@@ -5724,7 +5936,7 @@ var MotherStatusCellPipe = /** @class */ (function () {
                 }
                 if (attributes.birthday) {
                     var birthDay = new Date(attributes.birthday);
-                    if (attributes.isBirthDayDateMonthSet) {
+                    if (attributes.isBirthdayDateMonthSet) {
                         returnText = returnText + '<br>Koorunud: ' + this.monthNames[birthDay.getMonth()] + ' ' + birthDay.getFullYear();
                     }
                     else {
@@ -5764,7 +5976,7 @@ var MotherStatusCellPipe = /** @class */ (function () {
                 }
                 if (attributes.birthday) {
                     var birthDay = new Date(attributes.birthday);
-                    if (attributes.isBirthDayDateMonthSet) {
+                    if (attributes.isBirthdayDateMonthSet) {
                         returnText = returnText + '<br>Koorunud: ' + this.monthNames[birthDay.getMonth()] + ' ' + birthDay.getFullYear();
                     }
                     else {
@@ -6015,7 +6227,7 @@ var DeadlineTextPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\n.deadline-area {\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  padding: .375rem .5rem;\r\n  text-align: center;\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  width: 120px;\r\n}\r\n\r\n.unresolved-button-color {\r\n  background-color: #f8f9fa;\r\n  border-color: #218838;\r\n  padding: 0px;\r\n}\r\n\r\n.normal {\r\n  background-color: #92e69f;\r\n}\r\n\r\n.warning {\r\n  background-color: #fffa87;\r\n}\r\n\r\n.danger {\r\n  background-color: red;\r\n  color: white;\r\n}\r\n\r\n.without-deadline {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\n.text-area {\r\n  vertical-align: middle;\r\n  display: table-cell;\r\n}\r\n\r\n.not-button-area-active-color {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFuLWVsZW1lbnQvcGxhbi1lbGVtZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsb0JBQW9CO0VBQ3BCLHVCQUF1QjtFQUN2QixhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSwwQkFBMEI7RUFDMUIsc0JBQXNCO0VBQ3RCLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLDBCQUEwQjtDQUMzQjs7QUFFRDtFQUNFLDBCQUEwQjtDQUMzQjs7QUFFRDtFQUNFLHNCQUFzQjtFQUN0QixhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSx1QkFBdUI7RUFDdkIsb0JBQW9CO0NBQ3JCOztBQUVEO0VBQ0UsMEJBQTBCO0NBQzNCIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFuLWVsZW1lbnQvcGxhbi1lbGVtZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGxhbm5pbmctZWxlbWVudCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogM3B4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwuMTI1KTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgZGlzcGxheTogdGFibGU7XHJcbiAgbWluLWhlaWdodDogODZweDtcclxufVxyXG5cclxuLmRlYWRsaW5lLWFyZWEge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMCwwLDAsLjEyNSk7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIHBhZGRpbmc6IC4zNzVyZW0gLjVyZW07XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuICB3aWR0aDogMTIwcHg7XHJcbn1cclxuXHJcbi51bnJlc29sdmVkLWJ1dHRvbi1jb2xvciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZjlmYTtcclxuICBib3JkZXItY29sb3I6ICMyMTg4Mzg7XHJcbiAgcGFkZGluZzogMHB4O1xyXG59XHJcblxyXG4ubm9ybWFsIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjOTJlNjlmO1xyXG59XHJcblxyXG4ud2FybmluZyB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZmE4NztcclxufVxyXG5cclxuLmRhbmdlciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLndpdGhvdXQtZGVhZGxpbmUge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNkY2RjZGM7XHJcbn1cclxuXHJcbi50ZXh0LWFyZWEge1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgZGlzcGxheTogdGFibGUtY2VsbDtcclxufVxyXG5cclxuLm5vdC1idXR0b24tYXJlYS1hY3RpdmUtY29sb3Ige1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNkY2RjZGM7XHJcbn1cclxuIl19 */"
+module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\n.deadline-area {\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  padding: .375rem .5rem;\r\n  text-align: center;\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  width: 120px;\r\n}\r\n\r\n.unresolved-button {\r\n  background-color: #f8f9fa;\r\n  border-color: #218838;\r\n  box-shadow: 0 0 4px 4px #218838;\r\n  padding: 0px;\r\n  z-index: 1;\r\n  position: relative;\r\n}\r\n\r\n.normal {\r\n  background-color: #92e69f;\r\n}\r\n\r\n.warning {\r\n  background-color: #fffa87;\r\n}\r\n\r\n.danger {\r\n  background-color: red;\r\n  color: white;\r\n}\r\n\r\n.without-deadline {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\n.text-area {\r\n  vertical-align: middle;\r\n  display: table-cell;\r\n}\r\n\r\n.not-button-area-active-color {\r\n  background-color: #dcdcdc;\r\n  z-index: 0;\r\n  position: relative;\r\n}\r\n\r\n.active-container {\r\n  box-shadow: 0 0 4px 4px gray;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.5;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFuLWVsZW1lbnQvcGxhbi1lbGVtZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixpQkFBaUI7Q0FDbEI7O0FBRUQ7RUFDRSxtQ0FBbUM7RUFDbkMsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsb0JBQW9CO0VBQ3BCLHVCQUF1QjtFQUN2QixhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSwwQkFBMEI7RUFDMUIsc0JBQXNCO0VBQ3RCLGdDQUFnQztFQUNoQyxhQUFhO0VBQ2IsV0FBVztFQUNYLG1CQUFtQjtDQUNwQjs7QUFFRDtFQUNFLDBCQUEwQjtDQUMzQjs7QUFFRDtFQUNFLDBCQUEwQjtDQUMzQjs7QUFFRDtFQUNFLHNCQUFzQjtFQUN0QixhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSwwQkFBMEI7Q0FDM0I7O0FBRUQ7RUFDRSx1QkFBdUI7RUFDdkIsb0JBQW9CO0NBQ3JCOztBQUVEO0VBQ0UsMEJBQTBCO0VBQzFCLFdBQVc7RUFDWCxtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSw2QkFBNkI7Q0FDOUI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2QiLCJmaWxlIjoic3JjL2FwcC93b3JrL3BsYW5uaW5nL3BsYW4tZWxlbWVudC9wbGFuLWVsZW1lbnQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wbGFubmluZy1lbGVtZW50IHtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxuICBtYXJnaW4tYm90dG9tOiAzcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDAsMCwwLC4xMjUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBkaXNwbGF5OiB0YWJsZTtcclxuICBtaW4taGVpZ2h0OiA4NnB4O1xyXG59XHJcblxyXG4uZGVhZGxpbmUtYXJlYSB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwuMTI1KTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgcGFkZGluZzogLjM3NXJlbSAuNXJlbTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgZGlzcGxheTogdGFibGUtY2VsbDtcclxuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xyXG4gIHdpZHRoOiAxMjBweDtcclxufVxyXG5cclxuLnVucmVzb2x2ZWQtYnV0dG9uIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhmOWZhO1xyXG4gIGJvcmRlci1jb2xvcjogIzIxODgzODtcclxuICBib3gtc2hhZG93OiAwIDAgNHB4IDRweCAjMjE4ODM4O1xyXG4gIHBhZGRpbmc6IDBweDtcclxuICB6LWluZGV4OiAxO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLm5vcm1hbCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzkyZTY5ZjtcclxufVxyXG5cclxuLndhcm5pbmcge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmZhODc7XHJcbn1cclxuXHJcbi5kYW5nZXIge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxuICBjb2xvcjogd2hpdGU7XHJcbn1cclxuXHJcbi53aXRob3V0LWRlYWRsaW5lIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG59XHJcblxyXG4udGV4dC1hcmVhIHtcclxuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xyXG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XHJcbn1cclxuXHJcbi5ub3QtYnV0dG9uLWFyZWEtYWN0aXZlLWNvbG9yIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG4gIHotaW5kZXg6IDA7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4uYWN0aXZlLWNvbnRhaW5lciB7XHJcbiAgYm94LXNoYWRvdzogMCAwIDRweCA0cHggZ3JheTtcclxufVxyXG5cclxuLmRpc2FibGVkLWxvb2sge1xyXG4gIG9wYWNpdHk6IDAuNTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -6026,7 +6238,7 @@ module.exports = ".planning-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container planning-element p-0\">\n  <ng-container *ngIf=\"planningComponentType != planningComponentEnum.PLANNING_MANAGEMENT_RESOLVED; else resolved\">\n    <ng-container *ngIf=\"inActive; else activeUnresolved\">\n      <div class=\"deadline-area\" [ngClass]=\"getColor()\" (click)=\"onElementClick()\">\n        {{ deadlineText }}\n      </div>\n      <div class=\"text-area planning-element-text-area\" (click)=\"onElementClick()\">\n        {{getText()}}\n      </div>\n    </ng-container>\n\n    <ng-template #activeUnresolved>\n      <div class=\"deadline-area unresolved-button-color\" (click)=\"onResolveElement()\">\n        {{'loen tehtuks&#x2714;\\t' }}\n      </div>\n      <div class=\"text-area not-button-area-active-color planning-element-text-area\">\n        {{getText()}}\n      </div>\n    </ng-template>\n  </ng-container>\n\n  <ng-template #resolved>\n    <ng-container *ngIf=\"inActive; else activeResolved\">\n      <div class=\"deadline-area\" (click)=\"onElementClick()\">\n        {{ plan.resolvedDate | date:'dd.MM.yy' }}\n      </div>\n      <div class=\"text-area planning-element-text-area\" (click)=\"onElementClick()\">\n        {{getText()}}\n      </div>\n    </ng-container>\n\n    <ng-template #activeResolved>\n      <div class=\"deadline-area not-button-area-active-color\">\n        {{ plan.resolvedDate | date:'dd.MM.yy' }}\n      </div>\n      <div class=\"text-area not-button-area-active-color planning-element-text-area\">\n        {{getText()}}\n      </div>\n    </ng-template>\n  </ng-template>\n\n\n</div>\n"
+module.exports = "<div\n  class=\"container planning-element p-0\"\n  [ngClass]=\"{'disabled-look': disableControls}\">\n  <ng-container *ngIf=\"planningComponentType != planningComponentEnum.PLANNING_MANAGEMENT_RESOLVED; else resolved\">\n    <ng-container *ngIf=\"inActive; else activeUnresolved\">\n      <div\n        class=\"deadline-area\"\n        [ngClass]=\"getColor()\"\n        (click)=\"disableControls ? $event.stopPropagation() : onElementClick()\">\n        {{ deadlineText }}\n      </div>\n      <div\n        class=\"text-area planning-element-text-area\"\n        (click)=\"disableControls ? $event.stopPropagation() : onElementClick()\">\n        {{getText()}}\n      </div>\n    </ng-container>\n\n    <ng-template #activeUnresolved>\n      <div class=\"deadline-area unresolved-button\" (click)=\"onResolveElement()\">\n        {{'loen tehtuks&#x2714;\\t' }}\n      </div>\n      <div class=\"text-area not-button-area-active-color planning-element-text-area\">\n        {{getText()}}\n      </div>\n    </ng-template>\n  </ng-container>\n\n  <ng-template #resolved>\n    <ng-container *ngIf=\"inActive; else activeResolved\">\n      <div class=\"deadline-area\" (click)=\"onElementClick()\">\n        {{ plan.resolvedDate | date:'dd.MM.yy' }}\n      </div>\n      <div class=\"text-area planning-element-text-area\" (click)=\"onElementClick()\">\n        {{getText()}}\n      </div>\n    </ng-container>\n\n    <ng-template #activeResolved>\n      <div class=\"deadline-area not-button-area-active-color\">\n        {{ plan.resolvedDate | date:'dd.MM.yy' }}\n      </div>\n      <div class=\"text-area not-button-area-active-color planning-element-text-area\">\n        {{getText()}}\n      </div>\n    </ng-template>\n  </ng-template>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -6047,6 +6259,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _planning_component_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../planning-component.enum */ "./src/app/work/planning/planning-component.enum.ts");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../planning.service */ "./src/app/work/planning/planning.service.ts");
 /* harmony import */ var _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../settings/shared/hive.model */ "./src/app/settings/shared/hive.model.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
@@ -6055,8 +6269,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PlanElementComponent = /** @class */ (function () {
-    function PlanElementComponent(planningService) {
+    function PlanElementComponent(planningService, executorServcice) {
         this.planningService = planningService;
+        this.executorServcice = executorServcice;
+        this.subscriptions = [];
         this.planningComponentEnum = _planning_component_enum__WEBPACK_IMPORTED_MODULE_4__["PlanningComponentEnum"];
         this.inActive = true;
         this.ELEMENT_DELETED_FROM_DROPDOWN = 'element rippmenüüst kustutatud';
@@ -6064,8 +6280,8 @@ var PlanElementComponent = /** @class */ (function () {
     PlanElementComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.setDeadlineText();
-        this.newElementSelectedSubscription =
-            this.planningService.newPlanElementSelected.asObservable().subscribe(function () { return _this.inActive = true; });
+        this.subscriptions.push(this.planningService.newPlanElementSelected.asObservable().subscribe(function () { return _this.inActive = true; }));
+        this.subscriptions.push(this.executorServcice.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
         if (this.memorizedActiveElementId === this.plan.id &&
             this.planningComponentType === _planning_component_enum__WEBPACK_IMPORTED_MODULE_4__["PlanningComponentEnum"].PLANNING_MANAGEMENT_UNRESOLVED) {
             this.inActive = false;
@@ -6142,7 +6358,7 @@ var PlanElementComponent = /** @class */ (function () {
         this.planningService.updatePlan(this.plan, this.currentlyChosenHive.id);
     };
     PlanElementComponent.prototype.ngOnDestroy = function () {
-        this.newElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -6166,7 +6382,8 @@ var PlanElementComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./plan-element.component.html */ "./src/app/work/planning/plan-element/plan-element.component.html"),
             styles: [__webpack_require__(/*! ./plan-element.component.css */ "./src/app/work/planning/plan-element/plan-element.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_5__["PlanningService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_5__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__["ExecutorService"]])
     ], PlanElementComponent);
     return PlanElementComponent;
 }());
@@ -6305,7 +6522,10 @@ var PlanningDataService = /** @class */ (function () {
         return this.httpClient.post(_util_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"].backEndURL + 'api/planning-dropdown', newDropdonwElement);
     };
     PlanningDataService.prototype.updateDropdownElement = function (element) {
-        return this.httpClient.put(_util_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"].backEndURL + 'api/planning-dropdown', element);
+        return this.httpClient.put(_util_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"].backEndURL + 'api/planning-dropdown/' + element.id, element);
+    };
+    PlanningDataService.prototype.updateAllDropdownElements = function (elements) {
+        return this.httpClient.put(_util_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"].backEndURL + 'api/planning-dropdown/update-all', elements);
     };
     PlanningDataService.prototype.deleteDropdownElement = function (id) {
         return this.httpClient.delete(_util_util_service__WEBPACK_IMPORTED_MODULE_1__["UtilService"].backEndURL + 'api/planning-dropdown/' + id);
@@ -6328,7 +6548,7 @@ var PlanningDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".planning-dropdown-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\n.trashcan-area {\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  padding: .375rem .5rem;\r\n  text-align: center;\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  width: 120px;\r\n}\r\n\r\n.active-color {\r\n  background-color: #dcdcdc;\r\n}\r\n\r\nimg.trash-picture {\r\n  height: 40px;\r\n}\r\n\r\n.text-area {\r\n  vertical-align: middle;\r\n  display: table-cell;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1lbGVtZW50L3BsYW5uaW5nLWRyb3Bkb3duLWVsZW1lbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1DQUFtQztFQUNuQyxtQkFBbUI7RUFDbkIsZUFBZTtFQUNmLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLG1DQUFtQztFQUNuQyxtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixvQkFBb0I7RUFDcEIsdUJBQXVCO0VBQ3ZCLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLDBCQUEwQjtDQUMzQjs7QUFFRDtFQUNFLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLHVCQUF1QjtFQUN2QixvQkFBb0I7Q0FDckIiLCJmaWxlIjoic3JjL2FwcC93b3JrL3BsYW5uaW5nL3BsYW5uaW5nLWRyb3Bkb3duL3BsYW5uaW5nLWRyb3Bkb3duLWVsZW1lbnQvcGxhbm5pbmctZHJvcGRvd24tZWxlbWVudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBsYW5uaW5nLWRyb3Bkb3duLWVsZW1lbnQge1xyXG4gIGZvbnQtc2l6ZTogMS41cmVtO1xyXG4gIG1hcmdpbi1ib3R0b206IDNweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMCwwLDAsLjEyNSk7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIGRpc3BsYXk6IHRhYmxlO1xyXG4gIG1pbi1oZWlnaHQ6IDg2cHg7XHJcbn1cclxuXHJcbi50cmFzaGNhbi1hcmVhIHtcclxuICBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDAsMCwwLC4xMjUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBwYWRkaW5nOiAuMzc1cmVtIC41cmVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBkaXNwbGF5OiB0YWJsZS1jZWxsO1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgd2lkdGg6IDEyMHB4O1xyXG59XHJcblxyXG4uYWN0aXZlLWNvbG9yIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG59XHJcblxyXG5pbWcudHJhc2gtcGljdHVyZSB7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG59XHJcblxyXG4udGV4dC1hcmVhIHtcclxuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xyXG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XHJcbn1cclxuIl19 */"
+module.exports = ".planning-dropdown-element {\r\n  font-size: 1.5rem;\r\n  margin-bottom: 3px;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  display: table;\r\n  min-height: 86px;\r\n}\r\n\r\n.trashcan-area {\r\n  border: 1px solid rgba(0,0,0,.125);\r\n  border-radius: 5px;\r\n  padding: .375rem .5rem;\r\n  text-align: center;\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  width: 120px;\r\n  z-index: 1;\r\n  position: relative;\r\n}\r\n\r\n.active-design {\r\n  background-color: #dcdcdc;\r\n  box-shadow: 0 0 4px 4px gray;\r\n}\r\n\r\nimg.trash-picture {\r\n  height: 40px;\r\n}\r\n\r\n.text-area {\r\n  vertical-align: middle;\r\n  display: table-cell;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.5;\r\n}\r\n\r\n.not-button-area {\r\n  z-index: 0;\r\n  position: relative;\r\n  background-color: #eeeeee;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1lbGVtZW50L3BsYW5uaW5nLWRyb3Bkb3duLWVsZW1lbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1DQUFtQztFQUNuQyxtQkFBbUI7RUFDbkIsZUFBZTtFQUNmLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLG1DQUFtQztFQUNuQyxtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixvQkFBb0I7RUFDcEIsdUJBQXVCO0VBQ3ZCLGFBQWE7RUFDYixXQUFXO0VBQ1gsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsMEJBQTBCO0VBQzFCLDZCQUE2QjtDQUM5Qjs7QUFFRDtFQUNFLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLHVCQUF1QjtFQUN2QixvQkFBb0I7Q0FDckI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxXQUFXO0VBQ1gsbUJBQW1CO0VBQ25CLDBCQUEwQjtDQUMzQiIsImZpbGUiOiJzcmMvYXBwL3dvcmsvcGxhbm5pbmcvcGxhbm5pbmctZHJvcGRvd24vcGxhbm5pbmctZHJvcGRvd24tZWxlbWVudC9wbGFubmluZy1kcm9wZG93bi1lbGVtZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGxhbm5pbmctZHJvcGRvd24tZWxlbWVudCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogM3B4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwuMTI1KTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgZGlzcGxheTogdGFibGU7XHJcbiAgbWluLWhlaWdodDogODZweDtcclxufVxyXG5cclxuLnRyYXNoY2FuLWFyZWEge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMCwwLDAsLjEyNSk7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIHBhZGRpbmc6IC4zNzVyZW0gLjVyZW07XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuICB3aWR0aDogMTIwcHg7XHJcbiAgei1pbmRleDogMTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5hY3RpdmUtZGVzaWduIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGNkY2RjO1xyXG4gIGJveC1zaGFkb3c6IDAgMCA0cHggNHB4IGdyYXk7XHJcbn1cclxuXHJcbmltZy50cmFzaC1waWN0dXJlIHtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbn1cclxuXHJcbi50ZXh0LWFyZWEge1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgZGlzcGxheTogdGFibGUtY2VsbDtcclxufVxyXG5cclxuLmRpc2FibGVkLWxvb2sge1xyXG4gIG9wYWNpdHk6IDAuNTtcclxufVxyXG5cclxuLm5vdC1idXR0b24tYXJlYSB7XHJcbiAgei1pbmRleDogMDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2VlZWVlZTtcclxufVxyXG5cclxuXHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -6339,7 +6559,7 @@ module.exports = ".planning-dropdown-element {\r\n  font-size: 1.5rem;\r\n  marg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container planning-dropdown-element p-0\">\n  <ng-container *ngIf=\"inActive; else active\">\n    <div class=\"text-area planning-element-text-area\" (click)=\"onElementClick()\">\n      {{planningDropdown.text}}\n    </div>\n  </ng-container>\n\n  <ng-template #active>\n    <div class=\"trashcan-area active-color\" (click)=\"onDeleteElement()\">\n      <img\n        src=\"assets/img/trash.png\"\n        class=\"trash-picture\"\n      >\n    </div>\n    <div class=\"text-area planning-element-text-area\">\n      {{planningDropdown.text}}\n    </div>\n  </ng-template>\n</div>\n"
+module.exports = "<div\n  class=\"container planning-dropdown-element p-0\"\n  [ngClass]=\"{'disabled-look': allControlsDisabled}\">\n  <ng-container *ngIf=\"inActive; else active\">\n    <div\n      class=\"text-area planning-element-text-area\"\n      (click)=\"allControlsDisabled ? $event.stopPropagation() : onElementClick()\">\n      {{planningDropdown.text}}\n    </div>\n  </ng-container>\n\n  <ng-template #active>\n    <div class=\"text-area planning-element-text-area not-button-area\">\n      {{planningDropdown.text}}\n    </div>\n    <div\n      class=\"trashcan-area active-design\"\n      [ngClass]=\"{'disabled-look': trashControlsDisabled}\"\n      (click)=\"trashControlsDisabled ? $event.stopPropagation() : onDeleteElement()\">\n      <img\n        src=\"assets/img/trash.png\"\n        class=\"trash-picture\"\n      >\n    </div>\n  </ng-template>\n</div>\n"
 
 /***/ }),
 
@@ -6357,19 +6577,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _planning_dropdown_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./planning-dropdown.model */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown.model.ts");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../planning.service */ "./src/app/work/planning/planning.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
 
 var PlanningDropdownElementComponent = /** @class */ (function () {
-    function PlanningDropdownElementComponent(planningService) {
+    function PlanningDropdownElementComponent(planningService, executorService) {
         this.planningService = planningService;
+        this.executorService = executorService;
         this.inActive = true;
+        this.subscriptions = [];
     }
     PlanningDropdownElementComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.newPlanningDropdownElementSelectedSubscription =
-            this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function () { _this.inActive = true; });
+        this.subscriptions.push(this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function () {
+            _this.inActive = true;
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            if (!ps.disableControls) {
+                _this.trashControlsDisabled = false;
+                _this.allControlsDisabled = ps.disableControls;
+                return;
+            }
+            _this.allControlsDisabled = ps.omittedControlsId != _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_5__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_ORDERING;
+            _this.trashControlsDisabled = ps.disableControls;
+        }));
         if (this.memorizedActiveDropdownElementId === this.planningDropdown.id) {
             this.inActive = false;
         }
@@ -6379,7 +6615,7 @@ var PlanningDropdownElementComponent = /** @class */ (function () {
         this.inActive = false;
     };
     PlanningDropdownElementComponent.prototype.ngOnDestroy = function () {
-        this.newPlanningDropdownElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     PlanningDropdownElementComponent.prototype.onDeleteElement = function () {
         this.planningService.deleteDropdownElement(this.planningDropdown);
@@ -6399,7 +6635,8 @@ var PlanningDropdownElementComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./planning-dropdown-element.component.html */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component.html"),
             styles: [__webpack_require__(/*! ./planning-dropdown-element.component.css */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown-element.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_3__["PlanningService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_3__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_4__["ExecutorService"]])
     ], PlanningDropdownElementComponent);
     return PlanningDropdownElementComponent;
 }());
@@ -6435,7 +6672,7 @@ var PlanningDropdown = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".edit-area-height {\r\n  height: 235px;\r\n}\r\n\r\n.input-area-width {\r\n  width: 300px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBYztDQUNmOztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmVkaXQtYXJlYS1oZWlnaHQge1xyXG4gIGhlaWdodDogMjM1cHg7XHJcbn1cclxuXHJcbi5pbnB1dC1hcmVhLXdpZHRoIHtcclxuICB3aWR0aDogMzAwcHg7XHJcbn1cclxuXHJcbi5tb2RhbC1pbnNpZGUtdGV4dCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuIl19 */"
+module.exports = ".edit-area-height {\r\n  height: 235px;\r\n}\r\n\r\n.input-area-width {\r\n  width: 300px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\ninput.my-checkbox {\r\n  width : 25px;\r\n  height : 25px;\r\n}\r\n\r\n.deadline-button {\r\n  width: 60px;\r\n  height: 60px;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n}\r\n\r\n.adjust-width {\r\n  width: 100px !important;\r\n}\r\n\r\n.slider {\r\n  -webkit-appearance: none;\r\n  width: 100%;\r\n  height: 10px;\r\n  border-radius: 5px;\r\n  background: #d3d3d3;\r\n  outline: none;\r\n  opacity: 0.7;\r\n  transition: opacity .2s;\r\n}\r\n\r\n.slider:hover {\r\n  opacity: 1;\r\n}\r\n\r\n.slider::-webkit-slider-thumb {\r\n  -webkit-appearance: none;\r\n  appearance: none;\r\n  width: 25px;\r\n  height: 50px;\r\n  border-radius: 15%;\r\n  background: #696969;\r\n  cursor: pointer;\r\n}\r\n\r\n.slider::-moz-range-thumb {\r\n  width: 25px;\r\n  height: 50px;\r\n  border-radius: 15%;\r\n  background: #696969;\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBYztDQUNmOztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsZ0JBQWdCO0NBQ2pCOztBQUVEO0VBQ0UsYUFBYTtFQUNiLGNBQWM7Q0FDZjs7QUFFRDtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLHdCQUF3QjtDQUN6Qjs7QUFFRDtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixvQkFBb0I7RUFDcEIsY0FBYztFQUNkLGFBQWE7RUFFYix3QkFBd0I7Q0FDekI7O0FBRUQ7RUFDRSxXQUFXO0NBQ1o7O0FBRUQ7RUFDRSx5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLG9CQUFvQjtFQUNwQixnQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixvQkFBb0I7RUFDcEIsZ0JBQWdCO0NBQ2pCIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS9wbGFubmluZy1kcm9wZG93bi1tZ210LWVkaXQtYXJlYS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmVkaXQtYXJlYS1oZWlnaHQge1xyXG4gIGhlaWdodDogMjM1cHg7XHJcbn1cclxuXHJcbi5pbnB1dC1hcmVhLXdpZHRoIHtcclxuICB3aWR0aDogMzAwcHg7XHJcbn1cclxuXHJcbi5tb2RhbC1pbnNpZGUtdGV4dCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuXHJcbi5iaWctdGV4dCB7XHJcbiAgZm9udC1zaXplOiAycmVtO1xyXG59XHJcblxyXG5pbnB1dC5teS1jaGVja2JveCB7XHJcbiAgd2lkdGggOiAyNXB4O1xyXG4gIGhlaWdodCA6IDI1cHg7XHJcbn1cclxuXHJcbi5kZWFkbGluZS1idXR0b24ge1xyXG4gIHdpZHRoOiA2MHB4O1xyXG4gIGhlaWdodDogNjBweDtcclxuICBmb250LXNpemU6IDMwcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbi5hZGp1c3Qtd2lkdGgge1xyXG4gIHdpZHRoOiAxMDBweCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc2xpZGVyIHtcclxuICAtd2Via2l0LWFwcGVhcmFuY2U6IG5vbmU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBiYWNrZ3JvdW5kOiAjZDNkM2QzO1xyXG4gIG91dGxpbmU6IG5vbmU7XHJcbiAgb3BhY2l0eTogMC43O1xyXG4gIC13ZWJraXQtdHJhbnNpdGlvbjogLjJzO1xyXG4gIHRyYW5zaXRpb246IG9wYWNpdHkgLjJzO1xyXG59XHJcblxyXG4uc2xpZGVyOmhvdmVyIHtcclxuICBvcGFjaXR5OiAxO1xyXG59XHJcblxyXG4uc2xpZGVyOjotd2Via2l0LXNsaWRlci10aHVtYiB7XHJcbiAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xyXG4gIGFwcGVhcmFuY2U6IG5vbmU7XHJcbiAgd2lkdGg6IDI1cHg7XHJcbiAgaGVpZ2h0OiA1MHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1JTtcclxuICBiYWNrZ3JvdW5kOiAjNjk2OTY5O1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLnNsaWRlcjo6LW1vei1yYW5nZS10aHVtYiB7XHJcbiAgd2lkdGg6IDI1cHg7XHJcbiAgaGVpZ2h0OiA1MHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1JTtcclxuICBiYWNrZ3JvdW5kOiAjNjk2OTY5O1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -6446,7 +6683,7 @@ module.exports = ".edit-area-height {\r\n  height: 235px;\r\n}\r\n\r\n.input-are
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row pb-4\">\n  <ng-container *ngIf=\"!activePlanningDropdownElement.id; else changePlanningHeader\">\n    <h2>Uus rippmenüü element</h2>\n  </ng-container>\n</div>\n<div class=\"row\">\n  <div class=\"col\">\n    <div\n      class=\"card ml-n3\">\n      <div\n        class=\"row ml-0 edit-area-height\">\n        <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n          <textarea\n            class=\"modal-inside-text planning-element-text-area h-100\"\n            [(ngModel)]=\"activePlanningDropdownElement.text\"\n            (ngModelChange)=\"onInputChange()\"></textarea>\n        </div>\n        <div class=\"col d-flex flex-column justify-content-around\">\n          <div class=\"row justify-content-center\">\n            <ng-container *ngIf=\"!activePlanningDropdownElement.id; else changePlanningFinishEditing\">\n              <button\n                class=\"btn btn-success modal-inside-text\"\n                (click)=\"onAddNewPlan()\">\n                Lisan elemendi\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<ng-template #changePlanningHeader>\n  <h2>Rippmenüü elemendi muutmine</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"planningService.newPlanDropdownElementSelected.next(null)\"\n    [disabled]=\"timerRunning\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n"
+module.exports = "<div class=\"row pb-4\">\n  <ng-container *ngIf=\"!activePlanningDropdownElement?.id; else changePlanningHeader\">\n    <h2>Uus rippmenüü element</h2>\n  </ng-container>\n</div>\n<div class=\"row\">\n  <div class=\"col\">\n    <div class=\"card ml-n3\">\n      <div *ngIf=\"!activePlanningDropdownElement?.withoutDeadline\"\n        class=\"card-header modal-inside-text\n            justify-content-between d-flex align-items-center pt-1 pb-1 pl-3 pr-3\">\n        <div class=\"container\">\n          <div class=\"row justify-content-center mb-4\">\n            <span class=\"ml-1 mr-3\">Elemendi tähtaeg päevades:</span>\n            <input\n              type=\"number\"\n              class=\"form-control adjust-width modal-inside-text\"\n              oninput=\"if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);\"\n              [ngModel]=\"activePlanningDropdownElement.deadline\"\n              (ngModelChange)=\"setDeadline($event)\"\n              [disabled]=\"editControlsDisabled\"\n              maxlength=\"3\">\n          </div>\n          <div class=\"d-flex align-items-center\">\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button mr-4\"\n              (click)=\"modifyDeadlineBy(-1)\"\n              [disabled]=\"editControlsDisabled\"> - </button>\n            <input\n              type=\"range\"\n              min=\"0\"\n              max=\"21\"\n              class=\"slider\"\n              id=\"formControlRange\"\n              [ngModel]=\"activePlanningDropdownElement.deadline\"\n              (ngModelChange)=\"setDeadline($event)\"\n              [disabled]=\"editControlsDisabled\">\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button ml-4\"\n              (click)=\"modifyDeadlineBy(1)\"\n              [disabled]=\"editControlsDisabled\"> + </button>\n          </div>\n        </div>\n      </div>\n      <div\n        class=\"row ml-0 edit-area-height\">\n        <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n          <textarea\n            class=\"modal-inside-text planning-element-text-area h-100\"\n            [(ngModel)]=\"activePlanningDropdownElement.text\"\n            (ngModelChange)=\"onInputChange()\"\n            [disabled]=\"editControlsDisabled\"></textarea>\n        </div>\n        <div class=\"col d-flex flex-column justify-content-around\">\n          <div class=\"row justify-content-center modal-inside-text mb-4 mt-5\">\n            <input\n              class=\"my-checkbox\"\n              type=\"checkbox\"\n              id=\"withoutDeadline\"\n              [(ngModel)]=\"activePlanningDropdownElement.withoutDeadline\"\n              (change)=\"onInputChange(true)\"\n              [disabled]=\"editControlsDisabled\">\n            <label class=\"form-check-label ml-2\" for=\"withoutDeadline\">\n              Tähtajatu\n            </label>\n          </div>\n          <div class=\"row justify-content-center\">\n            <ng-container *ngIf=\"!activePlanningDropdownElement.id; else changePlanningFinishEditing\">\n              <button\n                class=\"btn btn-success modal-inside-text\"\n                (click)=\"onAddNewPlan()\"\n                [disabled]=\"editControlsDisabled\">\n                Lisan elemendi\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<ng-template #changePlanningHeader>\n  <h2>Rippmenüü elemendi muutmine</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"planningService.newPlanDropdownElementSelected.next(null)\"\n    [disabled]=\"allControlsDisabled\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n"
 
 /***/ }),
 
@@ -6464,96 +6701,88 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../planning.service */ "./src/app/work/planning/planning.service.ts");
 /* harmony import */ var _planning_dropdown_element_planning_dropdown_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../planning-dropdown-element/planning-dropdown.model */ "./src/app/work/planning/planning-dropdown/planning-dropdown-element/planning-dropdown.model.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
 
 
 
 
 var PlanningDropdownMgmtEditAreaComponent = /** @class */ (function () {
-    function PlanningDropdownMgmtEditAreaComponent(planningService) {
+    function PlanningDropdownMgmtEditAreaComponent(planningService, executorService) {
         this.planningService = planningService;
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.timerRunning = false;
-        this.shouldRunAnotherRound = false;
+        this.executorService = executorService;
+        this.subscriptions = [];
+        this.DEFAULT_DAYS_TO_DEADLINE = 3;
     }
     PlanningDropdownMgmtEditAreaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initNewPlan();
-        this.newPlanningDropdownElementSelectedSubscription =
-            this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function (np) {
-                if (!np)
-                    _this.activePlanningDropdownElement = _this.newDropdownElement;
-                else {
-                    _this.activePlanningDropdownElement = np;
-                }
-            });
+        this.subscriptions.push(this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function (np) {
+            if (!np)
+                _this.activePlanningDropdownElement = _this.newDropdownElement;
+            else {
+                _this.activePlanningDropdownElement = np;
+            }
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            if (!ps.disableControls) {
+                _this.editControlsDisabled = false;
+                _this.allControlsDisabled = false;
+                return;
+            }
+            _this.allControlsDisabled = true;
+            _this.editControlsDisabled = ps.omittedControlsId !== _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_5__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_SINGLE_ELEMENT;
+        }));
     };
     PlanningDropdownMgmtEditAreaComponent.prototype.initNewPlan = function () {
         this.newDropdownElement = new _planning_dropdown_element_planning_dropdown_model__WEBPACK_IMPORTED_MODULE_3__["PlanningDropdown"]();
+        this.newDropdownElement.deadline = this.DEFAULT_DAYS_TO_DEADLINE;
+        this.newDropdownElement.orderNumber = this.planningService.planningDropDown ?
+            this.planningService.planningDropDown.length + 1
+            : 1;
         this.activePlanningDropdownElement = this.newDropdownElement;
     };
     PlanningDropdownMgmtEditAreaComponent.prototype.onAddNewPlan = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.timerRunning = true;
-                        this.isCountingDownToUpdateData.emit(true);
-                        return [4 /*yield*/, this.planningService.createDropdownElement(this.activePlanningDropdownElement).then(function () {
-                                _this.timerRunning = false;
-                                _this.isCountingDownToUpdateData.emit(false);
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.initNewPlan();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    PlanningDropdownMgmtEditAreaComponent.prototype.startCountdownToUpdatePlanningElementAtBackend = function () {
         var _this = this;
-        if (this.timerRunning) {
-            this.shouldRunAnotherRound = true;
-            // console.log('...must run one more time');
-        }
-        else {
-            setTimeout(function () {
-                _this.timerRunning = false;
-                if (_this.shouldRunAnotherRound) {
-                    _this.shouldRunAnotherRound = false;
-                    _this.startCountdownToUpdatePlanningElementAtBackend();
-                    // console.log('...will run for a second time');
-                }
-                else {
-                    // console.log('-> send request')
-                    _this.planningService.updateDropdownElement(_this.activePlanningDropdownElement).then(function () { _this.isCountingDownToUpdateData.emit(false); });
-                }
-            }, 1200);
-            this.timerRunning = true;
-            this.isCountingDownToUpdateData.emit(true);
-            // console.log('! started Timer');
-        }
+        this.planningService.createDropdownElement(this.activePlanningDropdownElement)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
+            .subscribe(function () { return setTimeout(function () { return _this.initNewPlan(); }, 0); });
     };
     PlanningDropdownMgmtEditAreaComponent.prototype.onInputChange = function (isWithoutDeadlineFlag) {
+        if (isWithoutDeadlineFlag) {
+            this.activePlanningDropdownElement.deadline = this.DEFAULT_DAYS_TO_DEADLINE;
+        }
         if (this.activePlanningDropdownElement.id) {
-            this.startCountdownToUpdatePlanningElementAtBackend();
+            this.executorService.exeWithTimer(this.planningService.updateDropdownElement, [this.activePlanningDropdownElement], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_5__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_SINGLE_ELEMENT);
         }
     };
-    PlanningDropdownMgmtEditAreaComponent.prototype.ngOnDestroy = function () {
-        this.newPlanningDropdownElementSelectedSubscription.unsubscribe();
+    PlanningDropdownMgmtEditAreaComponent.prototype.modifyDeadlineBy = function (days) {
+        this.setDeadline(this.activePlanningDropdownElement.deadline + days);
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], PlanningDropdownMgmtEditAreaComponent.prototype, "isCountingDownToUpdateData", void 0);
+    PlanningDropdownMgmtEditAreaComponent.prototype.setDeadline = function (days) {
+        if (!days) {
+            this.activePlanningDropdownElement.deadline = 0;
+        }
+        else {
+            this.activePlanningDropdownElement.deadline = days;
+        }
+        this.onInputChange();
+    };
+    PlanningDropdownMgmtEditAreaComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (sub) { return sub.unsubscribe(); });
+    };
     PlanningDropdownMgmtEditAreaComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-planning-dropdown-mgmt-edit-area',
             template: __webpack_require__(/*! ./planning-dropdown-mgmt-edit-area.component.html */ "./src/app/work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component.html"),
             styles: [__webpack_require__(/*! ./planning-dropdown-mgmt-edit-area.component.css */ "./src/app/work/planning/planning-dropdown/planning-dropdown-mgmt-edit-area/planning-dropdown-mgmt-edit-area.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_2__["PlanningService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_2__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_4__["ExecutorService"]])
     ], PlanningDropdownMgmtEditAreaComponent);
     return PlanningDropdownMgmtEditAreaComponent;
 }());
@@ -6569,7 +6798,7 @@ var PlanningDropdownMgmtEditAreaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".dropdown-elements-section-width {\r\n  width: 455px;\r\n}\r\n\r\n.dropdown-elements-section-height {\r\n  height: 490px;\r\n}\r\n\r\n.vertical-paddings {\r\n  padding-top: 1.1rem;\r\n  padding-bottom: 1.1rem\r\n}\r\n\r\n.scrolling-area {\r\n  padding-top: 0px;\r\n  padding-bottom: 0px;\r\n  overflow-y:auto;\r\n  overflow-x:hidden;\r\n}\r\n\r\n/* width */\r\n\r\n::-webkit-scrollbar {\r\n  width: 15px;\r\n}\r\n\r\n/* Track */\r\n\r\n::-webkit-scrollbar-track {\r\n  box-shadow: inset 0 0 5px grey;\r\n  border-radius: 7px;\r\n}\r\n\r\n/* Handle */\r\n\r\n::-webkit-scrollbar-thumb {\r\n  background: #6c757d;\r\n  border-radius: 7px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsY0FBYztDQUNmOztBQUVEO0VBQ0Usb0JBQW9CO0VBQ3BCLHNCQUFzQjtDQUN2Qjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixvQkFBb0I7RUFDcEIsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRCxXQUFXOztBQUNYO0VBQ0UsWUFBWTtDQUNiOztBQUVELFdBQVc7O0FBQ1g7RUFDRSwrQkFBK0I7RUFDL0IsbUJBQW1CO0NBQ3BCOztBQUVELFlBQVk7O0FBQ1o7RUFDRSxvQkFBb0I7RUFDcEIsbUJBQW1CO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRyb3Bkb3duLWVsZW1lbnRzLXNlY3Rpb24td2lkdGgge1xyXG4gIHdpZHRoOiA0NTVweDtcclxufVxyXG5cclxuLmRyb3Bkb3duLWVsZW1lbnRzLXNlY3Rpb24taGVpZ2h0IHtcclxuICBoZWlnaHQ6IDQ5MHB4O1xyXG59XHJcblxyXG4udmVydGljYWwtcGFkZGluZ3Mge1xyXG4gIHBhZGRpbmctdG9wOiAxLjFyZW07XHJcbiAgcGFkZGluZy1ib3R0b206IDEuMXJlbVxyXG59XHJcblxyXG4uc2Nyb2xsaW5nLWFyZWEge1xyXG4gIHBhZGRpbmctdG9wOiAwcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDBweDtcclxuICBvdmVyZmxvdy15OmF1dG87XHJcbiAgb3ZlcmZsb3cteDpoaWRkZW47XHJcbn1cclxuXHJcbi8qIHdpZHRoICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiAxNXB4O1xyXG59XHJcblxyXG4vKiBUcmFjayAqL1xyXG46Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcclxuICBib3gtc2hhZG93OiBpbnNldCAwIDAgNXB4IGdyZXk7XHJcbiAgYm9yZGVyLXJhZGl1czogN3B4O1xyXG59XHJcblxyXG4vKiBIYW5kbGUgKi9cclxuOjotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7XHJcbiAgYmFja2dyb3VuZDogIzZjNzU3ZDtcclxuICBib3JkZXItcmFkaXVzOiA3cHg7XHJcbn1cclxuIl19 */"
+module.exports = ".dropdown-elements-section-width {\r\n  width: 455px;\r\n}\r\n\r\n.dropdown-elements-section-height {\r\n  height: 370px;\r\n}\r\n\r\n.vertical-paddings {\r\n  padding-top: 1.1rem;\r\n  padding-bottom: 1.1rem\r\n}\r\n\r\n.scrolling-area {\r\n  padding-top: 0px;\r\n  padding-bottom: 0px;\r\n  overflow-y:auto;\r\n  overflow-x:hidden;\r\n}\r\n\r\n/* width */\r\n\r\n::-webkit-scrollbar {\r\n  width: 15px;\r\n}\r\n\r\n/* Track */\r\n\r\n::-webkit-scrollbar-track {\r\n  box-shadow: inset 0 0 5px grey;\r\n  border-radius: 7px;\r\n}\r\n\r\n/* Handle */\r\n\r\n::-webkit-scrollbar-thumb {\r\n  background: #6c757d;\r\n  border-radius: 7px;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.2 !important;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsY0FBYztDQUNmOztBQUVEO0VBQ0Usb0JBQW9CO0VBQ3BCLHNCQUFzQjtDQUN2Qjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixvQkFBb0I7RUFDcEIsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRCxXQUFXOztBQUNYO0VBQ0UsWUFBWTtDQUNiOztBQUVELFdBQVc7O0FBQ1g7RUFDRSwrQkFBK0I7RUFDL0IsbUJBQW1CO0NBQ3BCOztBQUVELFlBQVk7O0FBQ1o7RUFDRSxvQkFBb0I7RUFDcEIsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0Usd0JBQXdCO0NBQ3pCIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1kcm9wZG93bi9wbGFubmluZy1kcm9wZG93bi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRyb3Bkb3duLWVsZW1lbnRzLXNlY3Rpb24td2lkdGgge1xyXG4gIHdpZHRoOiA0NTVweDtcclxufVxyXG5cclxuLmRyb3Bkb3duLWVsZW1lbnRzLXNlY3Rpb24taGVpZ2h0IHtcclxuICBoZWlnaHQ6IDM3MHB4O1xyXG59XHJcblxyXG4udmVydGljYWwtcGFkZGluZ3Mge1xyXG4gIHBhZGRpbmctdG9wOiAxLjFyZW07XHJcbiAgcGFkZGluZy1ib3R0b206IDEuMXJlbVxyXG59XHJcblxyXG4uc2Nyb2xsaW5nLWFyZWEge1xyXG4gIHBhZGRpbmctdG9wOiAwcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDBweDtcclxuICBvdmVyZmxvdy15OmF1dG87XHJcbiAgb3ZlcmZsb3cteDpoaWRkZW47XHJcbn1cclxuXHJcbi8qIHdpZHRoICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiAxNXB4O1xyXG59XHJcblxyXG4vKiBUcmFjayAqL1xyXG46Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcclxuICBib3gtc2hhZG93OiBpbnNldCAwIDAgNXB4IGdyZXk7XHJcbiAgYm9yZGVyLXJhZGl1czogN3B4O1xyXG59XHJcblxyXG4vKiBIYW5kbGUgKi9cclxuOjotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7XHJcbiAgYmFja2dyb3VuZDogIzZjNzU3ZDtcclxuICBib3JkZXItcmFkaXVzOiA3cHg7XHJcbn1cclxuXHJcbi5kaXNhYmxlZC1sb29rIHtcclxuICBvcGFjaXR5OiAwLjIgIWltcG9ydGFudDtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -6580,7 +6809,7 @@ module.exports = ".dropdown-elements-section-width {\r\n  width: 455px;\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card bg-light vertical-paddings dropdown-elements-section-height\">\n  <div\n    class=\"card-body scrolling-area dropdown-elements-section-width\"\n    id=\"planningDropdownScrollArea\">\n\n    <app-planning-dropdown-element\n      *ngFor=\"let planningDropdownElement of planningService.planningDropDown\"\n      [planningDropdown]=\"planningDropdownElement\"\n      [memorizedActiveDropdownElementId]=\"memorizedActivePlanDropdownElementId\"></app-planning-dropdown-element>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"row justify-content-center\">\n  <button\n    class=\"btn btn-outline-secondary m-1\"\n    [ngClass]=\"{'btn-secondary disabled-look': !memorizedActivePlanDropdownElementId}\"\n    [disabled]=\"!memorizedActivePlanDropdownElementId || controlsDisabled\"\n    (click)=\"increaseElementOrderPlacement()\">\n    <i class=\"fas fa-arrow-circle-up fa-3x m-1\"></i>\n  </button>\n  <div class=\"card bg-light vertical-paddings dropdown-elements-section-height\">\n    <div\n      class=\"pt-1 pb-1 card-body scrolling-area dropdown-elements-section-width\"\n      id=\"planningDropdownScrollArea\">\n\n      <app-planning-dropdown-element\n        *ngFor=\"let planningDropdownElement of planningService.planningDropDown\"\n        [planningDropdown]=\"planningDropdownElement\"\n        [memorizedActiveDropdownElementId]=\"memorizedActivePlanDropdownElementId\"></app-planning-dropdown-element>\n\n    </div>\n  </div>\n  <button\n    class=\"btn btn-outline-secondary m-1\"\n    [ngClass]=\"{'btn-secondary disabled-look': !memorizedActivePlanDropdownElementId}\"\n    (click)=\"decreaseElementOrderPlacement()\"\n    [disabled]=\"!memorizedActivePlanDropdownElementId || controlsDisabled\">\n    <i class=\"fas fa-arrow-circle-down fa-3x m-1\"></i>\n  </button>\n\n</div>\n"
 
 /***/ }),
 
@@ -6597,29 +6826,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../planning.service */ "./src/app/work/planning/planning.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
 var PlanningDropdownComponent = /** @class */ (function () {
-    function PlanningDropdownComponent(planningService) {
+    function PlanningDropdownComponent(planningService, executorService) {
+        var _this = this;
         this.planningService = planningService;
+        this.executorService = executorService;
+        this.subscriptions = [];
+        this.increaseElementOrderPlacement = function () {
+            _this.planningService.increaseElementOrderNumber(_this.memorizedActivePlanDropdownElementId);
+        };
     }
     PlanningDropdownComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.newPlanDropdownElementSelecteddSubscription =
-            this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function (np) {
-                if (!np)
-                    _this.memorizedActivePlanDropdownElementId = undefined;
-                else {
-                    _this.memorizedActivePlanDropdownElementId = np.id;
-                }
-            });
+        this.subscriptions.push(this.planningService.newPlanDropdownElementSelected.asObservable().subscribe(function (np) {
+            if (!np) {
+                _this.memorizedActivePlanDropdownElementId = undefined;
+            }
+            else {
+                _this.memorizedActivePlanDropdownElementId = np.id;
+            }
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            console.log(ps);
+            console.log(_this.memorizedActivePlanDropdownElementId);
+            if (!ps.disableControls) {
+                _this.controlsDisabled = false;
+                return;
+            }
+            _this.controlsDisabled = ps.omittedControlsId != _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_ORDERING;
+        }));
     };
     PlanningDropdownComponent.prototype.ngOnChanges = function () {
         setTimeout(function () { return document.getElementById('planningDropdownScrollArea').scrollTop = Number.MAX_SAFE_INTEGER; }, 0);
     };
+    PlanningDropdownComponent.prototype.decreaseElementOrderPlacement = function () {
+        this.planningService.decreaseElementOrderNumber(this.memorizedActivePlanDropdownElementId);
+    };
     PlanningDropdownComponent.prototype.ngOnDestroy = function () {
-        this.newPlanDropdownElementSelecteddSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     PlanningDropdownComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -6627,7 +6878,8 @@ var PlanningDropdownComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./planning-dropdown.component.html */ "./src/app/work/planning/planning-dropdown/planning-dropdown.component.html"),
             styles: [__webpack_require__(/*! ./planning-dropdown.component.css */ "./src/app/work/planning/planning-dropdown/planning-dropdown.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_2__["PlanningService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_2__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_3__["ExecutorService"]])
     ], PlanningDropdownComponent);
     return PlanningDropdownComponent;
 }());
@@ -6643,7 +6895,7 @@ var PlanningDropdownComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\ninput.bigRadio {\r\n  width: 35px;\r\n  height: 35px\r\n}\r\n\r\n.deadline-button {\r\n  width: 60px;\r\n  height: 60px;\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n\r\n.without-deadline-correction {\r\n  margin-top: 69px;\r\n}\r\n\r\n.edit-area-height {\r\n  height: 235px;\r\n}\r\n\r\ninput.my-checkbox {\r\n  width : 25px;\r\n  height : 25px;\r\n}\r\n\r\nselect {\r\n  height: 60px;\r\n  font-size: 1.5rem;\r\n}\r\n\r\noptgroup {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.dropdown-in-planning-element-text-area {\r\n  width: 270px;\r\n}\r\n\r\n.input-area-width {\r\n  width: 300px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1tZ210L3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhL3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0VBQ0UsZ0JBQWdCO0NBQ2pCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsWUFBWTtFQUNaLFlBQVk7Q0FDYjs7QUFFRDtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGlCQUFpQjtDQUNsQjs7QUFFRDtFQUNFLGNBQWM7Q0FDZjs7QUFFRDtFQUNFLGFBQWE7RUFDYixjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxhQUFhO0VBQ2Isa0JBQWtCO0NBQ25COztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsYUFBYTtDQUNkIiwiZmlsZSI6InNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1tZ210L3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhL3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmJpZy10ZXh0IHtcclxuICBmb250LXNpemU6IDJyZW07XHJcbn1cclxuXHJcbi5tb2RhbC1pbnNpZGUtdGV4dCB7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuXHJcbmlucHV0LmJpZ1JhZGlvIHtcclxuICB3aWR0aDogMzVweDtcclxuICBoZWlnaHQ6IDM1cHhcclxufVxyXG5cclxuLmRlYWRsaW5lLWJ1dHRvbiB7XHJcbiAgd2lkdGg6IDYwcHg7XHJcbiAgaGVpZ2h0OiA2MHB4O1xyXG4gIGZvbnQtc2l6ZTogMjVweDtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG5cclxuLndpdGhvdXQtZGVhZGxpbmUtY29ycmVjdGlvbiB7XHJcbiAgbWFyZ2luLXRvcDogNjlweDtcclxufVxyXG5cclxuLmVkaXQtYXJlYS1oZWlnaHQge1xyXG4gIGhlaWdodDogMjM1cHg7XHJcbn1cclxuXHJcbmlucHV0Lm15LWNoZWNrYm94IHtcclxuICB3aWR0aCA6IDI1cHg7XHJcbiAgaGVpZ2h0IDogMjVweDtcclxufVxyXG5cclxuc2VsZWN0IHtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbn1cclxuXHJcbm9wdGdyb3VwIHtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxufVxyXG5cclxuLmRyb3Bkb3duLWluLXBsYW5uaW5nLWVsZW1lbnQtdGV4dC1hcmVhIHtcclxuICB3aWR0aDogMjcwcHg7XHJcbn1cclxuXHJcbi5pbnB1dC1hcmVhLXdpZHRoIHtcclxuICB3aWR0aDogMzAwcHg7XHJcbn1cclxuIl19 */"
+module.exports = "\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\ninput.bigRadio {\r\n  width: 35px;\r\n  height: 35px\r\n}\r\n\r\n.deadline-button {\r\n  width: 60px;\r\n  height: 60px;\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n\r\n.edit-area-height {\r\n  height: 235px;\r\n}\r\n\r\ninput.my-checkbox {\r\n  width : 25px;\r\n  height : 25px;\r\n}\r\n\r\nselect {\r\n  height: 60px;\r\n  font-size: 1.5rem;\r\n}\r\n\r\noptgroup {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.dropdown-in-planning-element-text-area {\r\n  width: 270px;\r\n}\r\n\r\n.input-area-width {\r\n  width: 300px;\r\n}\r\n\r\n.adjust-width {\r\n  width: 100px !important;\r\n}\r\n\r\n.slider {\r\n  -webkit-appearance: none;\r\n  width: 100%;\r\n  height: 10px;\r\n  border-radius: 5px;\r\n  background: #d3d3d3;\r\n  outline: none;\r\n  opacity: 0.7;\r\n  transition: opacity .2s;\r\n}\r\n\r\n.slider:hover {\r\n  opacity: 1;\r\n}\r\n\r\n.slider::-webkit-slider-thumb {\r\n  -webkit-appearance: none;\r\n  appearance: none;\r\n  width: 25px;\r\n  height: 50px;\r\n  border-radius: 15%;\r\n  background: #696969;\r\n  cursor: pointer;\r\n}\r\n\r\n.slider::-moz-range-thumb {\r\n  width: 25px;\r\n  height: 50px;\r\n  border-radius: 15%;\r\n  background: #696969;\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1tZ210L3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhL3BsYW5uaW5nLW1nbXQtZWRpdC1hcmVhLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0VBQ0UsZ0JBQWdCO0NBQ2pCOztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsWUFBWTtFQUNaLFlBQVk7Q0FDYjs7QUFFRDtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtDQUNuQjs7QUFFRDtFQUNFLGNBQWM7Q0FDZjs7QUFFRDtFQUNFLGFBQWE7RUFDYixjQUFjO0NBQ2Y7O0FBRUQ7RUFDRSxhQUFhO0VBQ2Isa0JBQWtCO0NBQ25COztBQUVEO0VBQ0Usa0JBQWtCO0NBQ25COztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUVEO0VBQ0UsYUFBYTtDQUNkOztBQUNEO0VBQ0Usd0JBQXdCO0NBQ3pCOztBQUVEO0VBQ0UseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLG9CQUFvQjtFQUNwQixjQUFjO0VBQ2QsYUFBYTtFQUViLHdCQUF3QjtDQUN6Qjs7QUFFRDtFQUNFLFdBQVc7Q0FDWjs7QUFFRDtFQUNFLHlCQUF5QjtFQUN6QixpQkFBaUI7RUFDakIsWUFBWTtFQUNaLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsb0JBQW9CO0VBQ3BCLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLG9CQUFvQjtFQUNwQixnQkFBZ0I7Q0FDakIiLCJmaWxlIjoic3JjL2FwcC93b3JrL3BsYW5uaW5nL3BsYW5uaW5nLW1nbXQvcGxhbm5pbmctbWdtdC1lZGl0LWFyZWEvcGxhbm5pbmctbWdtdC1lZGl0LWFyZWEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uYmlnLXRleHQge1xyXG4gIGZvbnQtc2l6ZTogMnJlbTtcclxufVxyXG5cclxuLm1vZGFsLWluc2lkZS10ZXh0IHtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxufVxyXG5cclxuaW5wdXQuYmlnUmFkaW8ge1xyXG4gIHdpZHRoOiAzNXB4O1xyXG4gIGhlaWdodDogMzVweFxyXG59XHJcblxyXG4uZGVhZGxpbmUtYnV0dG9uIHtcclxuICB3aWR0aDogNjBweDtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgZm9udC1zaXplOiAyNXB4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcblxyXG4uZWRpdC1hcmVhLWhlaWdodCB7XHJcbiAgaGVpZ2h0OiAyMzVweDtcclxufVxyXG5cclxuaW5wdXQubXktY2hlY2tib3gge1xyXG4gIHdpZHRoIDogMjVweDtcclxuICBoZWlnaHQgOiAyNXB4O1xyXG59XHJcblxyXG5zZWxlY3Qge1xyXG4gIGhlaWdodDogNjBweDtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxufVxyXG5cclxub3B0Z3JvdXAge1xyXG4gIGZvbnQtc2l6ZTogMS41cmVtO1xyXG59XHJcblxyXG4uZHJvcGRvd24taW4tcGxhbm5pbmctZWxlbWVudC10ZXh0LWFyZWEge1xyXG4gIHdpZHRoOiAyNzBweDtcclxufVxyXG5cclxuLmlucHV0LWFyZWEtd2lkdGgge1xyXG4gIHdpZHRoOiAzMDBweDtcclxufVxyXG4uYWRqdXN0LXdpZHRoIHtcclxuICB3aWR0aDogMTAwcHggIWltcG9ydGFudDtcclxufVxyXG5cclxuLnNsaWRlciB7XHJcbiAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTBweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgYmFja2dyb3VuZDogI2QzZDNkMztcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIG9wYWNpdHk6IDAuNztcclxuICAtd2Via2l0LXRyYW5zaXRpb246IC4ycztcclxuICB0cmFuc2l0aW9uOiBvcGFjaXR5IC4ycztcclxufVxyXG5cclxuLnNsaWRlcjpob3ZlciB7XHJcbiAgb3BhY2l0eTogMTtcclxufVxyXG5cclxuLnNsaWRlcjo6LXdlYmtpdC1zbGlkZXItdGh1bWIge1xyXG4gIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcclxuICBhcHBlYXJhbmNlOiBub25lO1xyXG4gIHdpZHRoOiAyNXB4O1xyXG4gIGhlaWdodDogNTBweDtcclxuICBib3JkZXItcmFkaXVzOiAxNSU7XHJcbiAgYmFja2dyb3VuZDogIzY5Njk2OTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5zbGlkZXI6Oi1tb3otcmFuZ2UtdGh1bWIge1xyXG4gIHdpZHRoOiAyNXB4O1xyXG4gIGhlaWdodDogNTBweDtcclxuICBib3JkZXItcmFkaXVzOiAxNSU7XHJcbiAgYmFja2dyb3VuZDogIzY5Njk2OTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -6654,7 +6906,7 @@ module.exports = "\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.modal-insid
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"activePlanningElement\">\n  <ng-container *ngIf=\"isActiveResolveStateUnresolved; else resolvedView\">\n    <div class=\"row pb-4\">\n      <ng-container *ngIf=\"!activePlanningElement.id; else changePlanningHeader\">\n        <h2>Uus planeering</h2>\n      </ng-container>\n    </div>\n    <div class=\"row\">\n      <div class=\"col pb-4\">\n        <div class=\"row\">\n          <label class=\"d-flex\">\n            <input\n              type=\"radio\"\n              class=\"bigRadio\"\n              name=\"input-type\"\n              [checked]=\"activePlanningElement.dropDown === true\"\n              (change)=\"radioBtnActivePlanInputTypeChange(true)\">\n            <span class=\"ml-2 modal-inside-text\">Rippmenüüst</span>\n          </label>\n        </div>\n        <div class=\"row pt-2\">\n          <label class=\"d-flex\">\n            <input\n              type=\"radio\"\n              class=\"bigRadio\"\n              name=\"input-type\"\n              [checked]=\"activePlanningElement.dropDown === false\"\n              (change)=\"radioBtnActivePlanInputTypeChange(false)\">\n            <span class=\"ml-2 modal-inside-text\">Vabatekst</span>\n          </label>\n        </div>\n      </div>\n      <div class=\"col\">\n        <button\n          type=\"button\"\n          class=\"btn btn-primary modal-inside-text mt-n2 btn-block\"\n          (click)=\"callDropdownMgmt.emit()\"\n          [disabled]=\"timerRunning\">Muudan rippmenüüd</button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <div\n          class=\"card ml-n3\"\n          [ngClass]=\"{'without-deadline-correction': activePlanningElement.withoutDeadline}\">\n          <div *ngIf=\"!activePlanningElement.withoutDeadline\"\n            class=\"card-header modal-inside-text\n            justify-content-between d-flex align-items-center pt-1 pb-1 pl-3 pr-3\">\n            <span class=\"ml-1 mr-3\">Tähtaeg päevades</span>\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button\"\n              (click)=\"addDaysToActivePlanDeadline(-7)\"> -7 </button>\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button\"\n              (click)=\"addDaysToActivePlanDeadline(-1)\"> -1 </button>\n            <span class=\"big-text\">\n            <b>{{ activePlanningElement.deadline | daysUntil }}</b>\n            </span>\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button\"\n              (click)=\"addDaysToActivePlanDeadline(1)\"> +1 </button>\n            <button\n              class=\"btn btn-light btn-outline-secondary deadline-button\"\n              (click)=\"addDaysToActivePlanDeadline(7)\"> +7 </button>\n          </div>\n          <div\n            class=\"row ml-0 edit-area-height\">\n            <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n              <ng-container *ngIf=\"activePlanningElement.dropDown === false; else dropdownInput\">\n              <textarea\n                class=\"modal-inside-text planning-element-text-area h-100\"\n                [(ngModel)]=\"activePlanningElement.text\"\n                (ngModelChange)=\"onInputChange()\"></textarea>\n              </ng-container>\n            </div>\n            <div class=\"col d-flex flex-column justify-content-around\">\n              <div class=\"row justify-content-center modal-inside-text mb-4 mt-5\">\n                <input\n                  class=\"my-checkbox\"\n                  type=\"checkbox\"\n                  id=\"withoutDeadline\"\n                  [(ngModel)]=\"activePlanningElement.withoutDeadline\"\n                  (change)=\"onInputChange(true)\">\n                <label class=\"form-check-label ml-2\" for=\"withoutDeadline\">\n                  Tähtajatu\n                </label>\n              </div>\n              <div class=\"row justify-content-center\">\n                <ng-container *ngIf=\"!activePlanningElement.id; else changePlanningFinishEditing\">\n                  <button\n                    class=\"btn btn-success modal-inside-text\"\n                    (click)=\"onAddNewPlan()\">\n                    Lisan planeeringu\n                  </button>\n                </ng-container>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</ng-container>\n\n<ng-template #resolvedView>\n  <div class=\"d-flex h-100 justify-content-center align-items-end pb-5\">\n    <button\n      class=\"btn btn-success modal-inside-text mb-5\"\n      *ngIf=\"activePlanningElement.id != null\"\n      (click)=\"onUnResolveElement()\">\n      Märgin kui \"Tegemata\"\n    </button>\n  </div>\n</ng-template>\n\n<ng-template #changePlanningHeader>\n  <h2>Muudan planeeringut</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"planningService.newPlanElementSelected.next(null)\"\n    [disabled]=\"timerRunning\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n\n\n<ng-template #dropdownInput>\n\n  <span\n    *ngIf=\"!planningService.planningDropDown\"\n    class=\"mb-n5 ml-4 text-center\">Rippmenüüs pole ühtegi elementi.\n      Elementide lisamiseks kasutage funktsionaalsust \"Muudan rippmenüüd\"</span>\n\n  <select\n    name=\"new-plan\"\n    class=\"custom-select planning-element-text-area ml-4 mr-n4\"\n    [(ngModel)]=\"activePlanningElement.dropDownElementId\"\n    [disabled]=\"!planningService.planningDropDown\"\n    (change)=\"onInputChange()\">\n    <optgroup>\n      <ng-container *ngIf=\"planningService.planningDropDown\">\n        <option\n          *ngFor=\"let dropdownElement of planningService.planningDropDown\"\n          [value]=\"dropdownElement.id\"> {{ dropdownElement.text}}</option>\n      </ng-container>\n    </optgroup>\n  </select>\n\n</ng-template>\n"
+module.exports = "<ng-container *ngIf=\"activePlanningElement\">\n  <ng-container *ngIf=\"isActiveResolveStateUnresolved; else resolvedView\">\n    <div class=\"row pb-4\">\n      <ng-container *ngIf=\"!activePlanningElement.id; else changePlanningHeader\">\n        <h2>Uus planeering</h2>\n      </ng-container>\n    </div>\n    <div class=\"row\">\n      <div class=\"col pb-4\">\n        <div class=\"row\">\n          <label class=\"d-flex\">\n            <input\n              type=\"radio\"\n              class=\"bigRadio\"\n              name=\"input-type\"\n              [checked]=\"activePlanningElement.dropDown === true\"\n              (change)=\"radioBtnActivePlanInputTypeChange(true)\"\n              [disabled]=\"editControlsDisabled\">\n            <span class=\"ml-2 modal-inside-text\">Rippmenüüst</span>\n          </label>\n        </div>\n        <div class=\"row pt-2\">\n          <label class=\"d-flex\">\n            <input\n              type=\"radio\"\n              class=\"bigRadio\"\n              name=\"input-type\"\n              [checked]=\"activePlanningElement.dropDown === false\"\n              (change)=\"radioBtnActivePlanInputTypeChange(false)\"\n              [disabled]=\"editControlsDisabled\">\n            <span class=\"ml-2 modal-inside-text\">Vabatekst</span>\n          </label>\n        </div>\n      </div>\n      <div class=\"col\">\n        <button\n          type=\"button\"\n          class=\"btn btn-primary modal-inside-text mt-n2 btn-block\"\n          (click)=\"callDropdownMgmt.emit()\"\n          [disabled]=\"allControlsDisabled\">Muudan rippmenüüd</button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <div\n          class=\"card ml-n3\">\n          <div *ngIf=\"!activePlanningElement.withoutDeadline\"\n            class=\"card-header modal-inside-text\n            justify-content-between d-flex align-items-center pt-1 pb-1 pl-3 pr-3\">\n            <div class=\"container\">\n              <div class=\"row justify-content-center mb-4\">\n                <span class=\"ml-1 mr-3\">Planeeringu tähtaeg päevades:</span>\n                <input\n                  type=\"number\"\n                  class=\"form-control adjust-width modal-inside-text\"\n                  oninput=\"if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);\"\n                  [ngModel]=\"activePlanningElement.daysToDeadline\"\n                  (ngModelChange)=\"daysToActivePlanDeadline($event)\"\n                  [disabled]=\"editControlsDisabled\"\n                  maxlength=\"3\">\n              </div>\n              <div class=\"d-flex align-items-center\">\n                <button\n                  class=\"btn btn-light btn-outline-secondary deadline-button mr-4\"\n                  (click)=\"addDaysToActivePlanDeadline(-1)\"\n                  [disabled]=\"editControlsDisabled\"> - </button>\n                <input\n                  [ngModel]=\"activePlanningElement.daysToDeadline\"\n                  (ngModelChange)=\"daysToActivePlanDeadline($event)\"\n                  type=\"range\"\n                  min=\"0\"\n                  max=\"21\"\n                  class=\"slider\"\n                  id=\"formControlRange\"\n                  [disabled]=\"editControlsDisabled\">\n                <button\n                  class=\"btn btn-light btn-outline-secondary deadline-button ml-4\"\n                  (click)=\"addDaysToActivePlanDeadline(1)\"\n                  [disabled]=\"editControlsDisabled\"> + </button>\n              </div>\n            </div>\n          </div>\n          <div\n            class=\"row ml-0 edit-area-height\">\n            <div class=\"d-flex input-area-width justify-content-around align-items-center flex-column\">\n              <ng-container *ngIf=\"activePlanningElement.dropDown === false; else dropdownInput\">\n              <textarea\n                class=\"modal-inside-text planning-element-text-area h-100\"\n                [(ngModel)]=\"activePlanningElement.text\"\n                (ngModelChange)=\"onInputChange()\"\n                [disabled]=\"editControlsDisabled\"></textarea>\n              </ng-container>\n            </div>\n            <div class=\"col d-flex flex-column justify-content-around\">\n              <div class=\"row justify-content-center modal-inside-text mb-4 mt-5\">\n                <input\n                  class=\"my-checkbox\"\n                  type=\"checkbox\"\n                  id=\"withoutDeadline\"\n                  [(ngModel)]=\"activePlanningElement.withoutDeadline\"\n                  (change)=\"onInputChange(true)\"\n                  [disabled]=\"editControlsDisabled\">\n                <label class=\"form-check-label ml-2\" for=\"withoutDeadline\">\n                  Tähtajatu\n                </label>\n              </div>\n              <div class=\"row justify-content-center\">\n                <ng-container *ngIf=\"!activePlanningElement.id; else changePlanningFinishEditing\">\n                  <button\n                    class=\"btn btn-success modal-inside-text\"\n                    (click)=\"onAddNewPlan()\"\n                    [disabled]=\"editControlsDisabled\">\n                    Lisan planeeringu\n                  </button>\n                </ng-container>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</ng-container>\n\n<ng-template #resolvedView>\n  <div class=\"d-flex h-100 justify-content-center align-items-end pb-5\">\n    <button\n      class=\"btn btn-success modal-inside-text mb-5\"\n      *ngIf=\"activePlanningElement.id != null\"\n      (click)=\"onUnResolveElement()\"\n      [disabled]=\"editControlsDisabled\">\n      Märgin kui \"Tegemata\"\n    </button>\n  </div>\n</ng-template>\n\n<ng-template #changePlanningHeader>\n  <h2>Muudan planeeringut</h2>\n</ng-template>\n\n<ng-template #changePlanningFinishEditing>\n  <button\n    class=\"btn btn-danger modal-inside-text\"\n    (click)=\"planningService.newPlanElementSelected.next(null)\"\n    [disabled]=\"allControlsDisabled\">\n    Lõpetan muutmise\n  </button>\n</ng-template>\n\n\n<ng-template #dropdownInput>\n\n  <span\n    *ngIf=\"!planningService.planningDropDown\"\n    class=\"mb-n5 ml-4 text-center\">Rippmenüüs pole ühtegi elementi.\n      Elementide lisamiseks kasutage funktsionaalsust \"Muudan rippmenüüd\"</span>\n\n  <select\n    name=\"new-plan\"\n    class=\"custom-select planning-element-text-area ml-4 mr-n4\"\n    [(ngModel)]=\"activePlanningElement.dropDownElementId\"\n    (ngModelChange)=\"setStandardPlanDeadline($event)\"\n    [disabled]=\"!planningService.planningDropDown || editControlsDisabled\">\n    <optgroup>\n      <ng-container *ngIf=\"planningService.planningDropDown\">\n        <option\n          *ngFor=\"let dropdownElement of planningService.planningDropDown\"\n          [value]=\"dropdownElement.id\">\n          {{ dropdownElement.text }}\n        </option>\n      </ng-container>\n    </optgroup>\n  </select>\n\n</ng-template>\n"
 
 /***/ }),
 
@@ -6673,49 +6925,85 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plan_element_plan_element_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../plan-element/plan-element.model */ "./src/app/work/planning/plan-element/plan-element.model.ts");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../planning.service */ "./src/app/work/planning/planning.service.ts");
 /* harmony import */ var _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../settings/shared/hive.model */ "./src/app/settings/shared/hive.model.ts");
+/* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../util/util.service */ "./src/app/util/util.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
+
 
 
 
 
 
 var PlanningMgmtEditAreaComponent = /** @class */ (function () {
-    function PlanningMgmtEditAreaComponent(planningService) {
+    function PlanningMgmtEditAreaComponent(planningService, executorService) {
         this.planningService = planningService;
+        this.executorService = executorService;
         this.callDropdownMgmt = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.subscriptions = [];
         this.DEFAULT_DAYS_TO_DEADLINE = 3;
-        this.timerRunning = false;
-        this.shouldRunAnotherRound = false;
     }
     PlanningMgmtEditAreaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initNewPlan();
-        this.newPlanElementSelectedSubscription =
-            this.planningService.newPlanElementSelected.asObservable().subscribe(function (np) {
-                if (!np)
-                    _this.activePlanningElement = _this.newPlan;
-                else {
-                    _this.activePlanningElement = np;
-                }
-            });
+        this.subscriptions.push(this.planningService.newPlanElementSelected.asObservable().subscribe(function (np) {
+            if (!np)
+                _this.activePlanningElement = _this.newPlan;
+            else {
+                _this.activePlanningElement = np;
+            }
+            _this.setDaysToDealine();
+        }));
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            if (!ps.disableControls) {
+                _this.editControlsDisabled = false;
+                _this.allControlsDisabled = false;
+                return;
+            }
+            _this.editControlsDisabled = ps.omittedControlsId != _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__["ControlsProtectionIdEnum"].PLANNING_ELEMENT;
+            _this.allControlsDisabled = true;
+        }));
+    };
+    PlanningMgmtEditAreaComponent.prototype.setDaysToDealine = function () {
+        this.activePlanningElement.daysToDeadline = -_util_util_service__WEBPACK_IMPORTED_MODULE_5__["UtilService"].getDaysBeforeTodaysDate(this.activePlanningElement.deadline);
     };
     PlanningMgmtEditAreaComponent.prototype.radioBtnActivePlanInputTypeChange = function (isDropDown) {
         this.onInputChange();
         this.activePlanningElement.dropDown = isDropDown;
+        if (isDropDown) {
+            this.activePlanningElement.dropDownElementId = this.planningService.planningDropDown
+                ? this.planningService.planningDropDown[0].id
+                : undefined;
+            this.daysToActivePlanDeadline(this.planningService.planningDropDown
+                ? this.planningService.planningDropDown[0].deadline
+                : this.DEFAULT_DAYS_TO_DEADLINE);
+        }
+        else {
+            this.daysToActivePlanDeadline(this.DEFAULT_DAYS_TO_DEADLINE);
+        }
     };
     PlanningMgmtEditAreaComponent.prototype.initNewPlan = function () {
         this.newPlan = new _plan_element_plan_element_model__WEBPACK_IMPORTED_MODULE_2__["PlanElement"]();
+        var millisecondsInOneDay = 24 * 60 * 60 * 1000;
         if (this.planningService.planningDropDown && this.planningService.planningDropDown.length > 0) {
             this.newPlan.dropDown = true;
             this.newPlan.dropDownElementId = this.planningService.planningDropDown[0].id;
+            this.newPlan.withoutDeadline = this.planningService.planningDropDown[0].withoutDeadline;
+            this.newPlan.deadline = this.newPlan.withoutDeadline
+                ? undefined
+                : this.newPlan.deadline = new Date(new Date().setHours(0, 0, 0, 0) +
+                    this.planningService.planningDropDown[0].deadline * millisecondsInOneDay);
+            this.activePlanningElement = this.newPlan;
+            this.setDaysToDealine();
+            return;
         }
-        else {
-            this.newPlan.dropDown = false;
-        }
-        var millisecondsInOneDay = 24 * 60 * 60 * 1000;
+        this.newPlan.dropDown = false;
         this.newPlan.deadline = new Date(new Date().setHours(0, 0, 0, 0) +
             +this.DEFAULT_DAYS_TO_DEADLINE * millisecondsInOneDay);
         this.activePlanningElement = this.newPlan;
+        this.setDaysToDealine();
     };
     PlanningMgmtEditAreaComponent.prototype.onAddNewPlan = function () {
         this.planningService.addNewPlan(this.newPlan, this.currentlyChosenHive.id);
@@ -6723,37 +7011,28 @@ var PlanningMgmtEditAreaComponent = /** @class */ (function () {
     };
     PlanningMgmtEditAreaComponent.prototype.addDaysToActivePlanDeadline = function (days) {
         if (this.activePlanningElement.id) {
-            this.startCountdownToUpdatePlanningElementAtBackend();
+            this.executorService.exeWithTimer(this.planningService.updatePlan, [this.activePlanningElement, this.currentlyChosenHive.id], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__["ControlsProtectionIdEnum"].PLANNING_ELEMENT);
             this.activePlanningElement.deadline = new Date(this.activePlanningElement.deadline);
         }
         var millisecondsInOneDay = 24 * 60 * 60 * 1000;
         this.activePlanningElement.deadline.setMilliseconds(this.activePlanningElement.deadline.getMilliseconds() +
             days * millisecondsInOneDay);
+        this.setDaysToDealine();
     };
-    PlanningMgmtEditAreaComponent.prototype.startCountdownToUpdatePlanningElementAtBackend = function () {
-        var _this = this;
-        if (this.timerRunning) {
-            this.shouldRunAnotherRound = true;
-            // console.log('...must run one more time');
+    PlanningMgmtEditAreaComponent.prototype.daysToActivePlanDeadline = function (days) {
+        if (this.activePlanningElement.id) {
+            this.executorService.exeWithTimer(this.planningService.updatePlan, [this.activePlanningElement, this.currentlyChosenHive.id], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__["ControlsProtectionIdEnum"].PLANNING_ELEMENT);
+            this.activePlanningElement.deadline = new Date(this.activePlanningElement.deadline);
         }
-        else {
-            setTimeout(function () {
-                _this.timerRunning = false;
-                if (_this.shouldRunAnotherRound) {
-                    _this.shouldRunAnotherRound = false;
-                    _this.startCountdownToUpdatePlanningElementAtBackend();
-                    // console.log('...will run for a second time');
-                }
-                else {
-                    // console.log('-> send request')
-                    _this.planningService.updatePlan(_this.activePlanningElement, _this.currentlyChosenHive.id);
-                    _this.isCountingDownToUpdateData.emit(false);
-                }
-            }, 1200);
-            this.timerRunning = true;
-            this.isCountingDownToUpdateData.emit(true);
-            // console.log('! started Timer');
-        }
+        var millisecondsInOneDay = 24 * 60 * 60 * 1000;
+        var todayInMS = new Date().setHours(0, 0, 0, 0);
+        this.activePlanningElement.deadline = new Date(new Date().setHours(0, 0, 0, 0) + days * millisecondsInOneDay);
+        this.setDaysToDealine();
+    };
+    PlanningMgmtEditAreaComponent.prototype.setStandardPlanDeadline = function (dropDownElementId) {
+        var selectedElement = this.planningService.planningDropDown.find(function (e) { return e.id == dropDownElementId; });
+        this.activePlanningElement.withoutDeadline = selectedElement.withoutDeadline;
+        this.daysToActivePlanDeadline(selectedElement.deadline);
     };
     PlanningMgmtEditAreaComponent.prototype.onInputChange = function (isWithoutDeadlineFlag) {
         if (isWithoutDeadlineFlag) {
@@ -6762,7 +7041,7 @@ var PlanningMgmtEditAreaComponent = /** @class */ (function () {
                 +this.DEFAULT_DAYS_TO_DEADLINE * millisecondsInOneDay);
         }
         if (this.activePlanningElement.id) {
-            this.startCountdownToUpdatePlanningElementAtBackend();
+            this.executorService.exeWithTimer(this.planningService.updatePlan, [this.activePlanningElement, this.currentlyChosenHive.id], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__["ControlsProtectionIdEnum"].PLANNING_ELEMENT);
         }
     };
     PlanningMgmtEditAreaComponent.prototype.onUnResolveElement = function () {
@@ -6771,10 +7050,10 @@ var PlanningMgmtEditAreaComponent = /** @class */ (function () {
         var millisecondsInOneDay = 24 * 60 * 60 * 1000;
         this.activePlanningElement.deadline = new Date(new Date().setHours(0, 0, 0, 0) +
             +this.DEFAULT_DAYS_TO_DEADLINE * millisecondsInOneDay);
-        this.startCountdownToUpdatePlanningElementAtBackend();
+        this.executorService.exeWithTimer(this.planningService.updatePlan, [this.activePlanningElement, this.currentlyChosenHive.id], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_7__["ControlsProtectionIdEnum"].PLANNING_ELEMENT);
     };
     PlanningMgmtEditAreaComponent.prototype.ngOnDestroy = function () {
-        this.newPlanElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -6798,7 +7077,8 @@ var PlanningMgmtEditAreaComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./planning-mgmt-edit-area.component.html */ "./src/app/work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component.html"),
             styles: [__webpack_require__(/*! ./planning-mgmt-edit-area.component.css */ "./src/app/work/planning/planning-mgmt/planning-mgmt-edit-area/planning-mgmt-edit-area.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_3__["PlanningService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_planning_service__WEBPACK_IMPORTED_MODULE_3__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_6__["ExecutorService"]])
     ], PlanningMgmtEditAreaComponent);
     return PlanningMgmtEditAreaComponent;
 }());
@@ -6833,7 +7113,7 @@ var PlanningMgmtWindowEnum;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".padding-for-planning{\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.planning-header {\r\n  font-weight: 500;\r\n  margin-right: 60px;\r\n}\r\n\r\nbutton.closing {\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.belongs-to-badge {\r\n  height: 40px;\r\n  margin-top: 8px;\r\n  font-size: 1.5rem;\r\n  margin-left: 400px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.spinner-area {\r\n  height: 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1tZ210L3BsYW5uaW5nLW1nbXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG9CQUFvQjtDQUNyQjs7QUFFRDtFQUNFLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSwyQkFBbUI7RUFBbkIsd0JBQW1CO0VBQW5CLG1CQUFtQjtFQUNuQiw0QkFBb0I7RUFBcEIseUJBQW9CO0VBQXBCLG9CQUFvQjtFQUNwQix5QkFBeUI7Q0FDMUI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSxrQkFBa0I7Q0FDbkI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2QiLCJmaWxlIjoic3JjL2FwcC93b3JrL3BsYW5uaW5nL3BsYW5uaW5nLW1nbXQvcGxhbm5pbmctbWdtdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhZGRpbmctZm9yLXBsYW5uaW5ne1xyXG4gIHBhZGRpbmctbGVmdDogMi41cHg7XHJcbn1cclxuXHJcbi5iaWctdGV4dCB7XHJcbiAgZm9udC1zaXplOiAycmVtO1xyXG59XHJcblxyXG4ucGxhbm5pbmctaGVhZGVyIHtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG4gIG1hcmdpbi1yaWdodDogNjBweDtcclxufVxyXG5cclxuYnV0dG9uLmNsb3Npbmcge1xyXG4gIHdpZHRoOiBmaXQtY29udGVudDtcclxuICBoZWlnaHQ6IGZpdC1jb250ZW50O1xyXG4gIHBhZGRpbmc6IDJweCAycHggMnB4IDJweDtcclxufVxyXG5cclxuaW1nLngge1xyXG4gIGhlaWdodDogNDBweDtcclxufVxyXG5cclxuLmJlbG9uZ3MtdG8tYmFkZ2Uge1xyXG4gIGhlaWdodDogNDBweDtcclxuICBtYXJnaW4tdG9wOiA4cHg7XHJcbiAgZm9udC1zaXplOiAxLjVyZW07XHJcbiAgbWFyZ2luLWxlZnQ6IDQwMHB4O1xyXG59XHJcblxyXG4ubW9kYWwtaW5zaWRlLXRleHQge1xyXG4gIGZvbnQtc2l6ZTogMS41cmVtO1xyXG59XHJcblxyXG4uc3Bpbm5lci1hcmVhIHtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuIl19 */"
+module.exports = ".padding-for-planning {\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.big-text {\r\n  font-size: 2rem;\r\n}\r\n\r\n.planning-header {\r\n  font-weight: 500;\r\n  margin-right: 60px;\r\n}\r\n\r\nbutton.closing {\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  padding: 2px 2px 2px 2px;\r\n}\r\n\r\nimg.x {\r\n  height: 40px;\r\n}\r\n\r\n.belongs-to-badge {\r\n  height: 40px;\r\n  margin-top: 8px;\r\n  font-size: 1.5rem;\r\n  margin-left: 400px;\r\n}\r\n\r\n.modal-inside-text {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.spinner-area {\r\n  height: 50px;\r\n}\r\n\r\n.disabled-look {\r\n  opacity: 0.5;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd29yay9wbGFubmluZy9wbGFubmluZy1tZ210L3BsYW5uaW5nLW1nbXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG9CQUFvQjtDQUNyQjs7QUFFRDtFQUNFLGdCQUFnQjtDQUNqQjs7QUFFRDtFQUNFLGlCQUFpQjtFQUNqQixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSwyQkFBbUI7RUFBbkIsd0JBQW1CO0VBQW5CLG1CQUFtQjtFQUNuQiw0QkFBb0I7RUFBcEIseUJBQW9CO0VBQXBCLG9CQUFvQjtFQUNwQix5QkFBeUI7Q0FDMUI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBRUQ7RUFDRSxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQixtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSxrQkFBa0I7Q0FDbkI7O0FBRUQ7RUFDRSxhQUFhO0NBQ2Q7O0FBR0Q7RUFDRSxhQUFhO0NBQ2QiLCJmaWxlIjoic3JjL2FwcC93b3JrL3BsYW5uaW5nL3BsYW5uaW5nLW1nbXQvcGxhbm5pbmctbWdtdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhZGRpbmctZm9yLXBsYW5uaW5nIHtcclxuICBwYWRkaW5nLWxlZnQ6IDIuNXB4O1xyXG59XHJcblxyXG4uYmlnLXRleHQge1xyXG4gIGZvbnQtc2l6ZTogMnJlbTtcclxufVxyXG5cclxuLnBsYW5uaW5nLWhlYWRlciB7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBtYXJnaW4tcmlnaHQ6IDYwcHg7XHJcbn1cclxuXHJcbmJ1dHRvbi5jbG9zaW5nIHtcclxuICB3aWR0aDogZml0LWNvbnRlbnQ7XHJcbiAgaGVpZ2h0OiBmaXQtY29udGVudDtcclxuICBwYWRkaW5nOiAycHggMnB4IDJweCAycHg7XHJcbn1cclxuXHJcbmltZy54IHtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbn1cclxuXHJcbi5iZWxvbmdzLXRvLWJhZGdlIHtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbiAgbWFyZ2luLXRvcDogOHB4O1xyXG4gIGZvbnQtc2l6ZTogMS41cmVtO1xyXG4gIG1hcmdpbi1sZWZ0OiA0MDBweDtcclxufVxyXG5cclxuLm1vZGFsLWluc2lkZS10ZXh0IHtcclxuICBmb250LXNpemU6IDEuNXJlbTtcclxufVxyXG5cclxuLnNwaW5uZXItYXJlYSB7XHJcbiAgaGVpZ2h0OiA1MHB4O1xyXG59XHJcblxyXG5cclxuLmRpc2FibGVkLWxvb2sge1xyXG4gIG9wYWNpdHk6IDAuNTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -6844,7 +7124,7 @@ module.exports = ".padding-for-planning{\r\n  padding-left: 2.5px;\r\n}\r\n\r\n.
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<jw-modal id=\"{{mgmtComponentid}}\">\n  <ng-container [ngSwitch]=\"activeWindow\" >\n    <ng-container [ngTemplateOutlet]=\"planning\" *ngSwitchCase=\"planningMgmtWindowEnum.PLANNING\"></ng-container>\n    <ng-container [ngTemplateOutlet]=\"dropdownMgmt\" *ngSwitchCase=\"planningMgmtWindowEnum.DROPDOWN_MGMT\"></ng-container>\n  </ng-container>\n</jw-modal>\n\n<ng-template #planning>\n  <div class=\"card bg-light\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text planning-header\">Planeeringud</span>\n      <span class=\"navbar-text badge badge-dark belongs-to-badge\">\n        {{ currentlyChosenColony.name + ' / ' + currentlyChosenHive.number}}\n      </span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentid)\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"container m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\" *ngIf=\"!timerRunning\">\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': isActiveResolveStateUnresolved}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(true)\"\n                  [disabled]=\"timerRunning\">\n                Tegemata\n              </label>\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': !isActiveResolveStateUnresolved}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"!isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(false)\"\n                  [disabled]=\"timerRunning\">\n                Tehtud\n              </label>\n            </div>\n            <div class=\"spinner-area\">\n              <app-spinner *ngIf=\"timerRunning\"></app-spinner>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row padding-for-planning\">\n            <app-planning\n              [currentlyChosenHive]=\"currentlyChosenHive\"\n              [planningComponentType]=\"isActiveResolveStateUnresolved ?\n                planningComponentEnum.PLANNING_MANAGEMENT_UNRESOLVED :\n                planningComponentEnum.PLANNING_MANAGEMENT_RESOLVED\"></app-planning>\n          </div>\n        </div>\n        <div class=\"col-7 pl-5\">\n          <app-planning-mgmt-edit-area\n            (callDropdownMgmt)=\"activeWindow = planningMgmtWindowEnum.DROPDOWN_MGMT\"\n            (isCountingDownToUpdateData)=\"onCountDownChange($event)\"\n            [isActiveResolveStateUnresolved]=\"isActiveResolveStateUnresolved\"\n            [currentlyChosenHive]=\"currentlyChosenHive\">\n          </app-planning-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</ng-template>\n\n\n<ng-template #dropdownMgmt>\n  <div class=\"card bg-light\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text planning-header\">Planeeringute rippmenüü</span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentid)\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"container m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\" *ngIf=\"!timerRunning\">\n              <button\n                class=\"btn btn-danger modal-inside-text\"\n                (click)=\"activeWindow = planningMgmtWindowEnum.PLANNING\">\n                Tagasi planeerima\n              </button>\n            </div>\n            <div class=\"spinner-area\">\n              <app-spinner *ngIf=\"timerRunning\"></app-spinner>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row padding-for-planning\">\n            <app-planning-dropdown></app-planning-dropdown>\n          </div>\n        </div>\n        <div class=\"col-7 pl-5 d-flex flex-column-reverse mb-5\">\n          <app-planning-dropdown-mgmt-edit-area\n            (isCountingDownToUpdateData)=\"onCountDownChange($event)\"></app-planning-dropdown-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</ng-template>\n\n"
+module.exports = "<jw-modal id=\"{{mgmtComponentid}}\" [fullScreen]=\"true\">\n  <ng-container [ngSwitch]=\"activeWindow\">\n    <ng-container [ngTemplateOutlet]=\"planning\" *ngSwitchCase=\"planningMgmtWindowEnum.PLANNING\"></ng-container>\n    <ng-container [ngTemplateOutlet]=\"dropdownMgmt\" *ngSwitchCase=\"planningMgmtWindowEnum.DROPDOWN_MGMT\"></ng-container>\n  </ng-container>\n</jw-modal>\n\n<ng-template #planning>\n  <div class=\"card bg-light h-100\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text planning-header\">Planeeringud</span>\n      <span class=\"navbar-text badge badge-dark belongs-to-badge\">\n        {{ currentlyChosenColony.name + ' / ' + currentlyChosenHive.number}}\n      </span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentid)\"\n        [disabled]=\"disableControls\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"card-body m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\" *ngIf=\"!timerRunning\">\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': isActiveResolveStateUnresolved, 'disabled-look': disableControls}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(true)\"\n                  [disabled]=\"disableControls\">\n                Tegemata\n              </label>\n              <label\n                class=\"btn btn-light btn-outline-secondary modal-inside-text\"\n                [ngClass]=\"{'active': !isActiveResolveStateUnresolved, 'disabled-look': disableControls}\">\n                <input\n                  type=\"radio\"\n                  name=\"planning_window_type\"\n                  [checked]=\"!isActiveResolveStateUnresolved\"\n                  (change)=\"radioBtnActiveResolveStateChange(false)\"\n                  [disabled]=\"disableControls\">\n                Tehtud\n              </label>\n            </div>\n            <div class=\"spinner-area\">\n              <app-spinner *ngIf=\"timerRunning\"></app-spinner>\n            </div>\n          </div>\n          <div class=\"row padding-for-planning\">\n            <app-planning\n              [currentlyChosenHive]=\"currentlyChosenHive\"\n              [planningComponentType]=\"isActiveResolveStateUnresolved ?\n                planningComponentEnum.PLANNING_MANAGEMENT_UNRESOLVED :\n                planningComponentEnum.PLANNING_MANAGEMENT_RESOLVED\"></app-planning>\n          </div>\n        </div>\n        <div class=\"col-7 d-flex flex-column-reverse\">\n          <app-planning-mgmt-edit-area\n            (callDropdownMgmt)=\"activeWindow = planningMgmtWindowEnum.DROPDOWN_MGMT\"\n            [isActiveResolveStateUnresolved]=\"isActiveResolveStateUnresolved\"\n            [currentlyChosenHive]=\"currentlyChosenHive\">\n          </app-planning-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</ng-template>\n\n\n<ng-template #dropdownMgmt>\n  <div class=\"card bg-light h-100\">\n    <div class=\"card-header nav\">\n      <span class=\"navbar-brand big-text planning-header\">Planeeringute rippmenüü</span>\n      <button\n        class=\"btn btn-danger nav-item closing ml-auto\"\n        (click)=\"modalService.close(mgmtComponentid)\"\n        [disabled]=\"disableControls\">\n        <img\n          src=\"assets/img/sulge.jpeg\"\n          class=\"x\">\n      </button>\n    </div>\n    <div class=\"card-body m-0\">\n      <div class=\"row\">\n        <div class=\"col-5\">\n          <div class=\"row justify-content-center p-4\">\n            <div class=\"btn-group btn-group-toggle\" *ngIf=\"!timerRunning\">\n              <button\n                class=\"btn btn-danger modal-inside-text\"\n                (click)=\"activeWindow = planningMgmtWindowEnum.PLANNING\"\n                [disabled]=\"disableControls\">\n                Tagasi planeerima\n              </button>\n            </div>\n            <div class=\"spinner-area\">\n              <app-spinner *ngIf=\"timerRunning\"></app-spinner>\n            </div>\n          </div>\n          <app-planning-dropdown></app-planning-dropdown>\n        </div>\n        <div class=\"col-7 d-flex flex-column-reverse mb-5\">\n          <app-planning-dropdown-mgmt-edit-area></app-planning-dropdown-mgmt-edit-area>\n        </div>\n      </div>\n    </div>\n  </div>\n</ng-template>\n\n"
 
 /***/ }),
 
@@ -6866,6 +7146,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _planning_component_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../planning-component.enum */ "./src/app/work/planning/planning-component.enum.ts");
 /* harmony import */ var _planning_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../planning.service */ "./src/app/work/planning/planning.service.ts");
 /* harmony import */ var _settings_shared_colony_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../settings/shared/colony.model */ "./src/app/settings/shared/colony.model.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
@@ -6875,27 +7157,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PlanningMgmtComponent = /** @class */ (function () {
-    function PlanningMgmtComponent(modalService, planningService) {
+    function PlanningMgmtComponent(modalService, planningService, executorService) {
         this.modalService = modalService;
         this.planningService = planningService;
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.executorService = executorService;
+        this.subscriptions = [];
         this.activeWindow = _planning_mgmt_window_enum__WEBPACK_IMPORTED_MODULE_4__["PlanningMgmtWindowEnum"].PLANNING;
         this.planningMgmtWindowEnum = _planning_mgmt_window_enum__WEBPACK_IMPORTED_MODULE_4__["PlanningMgmtWindowEnum"];
         this.isActiveResolveStateUnresolved = true;
         this.planningComponentEnum = _planning_component_enum__WEBPACK_IMPORTED_MODULE_5__["PlanningComponentEnum"];
     }
+    PlanningMgmtComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
+    };
     PlanningMgmtComponent.prototype.radioBtnActiveResolveStateChange = function (isActiveResolveStateUnresolved) {
         this.planningService.newPlanElementSelected.next(null);
         this.isActiveResolveStateUnresolved = isActiveResolveStateUnresolved;
     };
-    PlanningMgmtComponent.prototype.onCountDownChange = function (countDownState) {
-        this.timerRunning = countDownState;
-        this.isCountingDownToUpdateData.emit(countDownState);
+    PlanningMgmtComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], PlanningMgmtComponent.prototype, "isCountingDownToUpdateData", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_3__["Hive"])
@@ -6915,7 +7197,8 @@ var PlanningMgmtComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./planning-mgmt.component.css */ "./src/app/work/planning/planning-mgmt/planning-mgmt.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_jw_modal_jw_modal_service__WEBPACK_IMPORTED_MODULE_2__["JwModalService"],
-            _planning_service__WEBPACK_IMPORTED_MODULE_6__["PlanningService"]])
+            _planning_service__WEBPACK_IMPORTED_MODULE_6__["PlanningService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_8__["ExecutorService"]])
     ], PlanningMgmtComponent);
     return PlanningMgmtComponent;
 }());
@@ -6942,7 +7225,7 @@ module.exports = ".planning-section-height-for-work-dashboard {\r\n  height: 330
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"currentlyChosenHive\">\n  <div class=\"card bg-light vertical-paddings\" [ngClass]=\"getHeight()\">\n    <div\n      class=\"card-body scrolling-area\"\n      id=\"planningScrollArea\"\n      [ngClass]=\"{'no-plans-to-show-for-create-wide-enough':\n      planningComponentType != planningComponentEnum.WORK_DASHBOARD}\">\n      <ng-container *ngIf=\"planningComponentType === planningComponentEnum.WORK_DASHBOARD\">\n        <button\n          *ngIf=\"currentlyChosenHive.unresolvedPlanElements &&\n            currentlyChosenHive.unresolvedPlanElements.length >= MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED\"\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-top\"\n          (click)=\"onOpenPlanning()\">\n          Haldan planeeringuid\n          <span class=\"badge badge-dark button-badge\">\n            {{currentlyChosenHive.unresolvedPlanElements ? currentlyChosenHive.unresolvedPlanElements.length : '0' }}\n          </span>\n        </button>\n      </ng-container>\n\n\n      <app-plan-element\n        *ngFor=\"let plan of getRelevantPlansList()\"\n        [plan]=\"plan\"\n        [planningComponentType]=\"planningComponentType\"\n        [currentlyChosenHive]=\"currentlyChosenHive\"\n        [memorizedActiveElementId]=\"memorizedActivePlanElementId\"></app-plan-element>\n\n      <ng-container *ngIf=\"planningComponentType === planningComponentEnum.WORK_DASHBOARD\">\n        <button\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-bottom\"\n          (click)=\"onOpenPlanning()\"\n          [ngClass]=\"{'no-plans-to-show-for-level-button': !currentlyChosenHive.unresolvedPlanElements ||\n                                                currentlyChosenHive.unresolvedPlanElements &&\n                                                 currentlyChosenHive.unresolvedPlanElements.length == 0}\">\n          Haldan planeeringuid\n          <span class=\"badge badge-dark button-badge\">\n            {{currentlyChosenHive.unresolvedPlanElements ? currentlyChosenHive.unresolvedPlanElements.length : '0' }}\n          </span>\n        </button>\n      </ng-container>\n\n    </div>\n  </div>\n</ng-container>\n"
+module.exports = "<ng-container *ngIf=\"currentlyChosenHive\">\n  <div class=\"card bg-light vertical-paddings\" [ngClass]=\"getHeight()\">\n    <div\n      class=\"card-body scrolling-area pt-1 pb-1\"\n      id=\"planningScrollArea\"\n      [ngClass]=\"{'no-plans-to-show-for-create-wide-enough':\n      planningComponentType != planningComponentEnum.WORK_DASHBOARD}\">\n      <ng-container *ngIf=\"planningComponentType === planningComponentEnum.WORK_DASHBOARD\">\n        <button\n          *ngIf=\"currentlyChosenHive.unresolvedPlanElements &&\n            currentlyChosenHive.unresolvedPlanElements.length >= MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED\"\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-top\"\n          (click)=\"onOpenPlanning()\">\n          Haldan planeeringuid\n          <span class=\"badge badge-dark button-badge\">\n            {{currentlyChosenHive.unresolvedPlanElements ? currentlyChosenHive.unresolvedPlanElements.length : '0' }}\n          </span>\n        </button>\n      </ng-container>\n\n\n      <app-plan-element\n        *ngFor=\"let plan of getRelevantPlansList()\"\n        [plan]=\"plan\"\n        [planningComponentType]=\"planningComponentType\"\n        [currentlyChosenHive]=\"currentlyChosenHive\"\n        [memorizedActiveElementId]=\"memorizedActivePlanElementId\"></app-plan-element>\n\n      <ng-container *ngIf=\"planningComponentType === planningComponentEnum.WORK_DASHBOARD\">\n        <button\n          type=\"button\"\n          class=\"btn btn-light btn-outline-secondary btn-block main-bottom\"\n          (click)=\"onOpenPlanning()\"\n          [ngClass]=\"{'no-plans-to-show-for-level-button': !currentlyChosenHive.unresolvedPlanElements ||\n                                                currentlyChosenHive.unresolvedPlanElements &&\n                                                 currentlyChosenHive.unresolvedPlanElements.length == 0}\">\n          Haldan planeeringuid\n          <span class=\"badge badge-dark button-badge\">\n            {{currentlyChosenHive.unresolvedPlanElements ? currentlyChosenHive.unresolvedPlanElements.length : '0' }}\n          </span>\n        </button>\n      </ng-container>\n\n    </div>\n  </div>\n</ng-container>\n"
 
 /***/ }),
 
@@ -6974,18 +7257,18 @@ var PlanningComponent = /** @class */ (function () {
         this.modalService = modalService;
         this.planningComponentEnum = _planning_component_enum__WEBPACK_IMPORTED_MODULE_3__["PlanningComponentEnum"];
         this.MIN_NO_OF_PLANS_WHEN_SECOND_BUTTON_ADDED = 3;
+        this.subscriptions = [];
     }
     PlanningComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.document = document;
-        this.newPlanElementSelectedSubscription =
-            this.planningService.newPlanElementSelected.asObservable().subscribe(function (np) {
-                if (!np)
-                    _this.memorizedActivePlanElementId = undefined;
-                else {
-                    _this.memorizedActivePlanElementId = np.id;
-                }
-            });
+        this.subscriptions.push(this.planningService.newPlanElementSelected.asObservable().subscribe(function (np) {
+            if (!np)
+                _this.memorizedActivePlanElementId = undefined;
+            else {
+                _this.memorizedActivePlanElementId = np.id;
+            }
+        }));
     };
     PlanningComponent.prototype.ngOnChanges = function () {
         setTimeout(function () { return document.getElementById('planningScrollArea').scrollTop = Number.MAX_SAFE_INTEGER; }, 0);
@@ -7014,7 +7297,7 @@ var PlanningComponent = /** @class */ (function () {
         }
     };
     PlanningComponent.prototype.ngOnDestroy = function () {
-        this.newPlanElementSelectedSubscription.unsubscribe();
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -7057,6 +7340,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _planning_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./planning-data.service */ "./src/app/work/planning/planning-data.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
@@ -7065,25 +7352,72 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PlanningService = /** @class */ (function () {
-    function PlanningService(spinnerService, planningDataService, coloniesService) {
+    function PlanningService(spinnerService, planningDataService, coloniesService, executorService) {
+        var _this = this;
         this.spinnerService = spinnerService;
         this.planningDataService = planningDataService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
         this.newPlanElementSelected = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.newPlanDropdownElementSelected = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.showPlanningWindow = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
+        this.updatePlan = function (plan, hiveId) {
+            _this.planningDataService.updatePlan(plan, hiveId)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
+                .subscribe(function () { return _this.coloniesService.retrieveColonies(); });
+        };
+        this.updateDropdownElement = function (element) {
+            _this.spinnerService.setSpinnerStatus.next(true);
+            _this.planningDataService.updateDropdownElement(element).subscribe(function (data) {
+                if (data.length === 0) {
+                    _this.planningDropDown = undefined;
+                }
+                else {
+                    _this.planningDropDown = data;
+                    _this.sortPlanningDropdownByOrder();
+                }
+            });
+            _this.spinnerService.setSpinnerStatus.next(false);
+        };
+        this.updateAllDropdownElements = function () {
+            _this.planningDataService.updateAllDropdownElements(_this.planningDropDown).subscribe(function (data) {
+                if (data.length === 0) {
+                    _this.planningDropDown = undefined;
+                }
+                else {
+                    _this.planningDropDown = data;
+                    _this.sortPlanningDropdownByOrder();
+                }
+            });
+        };
     }
+    PlanningService.prototype.sortPlanningDropdownByOrder = function () {
+        this.planningDropDown.sort(function (a, b) { return b.orderNumber - a.orderNumber; });
+    };
+    PlanningService.prototype.increaseElementOrderNumber = function (elementIdToMove) {
+        var elementMoved = this.planningDropDown.find(function (e) { return e.id === elementIdToMove; });
+        if (elementMoved.orderNumber == this.planningDropDown.length) {
+            return;
+        }
+        this.planningDropDown.find(function (p) { return p.orderNumber == elementMoved.orderNumber + 1; }).orderNumber--;
+        this.planningDropDown.find(function (p) { return p.id == elementMoved.id; }).orderNumber++;
+        this.sortPlanningDropdownByOrder();
+        this.executorService.exeWithTimer(this.updateAllDropdownElements, [this.planningDropDown], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_ORDERING);
+    };
+    PlanningService.prototype.decreaseElementOrderNumber = function (elementIdToMove) {
+        var elementMoved = this.planningDropDown.find(function (e) { return e.id === elementIdToMove; });
+        if (elementMoved.orderNumber == 1) {
+            return;
+        }
+        this.planningDropDown.find(function (p) { return p.orderNumber == elementMoved.orderNumber - 1; }).orderNumber++;
+        this.planningDropDown.find(function (p) { return p.id == elementMoved.id; }).orderNumber--;
+        this.sortPlanningDropdownByOrder();
+        this.executorService.exeWithTimer(this.updateAllDropdownElements, [this.planningDropDown], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_8__["ControlsProtectionIdEnum"].PLANNING_DROPDOWN_ORDERING);
+    };
     PlanningService.prototype.addNewPlan = function (newPlan, hiveId) {
         var _this = this;
         this.spinnerService.setSpinnerStatus.next(true);
         this.planningDataService.addNewPlan(newPlan, hiveId)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
-            .subscribe(function () { return _this.coloniesService.retrieveColonies(); });
-    };
-    PlanningService.prototype.updatePlan = function (plan, hiveId) {
-        var _this = this;
-        this.spinnerService.setSpinnerStatus.next(true);
-        this.planningDataService.updatePlan(plan, hiveId)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["take"])(1))
             .subscribe(function () { return _this.coloniesService.retrieveColonies(); });
     };
@@ -7098,83 +7432,43 @@ var PlanningService = /** @class */ (function () {
             }
             else {
                 _this.planningDropDown = data;
+                _this.sortPlanningDropdownByOrder();
             }
         });
     };
     PlanningService.prototype.createDropdownElement = function (newDropdownElement) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinnerService.setSpinnerStatus.next(true);
-                        return [4 /*yield*/, this.planningDataService.createDropdownElement(newDropdownElement).subscribe(function (data) {
-                                if (data.length === 0) {
-                                    _this.planningDropDown = undefined;
-                                }
-                                else {
-                                    _this.planningDropDown = data;
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.spinnerService.setSpinnerStatus.next(false);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    PlanningService.prototype.updateDropdownElement = function (element) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinnerService.setSpinnerStatus.next(true);
-                        return [4 /*yield*/, this.planningDataService.createDropdownElement(element).subscribe(function (data) {
-                                if (data.length === 0) {
-                                    _this.planningDropDown = undefined;
-                                }
-                                else {
-                                    _this.planningDropDown = data;
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.spinnerService.setSpinnerStatus.next(false);
-                        return [2 /*return*/];
-                }
-            });
-        });
+        var _this = this;
+        return this.planningDataService.createDropdownElement(newDropdownElement)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (data) {
+            if (data.length === 0) {
+                _this.planningDropDown = undefined;
+            }
+            else {
+                _this.planningDropDown = data;
+                _this.sortPlanningDropdownByOrder();
+            }
+        }));
     };
     PlanningService.prototype.deleteDropdownElement = function (newDropdownElement) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinnerService.setSpinnerStatus.next(true);
-                        return [4 /*yield*/, this.planningDataService.deleteDropdownElement(newDropdownElement.id).subscribe(function (data) {
-                                if (data.length === 0) {
-                                    _this.planningDropDown = undefined;
-                                }
-                                else {
-                                    _this.planningDropDown = data;
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.spinnerService.setSpinnerStatus.next(false);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        this.spinnerService.setSpinnerStatus.next(true);
+        this.planningDataService.deleteDropdownElement(newDropdownElement.id).subscribe(function (data) {
+            if (data.length === 0) {
+                _this.planningDropDown = undefined;
+            }
+            else {
+                _this.planningDropDown = data;
+                _this.sortPlanningDropdownByOrder();
+            }
+            _this.spinnerService.setSpinnerStatus.next(false);
         });
     };
     PlanningService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_3__["SpinnerService"],
             _planning_data_service__WEBPACK_IMPORTED_MODULE_4__["PlanningDataService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_5__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_7__["ExecutorService"]])
     ], PlanningService);
     return PlanningService;
 }());
@@ -7379,7 +7673,7 @@ var SizeDataService = /** @class */ (function () {
     };
     SizeDataService.prototype.onUpdateSizeLog = function (hiveIdThatIsBeingUpdated, sizeLogToUpdate) {
         var URL = _util_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"].backEndURL + 'api/hive/' + hiveIdThatIsBeingUpdated + '/sizelogs/' + sizeLogToUpdate.id;
-        return this.httpClient.put(URL, sizeLogToUpdate).toPromise();
+        return this.httpClient.put(URL, sizeLogToUpdate);
     };
     SizeDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -7410,7 +7704,7 @@ module.exports = ".whiteBox {\r\n  width: 240px;\r\n  background-color: white;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div\r\n  *ngIf=\"sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\" style=\"margin-bottom: 35px\">\r\n    <button type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary minus\"\r\n            (click)=\"onDecreaseMagazineSize()\"> - </button>\r\n    <span *ngIf=\"sizeLog.hasMagazine\">{{ sizeLog.magazineSize }}%</span>\r\n    <span *ngIf=\"!sizeLog.hasMagazine\">-</span>\r\n    <button type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseMagazineSize()\"> + </button>\r\n  </div>\r\n  <div class=\"whiteBox\" style=\"margin-bottom: 10px\">\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseAddedNumOfFrames()\"> - </button>\r\n    +{{ sizeLog.addedNumOfFrames }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseAddedNumOfFrames()\"> + </button>\r\n    <br>\r\n    <b>{{ sizeLog.totalNumOfFrames }}</b>\r\n    <br>\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseRemovedNumOfFrames()\"> - </button>\r\n    -{{ sizeLog.removedNumOfFrames }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseRemovedNumOfFrames()\"> + </button>\r\n  </div>\r\n  <h2 style=\"text-align: center;margin-left: 10px; margin-bottom: 13px\">\r\n    <span *ngIf=\"blockName === 'current'\">täna</span>\r\n    <span *ngIf=\"blockName != 'current'\">{{ sizeLog.day | timeAgo }}</span>\r\n  </h2>\r\n  <div class=\"whiteBox\">\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseRemovedCocoons()\"> - </button>\r\n    {{ sizeLog.removedCocoons }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseRemovedCocoons()\"> + </button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div\r\n  *ngIf=\"sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\" style=\"margin-bottom: 35px\">\r\n    <button type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary minus\"\r\n            (click)=\"onDecreaseMagazineSize()\"\r\n            [disabled]=\"disableControls\"> - </button>\r\n    <span *ngIf=\"sizeLog.hasMagazine\">{{ sizeLog.magazineSize }}%</span>\r\n    <span *ngIf=\"!sizeLog.hasMagazine\">-</span>\r\n    <button type=\"button\"\r\n            class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseMagazineSize()\"\r\n            [disabled]=\"disableControls\"> + </button>\r\n  </div>\r\n  <div class=\"whiteBox\" style=\"margin-bottom: 10px\">\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseAddedNumOfFrames()\"\r\n            [disabled]=\"disableControls\"> - </button>\r\n    +{{ sizeLog.addedNumOfFrames }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseAddedNumOfFrames()\"\r\n            [disabled]=\"disableControls\"> + </button>\r\n    <br>\r\n    <b>{{ sizeLog.totalNumOfFrames }}</b>\r\n    <br>\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseRemovedNumOfFrames()\"\r\n            [disabled]=\"disableControls\"> - </button>\r\n    -{{ sizeLog.removedNumOfFrames }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseRemovedNumOfFrames()\"\r\n            [disabled]=\"disableControls\"> + </button>\r\n  </div>\r\n  <h2 style=\"text-align: center;margin-left: 10px; margin-bottom: 13px\">\r\n    <span *ngIf=\"blockName === 'current'\">täna</span>\r\n    <span *ngIf=\"blockName != 'current'\">{{ sizeLog.day | timeAgo }}</span>\r\n  </h2>\r\n  <div class=\"whiteBox\">\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary minus\"\r\n            style=\"float: left\"\r\n            (click)=\"onDecreaseRemovedCocoons()\"\r\n            [disabled]=\"disableControls\"> - </button>\r\n    {{ sizeLog.removedCocoons }}\r\n    <button type=\"button\" class=\"btn btn-light btn-outline-secondary plus\"\r\n            style=\"float: right\"\r\n            (click)=\"onIncreaseRemovedCocoons()\"\r\n            [disabled]=\"disableControls\"> + </button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7427,16 +7721,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _size_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../size.service */ "./src/app/work/size/size.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+/* harmony import */ var _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../util/executor/controls-protection-id.enum */ "./src/app/util/executor/controls-protection-id.enum.ts");
+
+
 
 
 
 var SizeEditComponent = /** @class */ (function () {
-    function SizeEditComponent(sizeService) {
+    function SizeEditComponent(sizeService, executorService) {
         this.sizeService = sizeService;
+        this.executorService = executorService;
         this.sizeLogs = null;
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.timerRunning = false;
-        this.shouldRunAnotherRound = false;
+        this.subscriptions = [];
     }
     SizeEditComponent.prototype.ngOnChanges = function () {
         if (this.sizeLogs) {
@@ -7451,32 +7748,42 @@ var SizeEditComponent = /** @class */ (function () {
             }
         }
     };
+    SizeEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) {
+            if (!ps.disableControls) {
+                _this.disableControls = false;
+                return;
+            }
+            _this.disableControls = ps.omittedControlsId != _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__["ControlsProtectionIdEnum"].SIZELOG;
+        }));
+    };
     SizeEditComponent.prototype.onIncreaseMagazineSize = function () {
         if (this.sizeLog.hasMagazine === false) {
             this.sizeLog.magazineSize = 0;
             this.sizeLog.hasMagazine = true;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
         else if (this.sizeLog.hasMagazine === true && this.sizeLog.magazineSize <= 80) {
             this.sizeLog.magazineSize += 20;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
     };
     SizeEditComponent.prototype.onDecreaseMagazineSize = function () {
         if (this.sizeLog.hasMagazine === true && this.sizeLog.magazineSize >= 20) {
             this.sizeLog.magazineSize -= 20;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
         else if (this.sizeLog.hasMagazine === true && this.sizeLog.magazineSize === 0) {
             this.sizeLog.hasMagazine = false;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
     };
     SizeEditComponent.prototype.onIncreaseAddedNumOfFrames = function () {
         if (this.sizeLog.addedNumOfFrames <= 98 && this.sizeLog.totalNumOfFrames <= 98) {
             this.sizeLog.addedNumOfFrames += 1;
             this.sizeLog.totalNumOfFrames += 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
             if (this.blockName === 'previous') {
                 this.sizeLogs[0].totalNumOfFrames++;
             }
@@ -7490,7 +7797,7 @@ var SizeEditComponent = /** @class */ (function () {
         if (this.sizeLog.addedNumOfFrames >= 1 && this.sizeLog.totalNumOfFrames >= 1) {
             this.sizeLog.addedNumOfFrames -= 1;
             this.sizeLog.totalNumOfFrames -= 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
             if (this.blockName === 'previous') {
                 this.sizeLogs[0].totalNumOfFrames--;
             }
@@ -7504,7 +7811,7 @@ var SizeEditComponent = /** @class */ (function () {
         if (this.sizeLog.removedNumOfFrames <= 98 && this.sizeLog.totalNumOfFrames >= 1) {
             this.sizeLog.removedNumOfFrames += 1;
             this.sizeLog.totalNumOfFrames -= 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
             if (this.blockName === 'previous') {
                 this.sizeLogs[0].totalNumOfFrames--;
             }
@@ -7518,7 +7825,7 @@ var SizeEditComponent = /** @class */ (function () {
         if (this.sizeLog.removedNumOfFrames >= 1 && this.sizeLog.totalNumOfFrames <= 98) {
             this.sizeLog.removedNumOfFrames -= 1;
             this.sizeLog.totalNumOfFrames += 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
             if (this.blockName === 'previous') {
                 this.sizeLogs[0].totalNumOfFrames++;
             }
@@ -7531,50 +7838,28 @@ var SizeEditComponent = /** @class */ (function () {
     SizeEditComponent.prototype.onDecreaseRemovedCocoons = function () {
         if (this.sizeLog.removedCocoons >= 1) {
             this.sizeLog.removedCocoons -= 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
     };
     SizeEditComponent.prototype.onIncreaseRemovedCocoons = function () {
         if (this.sizeLog.removedCocoons <= 98) {
             this.sizeLog.removedCocoons += 1;
-            this.startCountdownToUpdateSizelogAtBackend();
+            this.callUpdate();
         }
     };
-    SizeEditComponent.prototype.startCountdownToUpdateSizelogAtBackend = function () {
-        var _this = this;
-        if (this.timerRunning) {
-            this.shouldRunAnotherRound = true;
-            // console.log('...must run one more time');
+    SizeEditComponent.prototype.callUpdate = function () {
+        if (this.blockName === 'current') {
+            this.executorService.exeWithTimer(this.sizeService.updateSizeData, [this.idOfCurrentHive, [this.sizeLog]], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__["ControlsProtectionIdEnum"].SIZELOG);
         }
-        else {
-            setTimeout(function () {
-                _this.timerRunning = false;
-                if (_this.shouldRunAnotherRound) {
-                    _this.shouldRunAnotherRound = false;
-                    _this.startCountdownToUpdateSizelogAtBackend();
-                    // console.log('...will run for a second time');
-                }
-                else {
-                    // console.log('-> send request')
-                    if (_this.blockName === 'current') {
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLog);
-                    }
-                    if (_this.blockName === 'previous') {
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLogs[0]);
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLog);
-                    }
-                    if (_this.blockName === 'beforePrevious') {
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLogs[0]);
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLogs[1]);
-                        _this.sizeService.onUpdateSizeData(_this.idOfCurrentHive, _this.sizeLog);
-                    }
-                    _this.isCountingDownToUpdateData.emit(false);
-                }
-            }, 1200);
-            this.timerRunning = true;
-            this.isCountingDownToUpdateData.emit(true);
-            // console.log('! started Timer');
+        if (this.blockName === 'previous') {
+            this.executorService.exeWithTimer(this.sizeService.updateSizeData, [this.idOfCurrentHive, [this.sizeLogs[0], this.sizeLog]], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__["ControlsProtectionIdEnum"].SIZELOG);
         }
+        if (this.blockName === 'beforePrevious') {
+            this.executorService.exeWithTimer(this.sizeService.updateSizeData, [this.idOfCurrentHive, [this.sizeLogs[0], this.sizeLogs[1], this.sizeLog]], _util_executor_controls_protection_id_enum__WEBPACK_IMPORTED_MODULE_4__["ControlsProtectionIdEnum"].SIZELOG);
+        }
+    };
+    SizeEditComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -7588,17 +7873,14 @@ var SizeEditComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
     ], SizeEditComponent.prototype, "sizeLogs", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], SizeEditComponent.prototype, "isCountingDownToUpdateData", void 0);
     SizeEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-size-edit',
             template: __webpack_require__(/*! ./size-edit.component.html */ "./src/app/work/size/size-edit/size-edit.component.html"),
             styles: [__webpack_require__(/*! ./size-edit.component.css */ "./src/app/work/size/size-edit/size-edit.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_size_service__WEBPACK_IMPORTED_MODULE_2__["SizeService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_size_service__WEBPACK_IMPORTED_MODULE_2__["SizeService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_3__["ExecutorService"]])
     ], SizeEditComponent);
     return SizeEditComponent;
 }());
@@ -7625,7 +7907,7 @@ module.exports = ".whiteBox {\r\n  width: 100px;\r\n  background-color: white;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div\r\n  *ngIf=\"!sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\"\r\n    style=\"margin-bottom: 27px\"\r\n    align=\"center\">\r\n    <span> - </span>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    -\r\n    <br>\r\n    <b>-</b>\r\n    <br>\r\n    -\r\n  </div>\r\n  <div align=\"center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-light btn-outline-secondary\"\r\n      [disabled]=\"true\">\r\n      <span>N/A</span>\r\n    </button>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    -\r\n  </div>\r\n</div>\r\n\r\n\r\n<div\r\n  *ngIf=\"sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\"\r\n    style=\"margin-bottom: 27px\"\r\n    align=\"center\">\r\n    <span *ngIf=\"sizeLog.hasMagazine\">{{ sizeLog.magazineSize }}%</span>\r\n    <span *ngIf=\"!sizeLog.hasMagazine\">-</span>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    +{{ sizeLog.addedNumOfFrames }}\r\n    <br>\r\n    <b>{{ sizeLog.totalNumOfFrames }}</b>\r\n    <br>\r\n    -{{ sizeLog.removedNumOfFrames }}\r\n  </div>\r\n  <div align=\"center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-light btn-outline-secondary\"\r\n      (click)=\"chooseMyBlockToEdit()\"\r\n      [disabled]=\"isCountingDownToUpdateData\">\r\n      <span *ngIf=\"blockName === 'current'\">täna</span>\r\n      <span *ngIf=\"blockName != 'current'\">{{ sizeLog.day | timeAgo }}</span>\r\n    </button>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    {{ sizeLog.removedCocoons }}\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div\r\n  *ngIf=\"!sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\"\r\n    style=\"margin-bottom: 27px\"\r\n    align=\"center\">\r\n    <span> - </span>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    -\r\n    <br>\r\n    <b>-</b>\r\n    <br>\r\n    -\r\n  </div>\r\n  <div align=\"center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-light btn-outline-secondary\"\r\n      [disabled]=\"true\">\r\n      <span>N/A</span>\r\n    </button>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    -\r\n  </div>\r\n</div>\r\n\r\n\r\n<div\r\n  *ngIf=\"sizeLog\"\r\n  align=\"center\">\r\n  <div\r\n    class=\"whiteBox\"\r\n    style=\"margin-bottom: 27px\"\r\n    align=\"center\">\r\n    <span *ngIf=\"sizeLog.hasMagazine\">{{ sizeLog.magazineSize }}%</span>\r\n    <span *ngIf=\"!sizeLog.hasMagazine\">-</span>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    +{{ sizeLog.addedNumOfFrames }}\r\n    <br>\r\n    <b>{{ sizeLog.totalNumOfFrames }}</b>\r\n    <br>\r\n    -{{ sizeLog.removedNumOfFrames }}\r\n  </div>\r\n  <div align=\"center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-light btn-outline-secondary\"\r\n      (click)=\"chooseMyBlockToEdit()\"\r\n      [disabled]=\"disableControls\">\r\n      <span *ngIf=\"blockName === 'current'\">täna</span>\r\n      <span *ngIf=\"blockName != 'current'\">{{ sizeLog.day | timeAgo }}</span>\r\n    </button>\r\n  </div>\r\n  <div\r\n    class=\"whiteBox\"\r\n    align=\"center\">\r\n    {{ sizeLog.removedCocoons }}\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -7641,12 +7923,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SizeViewComponent", function() { return SizeViewComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 var SizeViewComponent = /** @class */ (function () {
-    function SizeViewComponent() {
+    function SizeViewComponent(executorService) {
+        this.executorService = executorService;
         this.sizeLogs = null;
         this.editMEEEE = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.subscriptions = [];
     }
     SizeViewComponent.prototype.ngOnChanges = function () {
         if (this.sizeLogs) {
@@ -7661,8 +7947,15 @@ var SizeViewComponent = /** @class */ (function () {
             }
         }
     };
+    SizeViewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
+    };
     SizeViewComponent.prototype.chooseMyBlockToEdit = function () {
         this.editMEEEE.emit(this.blockName);
+    };
+    SizeViewComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -7673,10 +7966,6 @@ var SizeViewComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
     ], SizeViewComponent.prototype, "sizeLogs", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
-    ], SizeViewComponent.prototype, "isCountingDownToUpdateData", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], SizeViewComponent.prototype, "editMEEEE", void 0);
@@ -7686,7 +7975,7 @@ var SizeViewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./size-view.component.html */ "./src/app/work/size/size-view/size-view.component.html"),
             styles: [__webpack_require__(/*! ./size-view.component.css */ "./src/app/work/size/size-view/size-view.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_executor_executor_service__WEBPACK_IMPORTED_MODULE_2__["ExecutorService"]])
     ], SizeViewComponent);
     return SizeViewComponent;
 }());
@@ -7713,7 +8002,7 @@ module.exports = ".whiteBox {\r\n  width: 110px;\r\n  background-color: white;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card bg-light\" style=\"margin-top: 5px\">\r\n  <div class=\"container\" style=\"padding: 5px\">\r\n    <div class=\"row\">\r\n      <div [ngClass]=\"getColWidth('beforePrevious')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'beforePrevious'\"\r\n          [blockName]=\"'beforePrevious'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [isCountingDownToUpdateData]=\"isCountingDown\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'beforePrevious'\"\r\n          [blockName]=\"'beforePrevious'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"\r\n          (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"></app-size-edit>\r\n      </div>\r\n      <div [ngClass]=\"getColWidth('previous')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'previous'\"\r\n          [blockName]=\"'previous'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [isCountingDownToUpdateData]=\"isCountingDown\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'previous'\"\r\n          [blockName]=\"'previous'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"\r\n          (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"></app-size-edit>\r\n      </div>\r\n      <div class=\"col-2\">\r\n        <div class=\"whiteBox\" style=\"margin-bottom: 27px\">\r\n          Mag\r\n        </div>\r\n        <img src=\"assets/img/frame.jpg\" alt=\"\">\r\n        <div class=\"whiteBox\" style=\"margin-top: 56px\">\r\n          kupp\r\n        </div>\r\n      </div>\r\n      <div [ngClass]=\"getColWidth('current')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'current'\"\r\n          [blockName]=\"'current'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [isCountingDownToUpdateData]=\"isCountingDown\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'current'\"\r\n          [blockName]=\"'current'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"\r\n          (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"></app-size-edit>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card bg-light\" style=\"margin-top: 5px\">\r\n  <div class=\"container\" style=\"padding: 5px\">\r\n    <div class=\"row\">\r\n      <div [ngClass]=\"getColWidth('beforePrevious')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'beforePrevious'\"\r\n          [blockName]=\"'beforePrevious'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'beforePrevious'\"\r\n          [blockName]=\"'beforePrevious'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"></app-size-edit>\r\n      </div>\r\n      <div [ngClass]=\"getColWidth('previous')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'previous'\"\r\n          [blockName]=\"'previous'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'previous'\"\r\n          [blockName]=\"'previous'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"></app-size-edit>\r\n      </div>\r\n      <div class=\"col-2\">\r\n        <div class=\"whiteBox\" style=\"margin-bottom: 27px\">\r\n          Mag\r\n        </div>\r\n        <img src=\"assets/img/frame.jpg\" alt=\"\">\r\n        <div class=\"whiteBox\" style=\"margin-top: 56px\">\r\n          kupp\r\n        </div>\r\n      </div>\r\n      <div [ngClass]=\"getColWidth('current')\">\r\n        <app-size-view\r\n          *ngIf=\"blockToEdit != 'current'\"\r\n          [blockName]=\"'current'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          (editMEEEE)=\"chooseNewBlockToEdit($event)\"></app-size-view>\r\n        <app-size-edit\r\n          *ngIf=\"blockToEdit === 'current'\"\r\n          [blockName]=\"'current'\"\r\n          [sizeLogs]=\"currentlyChosenHive.threeSizeLogs\"\r\n          [idOfCurrentHive]=\"currentlyChosenHive.id\"></app-size-edit>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7735,22 +8024,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var SizeComponent = /** @class */ (function () {
     function SizeComponent() {
-        this.isCountingDownToUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.isCountingDown = false;
         this.blockToEdit = 'current';
         this.sizeLogCurrent = null;
         this.sizeLogPrevious = null;
         this.sizeLogBeforePrevious = null;
     }
-    SizeComponent.prototype.ngOnChanges = function () {
-        this.blockToEdit = 'current';
-    };
     SizeComponent.prototype.chooseNewBlockToEdit = function (blockToEditNow) {
         this.blockToEdit = blockToEditNow;
-    };
-    SizeComponent.prototype.notifyIfIsCountingDownToUpdateData = function (isCountingDownToUpdateData) {
-        this.isCountingDownToUpdateData.emit(isCountingDownToUpdateData);
-        this.isCountingDown = isCountingDownToUpdateData;
     };
     SizeComponent.prototype.getColWidth = function (blockName) {
         return this.blockToEdit === blockName ? 'col-4' : 'col-3';
@@ -7759,17 +8039,12 @@ var SizeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _settings_shared_hive_model__WEBPACK_IMPORTED_MODULE_2__["Hive"])
     ], SizeComponent.prototype, "currentlyChosenHive", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], SizeComponent.prototype, "isCountingDownToUpdateData", void 0);
     SizeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-size',
             template: __webpack_require__(/*! ./size.component.html */ "./src/app/work/size/size.component.html"),
             styles: [__webpack_require__(/*! ./size.component.css */ "./src/app/work/size/size.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        })
     ], SizeComponent);
     return SizeComponent;
 }());
@@ -7793,6 +8068,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _size_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./size-data.service */ "./src/app/work/size/size-data.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
 
 
 
@@ -7800,13 +8077,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var SizeService = /** @class */ (function () {
     function SizeService(sizeDataService, spinnerService, coloniesService) {
+        var _this = this;
         this.sizeDataService = sizeDataService;
         this.spinnerService = spinnerService;
         this.coloniesService = coloniesService;
+        this.updateSizeData = function (hiveIdThatIsUpdated, sizeLogsToUpdate) {
+            sizeLogsToUpdate.forEach(function (s) { return _this.onUpdateSizeData(hiveIdThatIsUpdated, s); });
+        };
     }
     SizeService.prototype.onUpdateSizeData = function (hiveIdThatIsUpdated, sizeLogToUpdate) {
         var _this = this;
-        return this.sizeDataService.onUpdateSizeLog(hiveIdThatIsUpdated, sizeLogToUpdate).then(function () { return _this.coloniesService.retrieveColonies(); });
+        return this.sizeDataService.onUpdateSizeLog(hiveIdThatIsUpdated, sizeLogToUpdate)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["take"])(1))
+            .subscribe(function () { return _this.coloniesService.retrieveColonies(); });
     };
     SizeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
@@ -7839,7 +8122,7 @@ module.exports = ".gray-background {\r\n  background-color: gray;\r\n}\r\n\r\nbu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\" style=\"margin: 0 !important; background-color: gray\" *ngIf=\"colonies\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"col-sm-1\">\r\n      <a routerLink=\"/settings\" *ngIf=\"!isCountingDownToUpdateData\">\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-light btn-outline-secondary\">\r\n          <img\r\n            src=\"assets/img/settingsView.png\"\r\n            height=\"30px\"\r\n          >\r\n        </button>\r\n      </a>\r\n      <app-spinner *ngIf=\"isCountingDownToUpdateData\"></app-spinner>\r\n    </div>\r\n    <div class=\"col-sm-5\">\r\n      <select\r\n        name=\"colony\"\r\n        class=\"custom-select\"\r\n        [(ngModel)]=\"currentlySelectedColonyId\"\r\n        (change)=\"coloniesService.notifyColonyHiveSelection(+currentlySelectedColonyId, +currentlySelectedHiveId)\"\r\n        [disabled]=\"isCountingDownToUpdateData\">\r\n        <optgroup>\r\n          <option value=\"\" disabled selected hidden>Vali koloonia...</option>\r\n          <option\r\n            *ngFor=\"let colony of colonies\"\r\n            [value]=\"colony.id\"> {{ colony.name }}</option>\r\n        </optgroup>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-sm-5\" *ngIf=\"currentlySelectedColony\">\r\n      <select\r\n        name=\"hive\"\r\n        class=\"custom-select\"\r\n        [(ngModel)]=\"currentlySelectedHiveId\"\r\n        (change)=\"coloniesService.notifyColonyHiveSelection(+currentlySelectedColonyId, +currentlySelectedHiveId)\"\r\n        [disabled]=\"isCountingDownToUpdateData\">\r\n        <optgroup>\r\n          <option value=\"\" disabled selected hidden>Vali taru...</option>\r\n          <option\r\n            *ngFor=\"let hive of currentlySelectedColony.hives\"\r\n            [value]=\"hive.id\"> {{ '# ' + hive.number + ' ' + hive.description }}</option>\r\n        </optgroup>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-sm-1\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary\"\r\n        (click)=\"utilService.showOverviewWindow(true)\">\r\n        <img\r\n          src=\"assets/img/colony.png\"\r\n          height=\"30px\"\r\n        >\r\n      </button>\r\n      <app-spinner *ngIf=\"isCountingDownToUpdateData\"></app-spinner>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-default\" style=\"margin: 0 !important; background-color: gray\" *ngIf=\"colonies\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"col-sm-1\">\r\n      <a routerLink=\"/settings\" *ngIf=\"!disableControls\">\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-light btn-outline-secondary\">\r\n          <img\r\n            src=\"assets/img/settingsView.png\"\r\n            height=\"30px\"\r\n          >\r\n        </button>\r\n      </a>\r\n    </div>\r\n    <div class=\"col-sm-5\">\r\n      <select\r\n        name=\"colony\"\r\n        class=\"custom-select\"\r\n        [(ngModel)]=\"currentlySelectedColonyId\"\r\n        (change)=\"coloniesService.notifyColonyHiveSelection(+currentlySelectedColonyId, +currentlySelectedHiveId)\"\r\n        [disabled]=\"disableControls\">\r\n        <optgroup>\r\n          <option value=\"\" disabled selected hidden>Vali koloonia...</option>\r\n          <option\r\n            *ngFor=\"let colony of colonies\"\r\n            [value]=\"colony.id\"> {{ colony.name }}</option>\r\n        </optgroup>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-sm-5\" *ngIf=\"currentlySelectedColony\">\r\n      <select\r\n        name=\"hive\"\r\n        class=\"custom-select\"\r\n        [(ngModel)]=\"currentlySelectedHiveId\"\r\n        (change)=\"coloniesService.notifyColonyHiveSelection(+currentlySelectedColonyId, +currentlySelectedHiveId)\"\r\n        [disabled]=\"disableControls\">\r\n        <optgroup>\r\n          <option value=\"\" disabled selected hidden>Vali taru...</option>\r\n          <option\r\n            *ngFor=\"let hive of currentlySelectedColony.hives\"\r\n            [value]=\"hive.id\"> {{ '# ' + hive.number + ' ' + hive.description }}</option>\r\n        </optgroup>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-sm-1\">\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-light btn-outline-secondary\"\r\n        (click)=\"utilService.showOverviewWindow(true)\"\r\n        [disabled]=\"disableControls\">\r\n        <img\r\n          src=\"assets/img/colony.png\"\r\n          height=\"30px\"\r\n        >\r\n      </button>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -7858,16 +8141,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings_shared_colony_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../settings/shared/colony.model */ "./src/app/settings/shared/colony.model.ts");
 /* harmony import */ var _util_util_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/util.service */ "./src/app/util/util.service.ts");
 /* harmony import */ var _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../settings/shared/colonies.service */ "./src/app/settings/shared/colonies.service.ts");
+/* harmony import */ var _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/executor/executor.service */ "./src/app/util/executor/executor.service.ts");
+
 
 
 
 
 
 var WorkHeaderComponent = /** @class */ (function () {
-    function WorkHeaderComponent(utilService, coloniesService) {
+    function WorkHeaderComponent(utilService, coloniesService, executorService) {
         this.utilService = utilService;
         this.coloniesService = coloniesService;
+        this.executorService = executorService;
+        this.subscriptions = [];
     }
+    WorkHeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.executorService.getControlsProtection.subscribe(function (ps) { return _this.disableControls = ps.disableControls; }));
+    };
+    WorkHeaderComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
@@ -7876,10 +8170,6 @@ var WorkHeaderComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _settings_shared_colony_model__WEBPACK_IMPORTED_MODULE_2__["Colony"])
     ], WorkHeaderComponent.prototype, "currentlySelectedColony", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
-    ], WorkHeaderComponent.prototype, "isCountingDownToUpdateData", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
@@ -7895,7 +8185,8 @@ var WorkHeaderComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./work-header.component.css */ "./src/app/work/work-header/work-header.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_util_service__WEBPACK_IMPORTED_MODULE_3__["UtilService"],
-            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_4__["ColoniesService"]])
+            _settings_shared_colonies_service__WEBPACK_IMPORTED_MODULE_4__["ColoniesService"],
+            _util_executor_executor_service__WEBPACK_IMPORTED_MODULE_5__["ExecutorService"]])
     ], WorkHeaderComponent);
     return WorkHeaderComponent;
 }());
@@ -7922,7 +8213,7 @@ module.exports = ".padding-for-notes {\r\n  padding-right: 2.5px;\r\n}\r\n\r\n.p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-login\r\n  *ngIf=\"!validated\"\r\n  (allowedToPass)=\"validated = $event\"></app-login>\r\n\r\n<app-work-header\r\n  *ngIf=\"validated\"\r\n  [colonies]=\"colonies\"\r\n  [currentlySelectedColony]=\"currentlySelectedColony\"\r\n  [currentlySelectedColonyId]=\"currentlySelectedColony ? currentlySelectedColony.id.toString() : ''\"\r\n  [currentlySelectedHiveId]=\"currentlySelectedHive ? currentlySelectedHive.id.toString() : ''\"\r\n  [isCountingDownToUpdateData]=\"isCountingDownToUpdateData\"\r\n>\r\n</app-work-header>\r\n<ng-container *ngIf=\"currentlySelectedHive && validated\">\r\n  <div class=\"row\" style=\"margin-right: 0; margin-left: 0\">\r\n    <div class=\"col-9\" style=\"padding-right: 0px; padding-left: 5px\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6 padding-for-notes\">\r\n          <app-notes\r\n            [currentlySelectedHive]=\"currentlySelectedHive\"\r\n            [notesComponentType]=\"notesComponentEnum.WORK_DASHBOARD\"></app-notes>\r\n        </div>\r\n        <div class=\"col-6 padding-for-planning\">\r\n          <app-planning\r\n            [currentlyChosenHive]=\"currentlySelectedHive\"\r\n            [planningComponentType]=\"planningComponentEnum.WORK_DASHBOARD\"\r\n          >\r\n          </app-planning>\r\n        </div>\r\n      </div>\r\n      <app-size\r\n        [currentlyChosenHive]=\"currentlySelectedHive\"\r\n        *ngIf=\"currentlySelectedHive\"\r\n        (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"></app-size>\r\n    </div>\r\n    <div class=\"col-3\" style=\"margin-right: 0; padding-right: 0; padding-left: 5px\">\r\n      <app-mother\r\n        [currentlyChosenHive]=\"currentlySelectedHive\"\r\n        *ngIf=\"currentlySelectedHive\"></app-mother>\r\n    </div>\r\n  </div>\r\n\r\n  <app-planning-mgmt\r\n    (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"\r\n    [currentlyChosenHive]=\"currentlySelectedHive\"\r\n    [currentlyChosenColony]=\"currentlySelectedColony\"\r\n    [mgmtComponentid]=\"'work-planning'\"\r\n  ></app-planning-mgmt>\r\n\r\n  <app-note-mgmt\r\n    (isCountingDownToUpdateData)=\"notifyIfIsCountingDownToUpdateData($event)\"\r\n    [currentlyChosenHive]=\"currentlySelectedHive\"\r\n    [currentlyChosenColony]=\"currentlySelectedColony\"\r\n    [mgmtComponentId]=\"'notes'\"\r\n  ></app-note-mgmt>\r\n\r\n</ng-container>\r\n\r\n\r\n<app-overview\r\n  *ngIf=\"colonies && validated\"\r\n  [colonies]=\"colonies\">\r\n</app-overview>\r\n\r\n"
+module.exports = "<app-login\r\n  *ngIf=\"!validated\"\r\n  (allowedToPass)=\"validated = $event\"></app-login>\r\n\r\n<app-work-header\r\n  *ngIf=\"validated\"\r\n  [colonies]=\"colonies\"\r\n  [currentlySelectedColony]=\"currentlySelectedColony\"\r\n  [currentlySelectedColonyId]=\"currentlySelectedColony ? currentlySelectedColony.id.toString() : ''\"\r\n  [currentlySelectedHiveId]=\"currentlySelectedHive ? currentlySelectedHive.id.toString() : ''\"\r\n>\r\n</app-work-header>\r\n<ng-container *ngIf=\"currentlySelectedHive && validated\">\r\n  <div class=\"row\" style=\"margin-right: 0; margin-left: 0\">\r\n    <div class=\"col-9\" style=\"padding-right: 0px; padding-left: 5px\">\r\n      <div class=\"row\">\r\n        <div class=\"col-6 padding-for-notes\">\r\n          <app-notes\r\n            [currentlySelectedHive]=\"currentlySelectedHive\"\r\n            [notesComponentType]=\"notesComponentEnum.WORK_DASHBOARD\"></app-notes>\r\n        </div>\r\n        <div class=\"col-6 padding-for-planning\">\r\n          <app-planning\r\n            [currentlyChosenHive]=\"currentlySelectedHive\"\r\n            [planningComponentType]=\"planningComponentEnum.WORK_DASHBOARD\"\r\n          >\r\n          </app-planning>\r\n        </div>\r\n      </div>\r\n      <app-size\r\n        [currentlyChosenHive]=\"currentlySelectedHive\"\r\n        *ngIf=\"currentlySelectedHive\"></app-size>\r\n    </div>\r\n    <div class=\"col-3\" style=\"margin-right: 0; padding-right: 0; padding-left: 5px\">\r\n      <app-mother\r\n        [currentlyChosenHive]=\"currentlySelectedHive\"\r\n        *ngIf=\"currentlySelectedHive\"></app-mother>\r\n    </div>\r\n  </div>\r\n\r\n  <app-planning-mgmt\r\n    [currentlyChosenHive]=\"currentlySelectedHive\"\r\n    [currentlyChosenColony]=\"currentlySelectedColony\"\r\n    [mgmtComponentid]=\"'work-planning'\"\r\n  ></app-planning-mgmt>\r\n\r\n  <app-note-mgmt\r\n    [currentlyChosenHive]=\"currentlySelectedHive\"\r\n    [currentlyChosenColony]=\"currentlySelectedColony\"\r\n    [mgmtComponentId]=\"'notes'\"\r\n  ></app-note-mgmt>\r\n\r\n</ng-container>\r\n\r\n\r\n<app-overview\r\n  *ngIf=\"colonies && validated\"\r\n  [colonies]=\"colonies\">\r\n</app-overview>\r\n\r\n"
 
 /***/ }),
 
@@ -7955,7 +8246,6 @@ var WorkComponent = /** @class */ (function () {
         this.spinnerService = spinnerService;
         this.coloniesService = coloniesService;
         this.planningService = planningService;
-        this.isCountingDownToUpdateData = false;
         this.planningComponentEnum = _planning_planning_component_enum__WEBPACK_IMPORTED_MODULE_4__["PlanningComponentEnum"];
         this.notesComponentEnum = _notes_notes_component_enum__WEBPACK_IMPORTED_MODULE_6__["NotesComponentEnum"];
         this.validated = false;
@@ -7988,9 +8278,6 @@ var WorkComponent = /** @class */ (function () {
         else {
             this.currentlySelectedHive = undefined;
         }
-    };
-    WorkComponent.prototype.notifyIfIsCountingDownToUpdateData = function (isCountingDownToUpdateData) {
-        this.isCountingDownToUpdateData = isCountingDownToUpdateData;
     };
     WorkComponent.prototype.ngOnDestroy = function () {
         this.subscriptions.forEach(function (subscription) { return subscription.unsubscribe(); });

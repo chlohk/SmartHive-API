@@ -14,9 +14,17 @@ import javax.validation.Valid;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class PlanningDropdown {
+public class PlanningDropdown implements Comparable<PlanningDropdown>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    private int deadline;
+    private int orderNumber;
+    private boolean withoutDeadline;
+
+    @Override
+    public int compareTo(PlanningDropdown o) {
+        return getOrderNumber() - o.getOrderNumber();
+    }
 }

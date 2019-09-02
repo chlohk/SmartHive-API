@@ -1,6 +1,6 @@
 {
-  "short_name": "Minumesila",
-  "name": "Minumesila",
+  "short_name": "MinuMesila",
+  "name": "MinuMesila",
   "icons": [
     {
       "src": "assets/img/beeQueen.jpg",
@@ -8,6 +8,7 @@
       "type": "image/jpg"
     }
   ],
+  "start_url": "https://minumesila.ee",
   "display": "fullscreen",
   "orientation": "landscape"
 }
